@@ -1,3 +1,5 @@
+import { YOUFORM_URL } from './form';
+
 export interface VanguardEvent {
   slug: string;
   title: string;
@@ -25,7 +27,7 @@ export const upcomingEvents: VanguardEvent[] = [
     description:
       "Dit keer naar Kasteel Maurick in Vught: sterke sessies in het kasteel, eerlijke gesprekken en de ruimte om elkaar écht te spreken. De spreker tijdens dit event zet een nieuwe toon voor Vanguard. Don't miss out.",
     photo: 'event-maurick.jpg',
-    signupUrl: 'https://form.clubvanguard.io/event',
+    signupUrl: YOUFORM_URL,
     featured: true,
   },
 ];
