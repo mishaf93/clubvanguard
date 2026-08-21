@@ -1,0 +1,142 @@
+---
+const year = new Date().getFullYear();
+
+const discoverLinks = [
+  { href: '/over-club-vanguard/', label: 'Over ons' },
+  { href: '/meetups/', label: 'Events' },
+  { href: '/aanvragen/', label: 'Meld je aan' },
+];
+
+const socialLinks = [
+  {
+    href: 'https://www.instagram.com/clubvanguard.nl/',
+    label: 'Instagram',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
+  },
+  {
+    href: 'https://www.linkedin.com/company/club-vanguard/',
+    label: 'LinkedIn',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>`,
+  },
+];
+---
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img src="/images/logo.png" alt="Club Vanguard" class="footer__logo" width="1024" height="251" />
+      <p class="footer__tagline">
+        Een besloten Nederlandse community voor e-commerce & AI-ondernemers die
+        waarde hechten aan eerlijke gesprekken, hoge standaarden en echte relaties.
+      </p>
+      <div class="footer__social">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            class="footer__social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Volg Club Vanguard op ${link.label}`}
+          >
+            <span set:html={link.icon} />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Ontdek</h3>
+      <nav class="footer__nav" aria-label="Footer navigatie">
+        {discoverLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Contact</h3>
+      <nav class="footer__nav" aria-label="Contact">
+        <a href="mailto:admin@clubvanguard.io">Neem contact met ons op</a>
+        <a href="https://www.instagram.com/clubvanguard.nl/" target="_blank" rel="noopener noreferrer">Volg op Instagram</a>
+        <a href="https://www.linkedin.com/company/club-vanguard/" target="_blank" rel="noopener noreferrer">Volg op LinkedIn</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} Club Vanguard</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line-navy);
+    padding-block: 3.5rem 1.5rem;
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .footer__logo {
+    height: 2.75rem;
+    width: auto;
+    display: block;
+  }
+  .footer__tagline {
+    color: var(--ivory-dim);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    margin-top: 1rem;
+    max-width: 36ch;
+  }
+  .footer__social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+  }
+  .footer__social-link {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    color: var(--ivory-dim);
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .footer__social-link:hover {
+    color: var(--brass-soft);
+    border-color: var(--brass);
+    background: var(--navy-soft);
+  }
+  .footer__heading {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--brass);
+    margin-bottom: 1rem;
+  }
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: var(--text-sm);
+  }
+  .footer__nav a {
+    color: var(--ivory-dim);
+    text-decoration: none;
+  }
+  .footer__nav a:hover { color: var(--brass-soft); }
+  .footer__bottom {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-navy);
+    color: var(--ivory-dim);
+    font-size: var(--text-xs);
+  }
+
+  @media (max-width: 800px) {
+    .footer__grid { grid-template-columns: 1fr; }
+  }
+</style>

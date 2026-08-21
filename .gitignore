@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+
+# Lokale bronmedia (niet nodig voor de site; te groot voor GitHub)
+public/images/drive-events/
+clubvanguard-media.zip

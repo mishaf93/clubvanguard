@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import TheCode from '../components/TheCode.astro';
+import Pillars from '../components/Pillars.astro';
+import UpcomingEvent from '../components/UpcomingEvent.astro';
+import YearTimeline from '../components/YearTimeline.astro';
+import CommunityApp from '../components/CommunityApp.astro';
+import Quotes from '../components/Quotes.astro';
+import ForWho from '../components/ForWho.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FounderNote from '../components/FounderNote.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { getFeaturedEvent } from '../lib/events.ts';
+
+const featuredEvent = await getFeaturedEvent();
+---
+<Base
+  title="Club Vanguard · De private community voor e-commerce & AI-ondernemers"
+  description="Een besloten Nederlandse community voor e-commerce & AI-ondernemers die waarde hechten aan eerlijke gesprekken, hoge standaarden en echte relaties."
+>
+  <Hero />
+  <Stats />
+  <TheCode />
+  <Pillars />
+  <YearTimeline />
+  {featuredEvent && <UpcomingEvent event={featuredEvent} />}
+  <CommunityApp />
+  <Quotes />
+  <ForWho />
+  <HowItWorks />
+  <FounderNote />
+  <ClosingCta />
+</Base>

@@ -1,0 +1,23 @@
+Zet hier je foto's neer en vervang de placeholders in de components:
+
+Homepage & algemeen:
+- hero.jpg       -> Hero.astro + meetups pagina (sterkste eventfoto, liggend, min. 2000px breed)
+- leden.jpg      -> Pillars.astro (groepsfoto / gesprek)
+- events.jpg     -> Pillars.astro + UpcomingEvent (eventlocatie)
+- app.jpg        -> Pillars.astro (screenshot/mockup van de app, of sessie-foto)
+- misha.jpg      -> FounderNote.astro (portret, staand 3:4)
+
+Fotogalerij (homepage + meetups):
+- gallery-1.jpg  -> groot beeld links (club event)
+- gallery-2.jpg  -> dinner
+- gallery-3.jpg  -> activiteit
+- gallery-4.jpg  -> trip
+- gallery-5.jpg  -> roundtable
+
+Meetups pagina (event types):
+- club-event.jpg -> Club events kaart
+- activiteit.jpg -> Clubactiviteiten kaart
+- dinner.jpg     -> Dinners & roundtables kaart
+- trip.jpg       -> Internationale momenten kaart
+
+Tip: exporteer als .webp of gecomprimeerde .jpg (max ~300kb per foto) voor snelheid.

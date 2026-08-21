@@ -1,0 +1,58 @@
+---
+---
+<section class="section section--ivory founder">
+  <div class="container founder__grid">
+    <img
+      src="/images/founder.jpg"
+      alt="Misha Fedorov, founder van Club Vanguard"
+      class="site-photo founder__photo"
+      loading="lazy"
+      width="1000"
+      height="1333"
+    />
+    <div>
+      <p class="eyebrow">Van de founder</p>
+      <h2 class="section-title">“De connectie wordt vaak online gemaakt, maar offline pas écht gevoeld.”</h2>
+      <p class="founder__text">
+        Vanguard is ontstaan uit honderden gesprekken met ondernemers die
+        hetzelfde misten: diepgang, eerlijkheid en mensen die je écht verder
+        helpen. Geen goeroe's, geen verborgen agenda's. Gewoon ondernemers
+        die elkaar scherper maken. Dat bouwen we hier, elke dag.
+      </p>
+      <p class="founder__sig">Misha Fedorov, Founder Club Vanguard</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder__grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: center;
+  }
+  .founder__photo {
+    aspect-ratio: 1;
+    min-height: 0;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .founder__text {
+    margin-top: 1.4rem;
+    color: var(--ink-dim);
+    max-width: 52ch;
+  }
+  .founder__sig {
+    margin-top: 1.6rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--brass);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .founder__grid { grid-template-columns: 1fr; }
+    .founder__photo { max-width: 280px; }
+  }
+</style>

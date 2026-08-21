@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Aanvraagformulier draait op Youform. De iframe hieronder embedt hem;
+// wil je toch liever doorlinken, gebruik dan de knop-variant in de comment.
+const YOUFORM_URL = 'https://form.clubvanguard.io/intake';
+---
+<Base
+  title="Lid worden · Club Vanguard"
+  description="Dien je aanvraag in voor Club Vanguard. We beoordelen elke aanvraag persoonlijk en nodigen je uit voor een kennismakingsgesprek. Besluit binnen 1-2 dagen."
+>
+  <section class="section apply">
+    <div class="container apply__grid">
+      <div class="apply__intro reveal">
+        <p class="eyebrow">Lid worden</p>
+        <h1 class="apply__title">Dien je aanvraag in</h1>
+        <p class="apply__text">
+          Vanguard is geen doorsnee groep. We beoordelen elke aanvraag
+          persoonlijk en nodigen je bij een match uit voor een
+          kennismakingsgesprek. Binnen 1–2 dagen hoor je van ons.
+        </p>
+        <ol class="apply__steps">
+          <li>Aanvraag indienen</li>
+          <li>Kennismakingsgesprek</li>
+          <li>Besluit binnen 1–2 dagen</li>
+        </ol>
+        <p class="apply__contact">
+          Vragen? Mail <a href="mailto:admin@clubvanguard.io">admin@clubvanguard.io</a>
+        </p>
+      </div>
+
+      <div class="apply__form reveal">
+        <iframe
+          src={YOUFORM_URL}
+          title="Aanvraagformulier Club Vanguard"
+          loading="lazy"
+        ></iframe>
+        <p class="apply__fallback">
+          Laadt het formulier niet?
+          <a href={YOUFORM_URL} target="_blank" rel="noopener">Open het in een nieuw tabblad →</a>
+        </p>
+      </div>
+      <!-- Knop-variant i.p.v. embed:
+      <a href={YOUFORM_URL} class="btn btn--solid" target="_blank" rel="noopener">
+        Naar het aanvraagformulier
+      </a>
+      -->
+    </div>
+  </section>
+</Base>
+
+<style>
+  .apply__grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.2fr);
+    gap: clamp(2.5rem, 7vw, 6rem);
+    align-items: start;
+  }
+  .apply__title { font-size: var(--text-2xl); }
+  .apply__text {
+    margin-top: 1.3rem;
+    color: var(--ivory-dim);
+  }
+  .apply__steps {
+    margin-top: 2rem;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .apply__steps li::marker {
+    color: var(--brass);
+    font-family: var(--font-display);
+  }
+  .apply__contact {
+    margin-top: 2rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+  .apply__contact a { color: var(--brass-soft); }
+
+  .apply__form {
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    padding: 0.75rem;
+  }
+  .apply__form iframe {
+    width: 100%;
+    min-height: 640px;
+    border: 0;
+    display: block;
+    background: var(--ivory);
+  }
+  .apply__fallback {
+    padding: 0.9rem 0.5rem 0.4rem;
+    font-size: var(--text-xs);
+    color: var(--ivory-dim);
+    text-align: center;
+  }
+  .apply__fallback a { color: var(--brass-soft); }
+
+  @media (max-width: 800px) {
+    .apply__grid { grid-template-columns: 1fr; }
+  }
+</style>

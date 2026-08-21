@@ -1,0 +1,100 @@
+---
+const forWho = [
+  'E-commerce ondernemers ver voorbij de beginfase (minimaal 500k p/j afhankelijk van het kanaal): brand owners, webshop- en marketplace-sellers',
+  'AI & automation builders: je bouwt producten, workflows of tooling die e-commerce en operators scherper maken',
+  'Service providers verwant aan e-com; marketeers, investors, logistieke en financiële partners en meer',
+  'Ondernemers die komen om te delen, niet alleen om te halen',
+];
+const notForWho = [
+  'Je staat aan het begin en zoekt vooral een cursus of goeroe',
+  'Je bent alleen gemotiveerd door wat je eruit kunt halen',
+  'Je bent tevreden met gemiddeld',
+];
+---
+<section class="section section--ivory forwho">
+  <div class="container forwho__grid">
+    <div class="reveal">
+      <p class="eyebrow">Wij hebben strenge filters</p>
+      <h2 class="section-title">Vanguard is er voor jou als…</h2>
+      <ul class="forwho__list forwho__list--yes">
+        {forWho.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div class="forwho__no reveal">
+      <h3 class="forwho__no-title">En eerlijk: niet voor jou als…</h3>
+      <ul class="forwho__list forwho__list--no">
+        {notForWho.map((item) => <li>{item}</li>)}
+      </ul>
+      <p class="forwho__note">
+        Onze leden vragen ons de selectie streng te houden. Het is precies wat
+        het niveau van elk gesprek bepaalt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .forwho__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .forwho__list {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .forwho__list li {
+    position: relative;
+    padding-left: 2rem;
+    line-height: 1.6;
+  }
+  .forwho__list--yes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(185, 148, 90, 0.15);
+    color: var(--brass);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .forwho__no {
+    background: var(--navy);
+    color: var(--ivory);
+    padding: 2.4rem 2.2rem;
+  }
+  .forwho__no-title {
+    font-size: var(--text-lg);
+  }
+  .forwho__list--no { margin-top: 1.4rem; }
+  .forwho__list--no li {
+    color: var(--ivory-dim);
+    font-size: var(--text-sm);
+  }
+  .forwho__list--no li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+  }
+  .forwho__note {
+    margin-top: 1.8rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line-navy);
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+
+  @media (max-width: 800px) {
+    .forwho__grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,201 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  showSurvey?: boolean;
+}
+
+const {
+  eyebrow = 'In hun woorden',
+  title = 'Wat leden zelf zeggen',
+  showSurvey = true,
+} = Astro.props;
+
+const stars = '★★★★★';
+
+const surveyQuotes = [
+  {
+    text: 'Snel eerlijke en concrete input van ondernemers die zelf op niveau draaien.',
+    source: 'Anonieme ledensurvey',
+  },
+  {
+    text: 'Alleen ondernemers toelaten die aantoonbaar goede cijfers draaien. Dat bepaalt het niveau van elk gesprek.',
+    source: 'Anonieme ledensurvey',
+  },
+  {
+    text: 'Members die elkaar oprecht helpen. Het voelt als een team.',
+    source: 'Anonieme ledensurvey',
+  },
+];
+
+const memberQuotes = [
+  {
+    text: 'Sinds het begin ben ik al lid van Vanguard. Het is een hechte community die me in de loop der tijd al enorm veel gebracht heeft. Van leuke contacten en vriendschappen tot business motivatie, tips en hulp om bij elke stap die je qua business zet toch ff wat ervaring en input te kunnen ophalen bij de groep. Een aanrader voor iedereen die wil connecten en samen wil groeien.',
+    name: 'Adam de W.',
+    initials: 'AdW',
+  },
+  {
+    text: 'De eerste club dag die ik bij mocht wonen was gelijk een warm welkom in deze hechte groep e-com ondernemers. Buitenom dat deze dag tot in de puntjes verzorgd is staan alle leden open om met elkaar te sparren over hun unieke ideeën om samen door te kunnen groeien. Absoluut een aanrader!',
+    name: 'JK',
+    initials: 'JK',
+  },
+  {
+    text: 'Een mooie groep vol oprechte, authentieke en gezellige ondernemers. Je kunt in vertrouwen sparren met elkaar, leren van elkaar en uiteraard een gezellige tijd hebben. Grote aanrader voor de (e-com) ondernemer die sámen groei wil acceleren en ondernemen nog leuk wil maken met een ondernemende groep.',
+    name: 'PE',
+    initials: 'PE',
+  },
+  {
+    text: 'Fijne club met een enthousiaste groep ondernemers. Wordt veel kennis gedeelt en er heerst een prettige sfeer. Events zijn enorm waardevol en leerzaam.',
+    name: 'Jesse VH',
+    initials: 'JVH',
+  },
+  {
+    text: 'Hele waardevolle dag beleefd met inspirerende mensen. Allemaal met een doel voor ogen en niet bang zijn deze doelen te delen. Hieruit ontstaan dan ook waardevolle connecties. Dag was goed georganiseerd op een prachtige locatie. Ruimte om te groeien, luisteren, inspireren, brainstormen met interactieve sessies. 10/10!',
+    name: 'Delano VH',
+    initials: 'DVH',
+  },
+  {
+    text: 'Vandaag mooie waardevolle connecties gelegd tijdens het ondernemers event. De sfeer was authentiek, oprecht en inspirerend, precies de juiste setting om echte gesprekken te voeren. Dankbaar voor de nieuwe inzichten en ontmoetingen!',
+    name: 'Sander K.',
+    initials: 'SK',
+  },
+];
+---
+<section class="section quotes">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 class="section-title">{title}</h2>
+    {showSurvey && (
+      <>
+        <p class="quotes__note">
+          Gemiddelde beoordeling in onze anonieme ledensurvey: 8,8
+          <span class="quotes__stars" aria-label="5 van 5 sterren">{stars}</span>
+        </p>
+
+        <h3 class="quotes__subtitle">Uit onze anonieme ledensurvey</h3>
+        <div class="quotes__grid">
+          {surveyQuotes.map((q) => (
+            <figure class="quotes__card">
+              <blockquote class="quotes__text">"{q.text}"</blockquote>
+              <figcaption class="quotes__source">{q.source}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <h3 class="quotes__subtitle quotes__subtitle--members">Wat onze leden zeggen</h3>
+      </>
+    )}
+    <div class:list={['quotes__grid', 'quotes__grid--members', !showSurvey && 'quotes__grid--members-only']}>
+      {memberQuotes.map((q) => (
+        <figure class="quotes__card quotes__card--member">
+          <div class="quotes__stars quotes__stars--card" aria-label="5 van 5 sterren">{stars}</div>
+          <blockquote class="quotes__text quotes__text--member">"{q.text}"</blockquote>
+          <figcaption class="quotes__author">
+            <span class="quotes__avatar" aria-hidden="true">{q.initials}</span>
+            <span class="quotes__name">{q.name}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .quotes__note {
+    margin-top: 1rem;
+    color: var(--ivory-dim);
+    font-size: var(--text-sm);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .quotes__stars {
+    color: var(--brass);
+    letter-spacing: 0.12em;
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+  .quotes__stars--card {
+    font-size: 0.85rem;
+    text-align: center;
+    width: 100%;
+  }
+  .quotes__subtitle {
+    margin-top: 3rem;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .quotes__subtitle--members { margin-top: 3.5rem; }
+  .quotes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .quotes__grid--members {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .quotes__grid--members-only {
+    margin-top: 2rem;
+  }
+  .quotes__card {
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 8px;
+    padding: 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .quotes__card--member {
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  .quotes__text {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: 1.4;
+  }
+  .quotes__text--member {
+    font-size: var(--text-base);
+    line-height: 1.55;
+  }
+  .quotes__source {
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .quotes__author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: auto;
+    width: 100%;
+  }
+  .quotes__avatar {
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--brass);
+    flex-shrink: 0;
+  }
+  .quotes__name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--ivory);
+  }
+</style>

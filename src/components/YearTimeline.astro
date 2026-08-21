@@ -1,0 +1,124 @@
+---
+// Signatuurelement: membership in de praktijk, als brass-tijdlijn op frequentie.
+const moments = [
+  {
+    tag: 'Elke dag',
+    title: 'De community & app',
+    text: 'Een vraag in de groep is dezelfde dag beantwoord. Via de app vind je in de rolodex precies wie wat doet.',
+  },
+  {
+    tag: '6× per jaar',
+    title: 'Events & activiteiten',
+    text: 'Om de maand een event: van sterke sessies op bijzondere locaties tot activiteiten waar je elkaar écht leert kennen.',
+  },
+  {
+    tag: '6× per jaar',
+    title: 'Dinners & roundtables',
+    text: 'Kleinschalig en intiem. Eén tafel, één casus, eerlijke input van ondernemers op niveau.',
+  },
+  {
+    tag: '1× per jaar',
+    title: 'Internationale trip',
+    text: 'Meerdere dagen samen in het buitenland. Daar ontstaan de vriendschappen en de beste ideeën.',
+  },
+];
+---
+<section class="section section--ivory timeline">
+  <div class="container">
+    <p class="eyebrow reveal">Vanguard in de praktijk</p>
+    <h2 class="section-title section-title--lg reveal">Wat je meemaakt als member</h2>
+    <p class="timeline__lead reveal">
+      Een vaste agenda van momenten waarop je je peers écht spreekt. Thuis, bij
+      members op kantoor, en over de grens. Denk aan office visits en meet-ups
+      op de Canton Fair in Guangzhou.
+    </p>
+
+    <ol class="timeline__track">
+      {moments.map((m) => (
+        <li class="timeline__moment reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <span class="timeline__tag">{m.tag}</span>
+          <h3 class="timeline__title">{m.title}</h3>
+          <p class="timeline__text">{m.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline__lead {
+    margin-top: 1.2rem;
+    color: var(--ink-dim);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    max-width: 55ch;
+  }
+  .timeline__track {
+    list-style: none;
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 1.5rem;
+    position: relative;
+  }
+  .timeline__track::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--brass);
+  }
+  .timeline__moment {
+    position: relative;
+    padding-top: 1.6rem;
+  }
+  .timeline__dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 2px solid var(--brass);
+  }
+  .timeline__tag {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .timeline__title {
+    font-size: var(--text-lg);
+    margin-top: 0.5rem;
+  }
+  .timeline__text {
+    margin-top: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .timeline__track { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .timeline__track { grid-template-columns: 1fr; gap: 2rem; padding-left: 1.6rem; }
+    .timeline__track::before {
+      top: 0;
+      bottom: 0;
+      left: 5px;
+      right: auto;
+      width: 1px;
+      height: auto;
+      background: var(--brass);
+    }
+    .timeline__moment { padding-top: 0; }
+    .timeline__dot { left: -1.6rem; top: 6px; }
+  }
+</style>

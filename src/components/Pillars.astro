@@ -1,0 +1,92 @@
+---
+const pillars = [
+  {
+    title: 'De leden',
+    photo: 'pillars-leden.jpg',
+    alt: 'Vanguard-leden, groepsfoto bij Kasteel Maurick Vught',
+    text: 'Alleen ondernemers die aantoonbaar draaien. Dat bepaalt het niveau van elk gesprek.',
+  },
+  {
+    title: 'De events',
+    photo: 'pillars-events.jpg',
+    alt: 'Netwerken op Kasteel Maurick tijdens een Club Vanguard event',
+    text: 'Om de maand een event op bijzondere locaties. Dagen waarna je scherper naar huis rijdt.',
+  },
+  {
+    title: 'De ervaringen',
+    photo: 'pillars-trips.jpg',
+    alt: 'Vanguard-leden op de Faro trip',
+    text: 'Trips zoals Faro en de Canton Fair. Momenten die blijven hangen en vriendschappen bouwen.',
+  },
+];
+---
+<section class="section pillars">
+  <div class="container">
+    <p class="eyebrow">Wat Vanguard is</p>
+    <h2 class="section-title">Drie dingen die je nergens anders zo vindt</h2>
+    <div class="pillars__grid">
+      {pillars.map((p) => (
+        <article class="pillars__card">
+          <img
+            src={`/images/${p.photo}`}
+            alt={p.alt}
+            class="site-photo pillars__photo"
+            loading="lazy"
+            width="1600"
+            height="1200"
+          />
+          <div class="pillars__body">
+            <h3 class="pillars__title">{p.title}</h3>
+            <p class="pillars__text">{p.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars {
+    background: var(--navy);
+    padding-bottom: var(--space-section);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .pillars__card {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .pillars__photo {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .pillars__body {
+    flex: 1;
+    padding: 1.25rem 0 0;
+    background: transparent;
+  }
+  .pillars__title {
+    font-size: var(--text-lg);
+  }
+  .pillars__text {
+    margin-top: 0.55rem;
+    color: var(--ivory-dim);
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 900px) {
+    .pillars__grid { grid-template-columns: 1fr; }
+  }
+</style>

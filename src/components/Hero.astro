@@ -1,0 +1,72 @@
+---
+// Hero foto wisselen: zet PUBLIC_HERO_IMAGE=/images/hero-new.jpg in .env
+// hero.jpg = origineel (herowp) · hero-new.jpg = netwerk/event foto
+const heroImage = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.jpg';
+---
+<section class="hero">
+  <img
+    src={heroImage}
+    alt=""
+    class="site-photo hero__photo"
+    width="2400"
+    height="1000"
+    fetchpriority="high"
+  />
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <p class="eyebrow">Private NL community · E-commerce & AI-ondernemers</p>
+    <h1 class="hero__title">Zuivere ondernemers op niveau.<br /><em>Eerlijke gesprekken.</em></h1>
+    <p class="lead hero__lead">
+      Een besloten Nederlandse community voor e-commerce & AI-ondernemers die
+      waarde hechten aan eerlijke gesprekken, hoge standaarden en echte relaties.
+    </p>
+    <div class="hero__actions">
+      <a href="/aanvragen/" class="btn btn--solid">Aanvraag indienen</a>
+      <a href="/meetups/" class="btn btn--ghost">Bekijk events</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(88vh, 780px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 18, 32, 0.58);
+  }
+  .hero__content {
+    position: relative;
+    padding-block: clamp(3.5rem, 9vh, 6rem);
+  }
+  .hero__title {
+    font-size: var(--text-hero);
+    max-width: 16ch;
+  }
+  .hero__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .hero__lead {
+    margin-top: 1.4rem;
+    color: var(--ivory-dim);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
+</style>

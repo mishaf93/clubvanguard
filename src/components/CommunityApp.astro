@@ -1,0 +1,88 @@
+---
+---
+<section class="section section--ivory app">
+  <div class="container app__grid">
+    <div>
+      <p class="eyebrow">Community App</p>
+      <h2 class="section-title">Onze rolodex voor het Vanguard-netwerk</h2>
+      <p class="app__text">
+        Vind leden over de hele wereld, ontdek wat ze bouwen en sluit je aan bij
+        events op één plek. De app is het dagelijkse hart van de community:
+        rolodex, agenda en door leden georganiseerde activiteiten.
+      </p>
+      <ul class="app__list">
+        <li>Member-rolodex met wie wat doet</li>
+        <li>Eventagenda, gekoppeld aan onze offline momenten</li>
+        <li>Door leden zelf georganiseerde activiteiten</li>
+      </ul>
+    </div>
+
+    <div class="app__visual" aria-label="Vanguard app op iPhone">
+      <img
+        src="/images/app-mockup.png"
+        alt="Vanguard app: member-rolodex op de kaart en events-overzicht"
+        class="app__mockup"
+        width="720"
+        height="796"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .app__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: center;
+  }
+  .app__text {
+    margin-top: 1.2rem;
+    color: var(--ink-dim);
+    max-width: 48ch;
+    line-height: 1.7;
+  }
+  .app__list {
+    list-style: none;
+    margin-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .app__list li {
+    position: relative;
+    padding-left: 2rem;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+  .app__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(185, 148, 90, 0.15);
+    color: var(--brass);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .app__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .app__mockup {
+    width: min(320px, 78%);
+    height: auto;
+  }
+
+  @media (max-width: 800px) {
+    .app__grid { grid-template-columns: 1fr; }
+  }
+</style>

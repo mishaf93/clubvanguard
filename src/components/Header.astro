@@ -1,0 +1,65 @@
+---
+const { pathname } = Astro.url;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/meetups/', label: 'Meetups' },
+  { href: '/over-club-vanguard/', label: 'Over ons' },
+];
+---
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Club Vanguard home">
+      <img src="/images/logo.png" alt="Club Vanguard" class="header__logo-img" width="1024" height="251" />
+    </a>
+    <nav aria-label="Hoofdnavigatie" class="header__nav">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={['header__link', { 'is-active': pathname === link.href || pathname === link.href.replace(/\/$/, '') }]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/aanvragen/" class="btn btn--solid header__cta">Aanvragen</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--navy);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+  .header__logo { text-decoration: none; display: block; }
+  .header__logo-img {
+    height: 3rem;
+    width: auto;
+    display: block;
+  }
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  .header__link {
+    font-size: var(--text-sm);
+    text-decoration: none;
+    color: var(--ivory-dim);
+  }
+  .header__link:hover,
+  .header__link.is-active { color: var(--ivory); }
+  .header__cta { padding: 0.6rem 1.3rem; }
+
+  @media (max-width: 640px) {
+    .header__link { display: none; }
+  }
+</style>

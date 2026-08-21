@@ -1,0 +1,466 @@
+---
+import Base from '../layouts/Base.astro';
+import Quotes from '../components/Quotes.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { aboutFaqs } from '../data/faq.ts';
+
+const memberExperience = [
+  'Betrouwbare connecties met andere ondernemers en partners op hoog niveau',
+  'Toegang tot mensen met relevante ervaring, expertise en netwerken',
+  'Eerlijke gesprekken over ondernemen, groei, druk en besluitvorming',
+  'Offline momenten die echte herinneringen creëren',
+  'Een ruimte waar mensen openlijk delen en elkaar vooruit helpen',
+];
+
+const membershipPerks = [
+  {
+    title: 'De community',
+    text: '50+ geselecteerde e-commerce & AI-ondernemers en een actieve groep waar vragen dezelfde dag beantwoord worden.',
+    bullets: [
+      'Dagelijks kanaal met leden wereldwijd',
+      'Betrouwbare introducties en sparring',
+      'Kennis delen zonder verborgen agenda',
+    ],
+  },
+  {
+    title: 'De events',
+    text: 'Offline momenten op bijzondere locaties, van clubdagen tot dinners en internationale trips.',
+    bullets: [
+      'Om de maand een event of dinner',
+      'Office visits en roundtables',
+      'Canton Fair meet-ups en jaarlijkse trip',
+    ],
+  },
+  {
+    title: 'De app',
+    text: 'Rolodex, agenda en activiteiten op één plek. Het dagelijkse hart van Vanguard.',
+    bullets: [
+      'Member-rolodex: wie doet wat, waar',
+      'Eventagenda gekoppeld aan offline momenten',
+      'Door leden georganiseerde activiteiten',
+    ],
+    mockup: true,
+  },
+  {
+    title: 'De Vanguard Insider',
+    text: 'Onze interne nieuwsbrief, exclusief voor members.',
+    bullets: [
+      'Updates en kansen binnen de groep',
+      'Wat er speelt in het netwerk',
+      'Alleen voor leden, nooit publiek',
+    ],
+  },
+];
+---
+<Base
+  title="Over ons · Club Vanguard"
+  description="Waarom Club Vanguard bestaat: een exclusieve community voor e-commerce & AI-ondernemers die eerlijke gesprekken, hoge standaarden en echte relaties waarderen."
+>
+  <section class="section story-hero">
+    <div class="container split split--hero">
+      <div class="split__content">
+        <p class="eyebrow story-hero__eyebrow">Over ons</p>
+        <h1 class="story-hero__title">
+          Gebouwd door ondernemers<br />die het <em>zelf ook misten</em>
+        </h1>
+        <p class="lead story-hero__lead">
+          Vanguard is ontstaan uit honderden gesprekken met ondernemers, ieder
+          met een eigen pad. Opvallend vaak hetzelfde gemis: netwerken zonder
+          diepgang, communities vol halen en weinig geven, goeroe's met een
+          verborgen agenda.
+        </p>
+        <p class="story-hero__lead story-hero__lead--follow">
+          Dus wij wilden het anders.
+        </p>
+      </div>
+      <img
+        src="/images/about-hero.jpg"
+        alt="Vanguard-leden netwerken tijdens een event"
+        class="site-photo split__photo split__photo--hero"
+        width="600"
+        height="800"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <section class="section section--ivory intro">
+    <div class="container intro__inner">
+      <p class="eyebrow">Over Club Vanguard</p>
+      <h2 class="section-title">
+        Vooruitstrevende e-commerce &amp; AI-ondernemers verbinden om samen te groeien
+      </h2>
+      <div class="prose prose--lg">
+        <p>
+          Club Vanguard is een exclusieve Nederlandse community voor ambitieuze
+          e-commerce ondernemers, merkeigenaren, marketeers, dienstverleners en
+          AI-gedreven bouwers.
+        </p>
+        <p>
+          Maar meer dan dat is het een plek voor mensen die eerlijke gesprekken,
+          hoge standaarden en echte relaties waarderen. We brengen mensen samen
+          die actief bezig zijn met het bouwen van toffe bedrijven, merken, teams,
+          systemen en oplossingen.
+        </p>
+        <p>
+          Mensen die willen groeien, maar niet ten koste van hun waarden.
+          Mensen die begrijpen dat de juiste ruimte je perspectief, je netwerk
+          en de richting van je bedrijf kan veranderen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section origin">
+    <div class="container split split--reverse split--origin">
+      <img
+        src="/images/about-origin.jpg"
+        alt="Vanguard-leden tijdens een clubdag"
+        class="site-photo split__photo split__photo--origin"
+        loading="lazy"
+        width="600"
+        height="800"
+      />
+      <div class="split__content">
+        <p class="eyebrow">Waarom we zijn begonnen</p>
+        <h2 class="section-title">We wilden iets dat nog niet bestond</h2>
+        <div class="prose prose--dim prose--lg">
+          <p>
+            Club Vanguard is ontstaan uit zowel noodzaak als verlangen. We hadden
+            genoeg communities gezien waar alles online bleef. Waar mensen
+            binnenkwamen, een paar berichten consumeerden en weer verdwenen.
+          </p>
+          <p>
+            We hadden ook plekken gezien waar de intentie niet klopte. Gebouwd
+            rond status, ruis, goeroes, upsells of kortetermijnwinst in plaats van
+            echte waarde voor de leden. Dat was iets wat we nooit meer wilden.
+          </p>
+          <p>
+            We wilden een ruimte creëren waar mensen elkaar offline konden
+            ontmoeten, openlijk konden spreken, konden delen wat écht werkt en
+            relaties konden opbouwen die langer duren dan één event of een appje.
+          </p>
+          <p>
+            Een plek waar leden zich veilig, uitgedaagd en gesteund voelen, en
+            waar de mensen achter de bedrijven net zo belangrijk zijn als de
+            resultaten die ze creëren.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ivory values">
+    <div class="container">
+      <p class="eyebrow">Onze waarden</p>
+      <h2 class="section-title">Geen loze woorden, maar hoe we beslissen</h2>
+      <div class="values__grid">
+        <div class="values__item">
+          <h3>Integriteit</h3>
+          <p>We zeggen wat we doen en doen wat we zeggen. Vertrouwen is de basis van elke relatie en elk gesprek.</p>
+        </div>
+        <div class="values__item values__item--share">
+          <h3>Onvoorwaardelijk delen</h3>
+          <p>Geen 'geven en nemen', maar geven en ontvangen.</p>
+        </div>
+        <div class="values__item">
+          <h3>No Ego</h3>
+          <p>We laten ons ego buiten. We willen samen winnen.</p>
+        </div>
+        <div class="values__item">
+          <h3>Verbinding</h3>
+          <p>Echte relaties boven oppervlakkige netwerken. Zakelijk begint het, persoonlijk wordt het.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section experience">
+    <div class="container split">
+      <div class="split__content">
+        <p class="eyebrow">Wat leden ervaren</p>
+        <h2 class="section-title">Meer dan netwerken</h2>
+        <p class="experience__lead">
+          Club Vanguard creëert momenten die dieper gaan dan een typisch
+          netwerkevent. Via zorgvuldig samengestelde events, diners, reizen en
+          exclusieve ruimtes krijgen leden toegang tot gesprekken en relaties
+          die moeilijk bij toeval te creëren zijn.
+        </p>
+        <ul class="checklist">
+          {memberExperience.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p class="experience__closing">
+          Dit gaat niet over het verzamelen van visitekaartjes. Het gaat over het
+          opbouwen van een netwerk voor de lange termijn, waar je écht op kunt rekenen.
+        </p>
+      </div>
+      <img
+        src="/images/about-experience.jpg"
+        alt="Vanguard-leden tijdens een offline moment"
+        class="site-photo split__photo"
+        loading="lazy"
+        width="600"
+        height="800"
+      />
+    </div>
+  </section>
+
+  <section class="section section--ivory membership">
+    <div class="container">
+      <p class="eyebrow">Onderdeel van Vanguard</p>
+      <h2 class="section-title">Wat je kunt verwachten als member</h2>
+      <div class="membership__grid">
+        {membershipPerks.map((perk) => (
+          <article class:list={['membership__card', perk.mockup && 'membership__card--app']}>
+            <div class="membership__main">
+              <h3 class="membership__title">{perk.title}</h3>
+              <p class="membership__text">{perk.text}</p>
+              <ul class="membership__bullets">
+                {perk.bullets.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            {perk.mockup && (
+              <img
+                src="/images/app-mockup.png"
+                alt="Vanguard app: rolodex en events"
+                class="membership__mockup"
+                width="720"
+                height="796"
+                loading="lazy"
+              />
+            )}
+          </article>
+        ))}
+      </div>
+      <a href="/aanvragen/" class="btn btn--solid membership__cta">Aanvraag indienen</a>
+    </div>
+  </section>
+
+  <Faq items={aboutFaqs} eyebrow="" title="Veelgestelde vragen" light />
+
+  <Quotes
+    eyebrow="Bewezen door leden"
+    title="Wat onze leden zeggen"
+    showSurvey={false}
+  />
+  <ClosingCta />
+</Base>
+
+<style>
+  .story-hero__eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+  }
+  .story-hero__title {
+    font-size: var(--text-hero);
+    max-width: 15ch;
+  }
+  .story-hero__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .story-hero__lead {
+    margin-top: 1.6rem;
+    color: var(--ivory-dim);
+    max-width: 48ch;
+  }
+  .story-hero__lead--follow {
+    margin-top: 1rem;
+  }
+
+  .intro__inner { max-width: 52rem; }
+
+  /* Tekst + portretfoto naast elkaar */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr min(320px, 36%);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+  .split--hero {
+    grid-template-columns: 1fr min(380px, 42%);
+    align-items: center;
+  }
+  .split--reverse {
+    grid-template-columns: min(360px, 40%) 1fr;
+  }
+  .split--origin {
+    grid-template-columns: min(360px, 40%) 1fr;
+    align-items: center;
+  }
+  .split__photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    min-height: 0;
+    border-radius: 6px;
+    border: 1px solid var(--line-ivory);
+    object-position: center 25%;
+  }
+  .split__photo--hero,
+  .split__photo--origin {
+    border-color: var(--line-navy);
+  }
+  .origin .split__photo,
+  .experience .split__photo {
+    border-color: var(--line-navy);
+  }
+
+  .prose {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    font-size: var(--text-sm);
+  }
+  .prose--lg {
+    font-size: var(--text-base);
+  }
+  .prose--dim {
+    color: var(--ivory-dim);
+  }
+
+  .values__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .values__item h3 {
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .values__item--share h3 {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    white-space: nowrap;
+  }
+  .values__item p {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  .experience__lead {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+    line-height: 1.7;
+    font-size: var(--text-base);
+  }
+  .checklist {
+    list-style: none;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .checklist li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    color: var(--ivory);
+  }
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    width: 1.15rem;
+    height: 1.15rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(185, 148, 90, 0.18);
+    color: var(--brass);
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+  .experience__closing {
+    margin-top: 1.5rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    line-height: 1.65;
+  }
+
+  .membership__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.25rem;
+  }
+  .membership__card {
+    background: #fff;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+    padding: 1.5rem 1.4rem;
+  }
+  .membership__card--app {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .membership__main { flex: 1; min-width: 0; }
+  .membership__title {
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .membership__text {
+    margin-top: 0.5rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.6;
+  }
+  .membership__bullets {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .membership__bullets li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .membership__bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+    font-weight: 700;
+  }
+  .membership__mockup {
+    width: 88px;
+    flex-shrink: 0;
+    height: auto;
+    align-self: center;
+  }
+  .membership__cta { margin-top: 2.5rem; }
+
+  @media (max-width: 820px) {
+    .split,
+    .split--hero,
+    .split--reverse,
+    .split--origin {
+      grid-template-columns: 1fr;
+    }
+    .split__photo {
+      max-width: 300px;
+    }
+    .split--reverse .split__photo,
+    .split--origin .split__photo {
+      order: -1;
+    }
+    .membership__grid { grid-template-columns: 1fr; }
+    .values__item--share h3 { white-space: normal; }
+  }
+</style>

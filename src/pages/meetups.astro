@@ -1,0 +1,224 @@
+---
+import Base from '../layouts/Base.astro';
+import { eventCategories } from '../data/events.ts';
+import { getFeaturedEvent } from '../lib/events.ts';
+import UpcomingEvent from '../components/UpcomingEvent.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+
+const event = await getFeaturedEvent();
+const heroImage = '/images/gallery-2.jpg';
+
+const meetupBenefits = [
+  'Eerlijke gesprekken met mensen die het spel begrijpen',
+  'Gecureerde introducties gebaseerd op relevantie en vertrouwen',
+  'Lessen van andere e-commerce ondernemers en operators',
+  'Offline momenten die echte herinneringen creëren',
+  'Toegang tot ruimtes waar je normaal gesproken niet zomaar binnen zou gaan',
+  'Een groep mensen die samen willen groeien en winnen',
+];
+---
+<Base
+  title="Meetups · Club Vanguard"
+  description="Offline momenten voor e-commerce & AI-ondernemers die daadwerkelijk aan het bouwen zijn. Bekijk aankomende events, diners, activiteiten en internationale trips."
+>
+  {event && (
+    <UpcomingEvent
+      event={event}
+      eyebrow="Club Vanguard Flag Ship Event"
+      showMeetupsLink={false}
+    />
+  )}
+
+  <section class="section meetups-hero">
+    <div class="container meetups-hero__grid">
+      <div class="meetups-hero__content">
+        <p class="eyebrow">Meetups & Gatherings</p>
+        <h1 class="meetups-hero__title">
+          Offline momenten voor mensen die <em>daadwerkelijk bouwen</em>
+        </h1>
+        <p class="meetups-hero__intro">
+          Binnen onze meetups krijgen leden toegang tot gesprekken en relaties die
+          moeilijk toevallig te creëren zijn.
+        </p>
+        <ul class="meetups-hero__list">
+          {meetupBenefits.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <img
+        src={heroImage}
+        alt="Vanguard-leden buiten op Flora Batavia"
+        class="site-photo meetups-hero__photo"
+        width="1600"
+        height="1200"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <section class="section section--ivory types">
+    <div class="container">
+      <p class="eyebrow">Wat je kunt verwachten</p>
+      <div class="types__grid">
+        {eventCategories.map((cat) => (
+          <article class="types__card">
+            <img
+              src={`/images/${cat.photo}`}
+              alt={cat.title}
+              class:list={['site-photo', 'types__photo', cat.flip && 'types__photo--flip']}
+              loading="lazy"
+              width="1200"
+              height="750"
+            />
+            <h3 class="types__title">{cat.title}</h3>
+            <p class="types__text">{cat.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PhotoGallery />
+
+  <section class="section section--ivory offline">
+    <div class="container container--narrow offline__inner">
+      <p class="eyebrow">Waarom offline</p>
+      <h2 class="section-title">In een digitale wereld zijn echte ontmoetingen belangrijker dan ooit</h2>
+      <p class="offline__text">
+        AI, automatisering en thuiswerken veranderen hoe bedrijven opereren.
+        Maar hoe digitaler de wereld wordt, hoe waardevoller echt vertrouwen wordt.
+        De juiste mensen om je heen kunnen veranderen hoe je denkt, wat je bouwt
+        en welke deuren zich hierna openen.
+      </p>
+    </div>
+  </section>
+
+  <ClosingCta />
+</Base>
+
+<style>
+  .meetups-hero {
+    padding-bottom: clamp(2rem, 5vh, 3rem);
+  }
+  .meetups-hero__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .meetups-hero__title {
+    font-size: var(--text-section-lg);
+    max-width: 20ch;
+  }
+  .meetups-hero__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .meetups-hero__intro {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    max-width: 46ch;
+  }
+  .meetups-hero__list {
+    list-style: none;
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 48ch;
+  }
+  .meetups-hero__list li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: var(--text-sm);
+    line-height: 1.55;
+    color: var(--ivory);
+  }
+  .meetups-hero__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    width: 1.15rem;
+    height: 1.15rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(185, 148, 90, 0.18);
+    color: var(--brass);
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+  .meetups-hero__photo {
+    width: 100%;
+    max-width: 520px;
+    justify-self: end;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    object-position: center 40%;
+  }
+
+  .section.section--ivory.types {
+    padding-bottom: clamp(7rem, 18vh, 11rem);
+  }
+  .types__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .types__card {
+    display: flex;
+    flex-direction: column;
+  }
+  .types__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    height: auto;
+    min-height: 0;
+    object-fit: cover;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .types__photo--flip {
+    transform: scaleX(-1);
+  }
+  .types__title {
+    font-size: var(--text-lg);
+    margin-top: 1.85rem;
+  }
+  .types__text {
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  .offline__inner { text-align: center; }
+  .offline__inner .section-title { margin-inline: auto; }
+  .offline__text {
+    margin-top: 1.4rem;
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .meetups-hero__grid { grid-template-columns: 1fr; }
+    .meetups-hero__photo {
+      max-width: none;
+      justify-self: stretch;
+    }
+    .types__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .types__grid { grid-template-columns: 1fr; }
+  }
+</style>

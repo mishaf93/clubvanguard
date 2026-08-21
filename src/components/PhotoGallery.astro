@@ -1,0 +1,71 @@
+---
+// Logische flow: groep → trip → china → dinner → sessie → leden → borrel → netwerk
+const photos = [
+  { file: 'gallery-session.jpg', alt: 'Groepsfoto Vanguard-leden bij Kasteel Maurick, Vught', span: 2 },
+  { file: 'gallery-trip.jpg', alt: 'Vanguard-leden op de Faro trip aan de kust', span: 1 },
+  { file: 'gallery-china.jpg', alt: 'Vanguard-leden op de Canton Fair in Guangzhou', span: 1 },
+  { file: 'gallery-dinner.jpg', alt: 'Clubdiner met Vanguard-leden', span: 1 },
+  { file: 'gallery-event.jpg', alt: 'Presentatie tijdens een Club Vanguard event op Kasteel Maurick', span: 1 },
+  { file: 'gallery-group.jpg', alt: 'Vanguard-leden tijdens een sessie in Montfoort', span: 1 },
+  { file: 'gallery-activity.jpg', alt: 'Avondborrel tijdens de Faro trip', span: 1 },
+  { file: 'gallery-network.jpg', alt: 'Netwerkmoment na een Club Vanguard sessie', span: 4 },
+];
+---
+<section class="section gallery" aria-label="Foto's van Vanguard-momenten">
+  <div class="container">
+    <p class="eyebrow">Een kijkje binnen</p>
+    <h2 class="section-title">Offline momenten die blijven hangen</h2>
+    <p class="lead gallery__lead">
+      Events, dinners, trips en activiteiten. Zo ziet het eruit als leden elkaar
+      écht ontmoeten.
+    </p>
+    <div class="gallery__grid">
+      {photos.map((photo) => (
+        <img
+          src={`/images/${photo.file}`}
+          alt={photo.alt}
+          class="site-photo gallery__item"
+          style={`grid-column: span ${photo.span}`}
+          loading="lazy"
+          width="1400"
+          height="1050"
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    padding-top: var(--space-section);
+  }
+  .gallery__lead {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+  }
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(220px, 28vw);
+    gap: 0;
+    margin-top: 2.5rem;
+    overflow: hidden;
+    border: 1px solid var(--line-navy);
+  }
+  .gallery__item {
+    min-height: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 1px solid var(--line-navy);
+  }
+
+  @media (max-width: 720px) {
+    .gallery__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(160px, 40vw);
+    }
+    .gallery__item { grid-column: span 1 !important; }
+    .gallery__item:first-child { grid-column: span 2 !important; }
+  }
+</style>

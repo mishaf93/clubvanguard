@@ -1,0 +1,91 @@
+---
+import type { FaqItem } from '../data/faq.ts';
+
+interface Props {
+  items: FaqItem[];
+  eyebrow?: string;
+  title?: string;
+  light?: boolean;
+}
+
+const {
+  items,
+  eyebrow = 'Veelgestelde vragen',
+  title = 'Alles wat je wilt weten',
+  light = false,
+} = Astro.props;
+---
+<section class:list={['section', 'faq', light && 'section--ivory']}>
+  <div class="container container--narrow">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 class="section-title">{title}</h2>
+    <div class="faq__list">
+      {items.map((item) => (
+        <details class="faq__item">
+          <summary class="faq__question">{item.question}</summary>
+          <div class="faq__answer">
+            {item.answer.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .faq__item {
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .section--ivory .faq__item {
+    background: #fff;
+    border-color: var(--line-ivory);
+  }
+  .section--ivory .faq__answer {
+    color: var(--ink-dim);
+  }
+  .faq__question {
+    padding: 1.15rem 1.25rem;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .faq__question::-webkit-details-marker { display: none; }
+  .faq__question::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    color: var(--brass);
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+  .faq__item[open] .faq__question::after {
+    content: '−';
+  }
+  .faq__answer {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    color: var(--ivory-dim);
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+</style>
