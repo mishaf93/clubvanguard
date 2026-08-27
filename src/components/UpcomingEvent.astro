@@ -47,7 +47,11 @@ const month = eventDate.toLocaleDateString('nl-NL', { month: 'short' }).toUpperC
             <span class="upcoming__month">{month}</span>
           </div>
           <div class="upcoming__actions">
-            <a href={event.signupUrl} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+            {event.detailUrl ? (
+              <a href={event.detailUrl} class="btn btn--solid">Bekijk dit event</a>
+            ) : (
+              <a href={event.signupUrl} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+            )}
             {showMeetupsLink && (
               <a href="/meetups/" class="btn btn--ghost">Bekijk alle events</a>
             )}

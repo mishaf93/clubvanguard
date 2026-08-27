@@ -1,0 +1,717 @@
+---
+import Landing from '../layouts/Landing.astro';
+import Faq from '../components/Faq.astro';
+import { EVENT_SIGNUP_URL } from '../data/form.ts';
+import { eventFaqs } from '../data/faq.ts';
+
+const eventDate = '2026-09-26T12:00:00+02:00';
+
+const facts = [
+  { value: '30', label: 'Plekken totaal' },
+  { value: '90', label: 'Minuten met Nils' },
+  { value: '€50', label: 'Voor niet-leden' },
+  { value: '100%', label: 'Interactief' },
+];
+
+const whyBlocks = [
+  {
+    index: '01',
+    title: 'Hij legt bloot waar je jezelf tegenhoudt.',
+    text: 'Welke gesprekken je uitstelt, welke keuzes je vermijdt en waar je een veel te klein spel speelt. Binnen minuten, niet binnen maanden.',
+  },
+  {
+    index: '02',
+    title: 'Het blijft niet bij inzichten.',
+    text: 'Geen sessie waar je met een paar leuke notities naar huis gaat. Nils verandert daadwerkelijk iets bij je. Dat is het verschil.',
+  },
+  {
+    index: '03',
+    title: 'Je zit tegenover iemand die je omhoog trekt.',
+    text: 'Nils werkt normaal met founders en leiders die serieus aan het schalen zijn. Deze middag brengen we dat naar Vanguard.',
+  },
+];
+
+const programme = [
+  { time: '12:00', title: 'Inloop', text: 'Ontvangst op het kasteel, koffie en de eerste gesprekken.', tag: '60 min' },
+  { time: '13:00', title: 'Opening Vanguard', text: 'Waarom deze editie bestaat en wat we vandaag gaan doen.', tag: '30 min' },
+  { time: '13:30', title: 'Nils Exclusive', text: 'Negentig minuten volledig interactief werken met de groep. Geen presentatie, wel werk.', tag: 'Tot 15:00' },
+  { time: '15:00', title: 'Borrel, bites en open bar', text: 'Ruimte om na te praten over wat er net is losgekomen. Hapjes en drankjes zijn voor rekening van Vanguard.', tag: 'Netwerk' },
+  { time: '±17:30', title: 'Einde borrel', text: 'Officiële afsluiting van het programma.', tag: 'Einde' },
+  { time: 'Daarna', title: 'Diner in het kasteel', text: 'Voor wie wil: samen blijven eten op locatie. Geef het door bij je aanmelding.', tag: 'Optioneel' },
+];
+
+const icons = {
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>',
+  users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20v-1.2A4.4 4.4 0 0 1 7.2 14.4h3.6a4.4 4.4 0 0 1 4.4 4.4V20"/><path d="M16.4 5a3.4 3.4 0 0 1 0 6.6"/><path d="M21.2 20v-1.2a4.4 4.4 0 0 0-3-4.1"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5V9a3 3 0 0 0 0 6v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5V15a3 3 0 0 0 0-6z"/><path d="M12 8.5v7" stroke-dasharray="2 2.4"/></svg>',
+  car: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16.5V12l2-5h12l2 5v4.5"/><path d="M2.8 16.5h18.4"/><circle cx="7.4" cy="17.8" r="1.7"/><circle cx="16.6" cy="17.8" r="1.7"/><path d="M6.5 12h11"/></svg>',
+  plate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v7a2.4 2.4 0 0 0 4.8 0V3"/><path d="M9.4 12v9"/><path d="M16.6 3v18"/><path d="M16.6 3c1.9 0 2.9 1.4 2.9 3.6s-1 3.4-2.9 3.4"/></svg>',
+};
+
+const practical = [
+  { label: 'Datum', value: 'Zaterdag 26 september 2026', icon: icons.calendar },
+  { label: 'Locatie', value: 'Kasteel Maurick, Vught (Den Bosch)', icon: icons.pin },
+  { label: 'Tijd', value: '12:00 inloop, tot ±17:30 einde borrel', icon: icons.clock },
+  { label: 'Capaciteit', value: 'Maximaal 30 mensen', icon: icons.users },
+  { label: 'Bijdrage', value: '€50 voor niet-leden. Hapjes en drankjes op ons.', icon: icons.ticket },
+  { label: 'Parkeren', value: 'Voldoende gratis plekken op het terrein', icon: icons.car },
+  { label: 'Diner', value: 'Optioneel in het kasteel, graag vooraf doorgeven', icon: icons.plate },
+  { label: 'Meenemen', value: 'Iemand uit je netwerk mag mee, telt mee in de 30', icon: icons.users },
+];
+---
+<Landing
+  title="26 september · Kasteel Maurick met Nils Janssens — Club Vanguard"
+  description="Zaterdag 26 september op Kasteel Maurick in Vught. Negentig minuten volledig interactief werken met Nils Janssens. Maximaal 30 plekken."
+  ctaHref={EVENT_SIGNUP_URL}
+>
+  <!-- ============ HERO ============ -->
+  <section class="ev-hero">
+    <img
+      src="/images/maurick-hero.jpg"
+      alt=""
+      class="site-photo ev-hero__photo"
+      width="2000"
+      height="1333"
+      fetchpriority="high"
+    />
+    <div class="ev-hero__scrim" aria-hidden="true"></div>
+    <div class="container ev-hero__inner">
+      <p class="eyebrow">Club Event · Editie 26 september 2026</p>
+      <h1 class="ev-hero__title">
+        Eén middag die je<br /><em>groter laat denken.</em>
+      </h1>
+      <p class="lead ev-hero__lead">
+        Zaterdag 26 september op Kasteel Maurick in Vught. Negentig minuten
+        volledig interactief aan het werk met Nils Janssens. Maximaal 30 mensen.
+      </p>
+      <div class="ev-hero__actions">
+        <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+        <a href="#programma" class="btn btn--ghost">Bekijk het programma</a>
+      </div>
+      <p class="ev-hero__note">
+        Ook een aantal sterke ondernemers van buiten Vanguard zijn uitgenodigd.
+        Wacht niet te lang.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FACTS ============ -->
+  <section class="ev-facts" aria-label="Deze editie in cijfers">
+    <div class="container ev-facts__grid">
+      {facts.map((f) => (
+        <div class="ev-facts__item">
+          <span class="ev-facts__value">{f.value}</span>
+          <span class="ev-facts__label">{f.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="section section--ivory ev-intro">
+    <div class="container">
+      <p class="eyebrow">Waarom deze editie</p>
+      <h2 class="section-title section-title--lg ev-intro__heading">
+        Ondernemers op niveau, in een omgeving die dat verdient.
+      </h2>
+
+      <div class="ev-intro__grid">
+        <figure class="ev-intro__figure">
+          <img
+            src="/images/maurick-zaal.jpg"
+            alt="Vanguard-leden in gesprek in een zaal van Kasteel Maurick"
+            class="site-photo ev-intro__photo"
+            width="1200"
+            height="1600"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="ev-intro__body">
+          <p>
+            Een Vanguard-middag is geen zaal vol visitekaartjes. Het is een
+            compacte groep founders en operators die zelf aan het bouwen zijn,
+            in een kasteel dat de toon zet voor het soort gesprekken dat we
+            willen hebben.
+          </p>
+          <p>
+            Goede gesprekken, lekker eten en een open bar horen erbij. Maar waar
+            het echt om gaat zijn de connecties waar je over een jaar nog iets
+            aan hebt. Mensen die je scherp houden, die eerlijk zijn over wat er
+            niet werkt en die je bellen als ze iets zien dat voor jou relevant is.
+          </p>
+          <p>
+            Deze editie voegt daar iets aan toe: de Nils Exclusive.
+          </p>
+          <p>
+            Nils is een enorme katalysator voor bedrijven die het grotere spel
+            willen en durven te spelen. Dat doet hij onder andere door te kijken
+            naar je leiderschap, je taal en je keuzes.
+          </p>
+          <p>
+            Ikzelf heb de afgelopen maanden intensief met Nils gewerkt, en ik
+            wil graag een stuk uit mijn ervaring met de rest van de groep delen.
+          </p>
+          <p class="ev-intro__sig">Misha Fedorov · Founder Club Vanguard</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPECIAL GUEST ============ -->
+  <section class="section ev-guest" id="nils">
+    <div class="container ev-guest__grid">
+      <figure class="ev-guest__figure">
+        <img
+          src="/images/nils-janssens.jpg"
+          alt="Nils Janssens"
+          class="site-photo ev-guest__photo"
+          width="1200"
+          height="1150"
+          loading="lazy"
+        />
+        <figcaption class="ev-guest__caption">Nils Janssens · Special guest</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">Special guest</p>
+        <h2 class="section-title section-title--lg">
+          Nils Janssens werkt met founders die serieus aan het schalen zijn.
+        </h2>
+        <p class="ev-guest__text">
+          Normaal gesproken werkt Nils intensief en langdurig met leiders die
+          midden in hun groei zitten. Op 26 september gaat hij negentig minuten
+          volledig interactief met de groep aan het werk.
+        </p>
+        <p class="ev-guest__text">
+          Dit wordt geen inspiratiesessie. We gaan echt aan het werk. En dat is
+          precies wat ik geloof dat Vanguard nodig heeft om als community naar
+          een volgend niveau te gaan.
+        </p>
+        <div class="ev-guest__tease">
+          <p class="ev-guest__tease-label">Nog iets extra's</p>
+          <p class="ev-guest__tease-text">
+            Voor een klein, select aantal aanwezigen doet Nils na deze middag nog
+            iets wat hij normaal gesproken niet doet. Wat precies, houden we nog
+            even geheim.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WAT HET DOET ============ -->
+  <section class="section section--ivory ev-why">
+    <div class="container">
+      <p class="eyebrow">Wat deze sessie met je doet</p>
+      <h2 class="section-title section-title--lg">
+        Je gaat niet naar huis met wat leuke notities.
+      </h2>
+      <div class="ev-why__grid">
+        {whyBlocks.map((b) => (
+          <article class="ev-why__card">
+            <span class="ev-why__index">{b.index}</span>
+            <h3 class="ev-why__title">{b.title}</h3>
+            <p class="ev-why__text">{b.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCARCITY ============ -->
+  <section class="ev-limit">
+    <div class="container container--narrow ev-limit__inner">
+      <p class="eyebrow">Let op</p>
+      <h2 class="ev-limit__title">Maximaal 30 mensen. Bewust.</h2>
+      <p class="ev-limit__text">
+        Nils kan alleen bij deze groepsgrootte daadwerkelijk interactief met
+        iedereen werken. Bij 30 gaat de inschrijving dicht. Neem je iemand mee
+        uit je netwerk? Laat het op tijd weten, want die persoon telt ook mee
+        binnen de 30 plekken.
+      </p>
+      <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Claim je plek</a>
+    </div>
+  </section>
+
+  <!-- ============ PROGRAMMA ============ -->
+  <section class="section ev-programme" id="programma">
+    <div class="container">
+      <p class="eyebrow">De middag zelf</p>
+      <h2 class="section-title section-title--lg">Programma · 26 september</h2>
+      <ol class="ev-programme__list">
+        {programme.map((p) => (
+          <li class="ev-programme__row">
+            <span class="ev-programme__time">{p.time}</span>
+            <div class="ev-programme__body">
+              <h3 class="ev-programme__title">{p.title}</h3>
+              <p class="ev-programme__text">{p.text}</p>
+            </div>
+            <span class="ev-programme__tag">{p.tag}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PRAKTISCH ============ -->
+  <section class="section section--ivory ev-practical">
+    <div class="container">
+      <p class="eyebrow">Praktisch</p>
+      <h2 class="section-title section-title--lg">Alles op één rij.</h2>
+      <dl class="ev-practical__grid">
+        {practical.map((p) => (
+          <div class="ev-practical__item">
+            <span class="ev-practical__icon" set:html={p.icon} />
+            <div>
+              <dt>{p.label}</dt>
+              <dd>{p.value}</dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section class="ev-count" aria-label="Aftellen naar 26 september">
+    <div class="container container--narrow ev-count__inner">
+      <p class="eyebrow">De klok tikt</p>
+      <h2 class="ev-count__title">Nog te gaan tot de kasteelpoort opengaat.</h2>
+      <div class="ev-count__clock" data-countdown={eventDate}>
+        <div class="ev-count__unit"><span data-days>--</span><em>Dagen</em></div>
+        <div class="ev-count__unit"><span data-hours>--</span><em>Uur</em></div>
+        <div class="ev-count__unit"><span data-minutes>--</span><em>Min</em></div>
+        <div class="ev-count__unit"><span data-seconds>--</span><em>Sec</em></div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={eventFaqs} light={true} eyebrow="Veelgestelde vragen" title="Nog een paar dingen om te weten." />
+
+  <!-- ============ CLOSING ============ -->
+  <section class="section ev-closing">
+    <div class="container container--narrow ev-closing__inner">
+      <h2 class="ev-closing__title">
+        Zaterdag 26 september.<br /><em>You don't want to miss this one.</em>
+      </h2>
+      <p class="ev-closing__meta">Kasteel Maurick, Vught · Max 30 plekken</p>
+      <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+    </div>
+  </section>
+</Landing>
+
+<script>
+  const clock = document.querySelector('[data-countdown]');
+  if (clock instanceof HTMLElement) {
+    const target = new Date(clock.dataset.countdown ?? '').getTime();
+    const fields = {
+      days: clock.querySelector('[data-days]'),
+      hours: clock.querySelector('[data-hours]'),
+      minutes: clock.querySelector('[data-minutes]'),
+      seconds: clock.querySelector('[data-seconds]'),
+    };
+
+    const pad = (n: number) => String(Math.max(0, n)).padStart(2, '0');
+
+    const tick = () => {
+      const total = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      if (fields.days) fields.days.textContent = pad(Math.floor(total / 86400));
+      if (fields.hours) fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
+      if (fields.minutes) fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
+      if (fields.seconds) fields.seconds.textContent = pad(total % 60);
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>
+
+<style>
+  /* ---------- Hero ---------- */
+  .ev-hero {
+    position: relative;
+    min-height: min(92vh, 820px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .ev-hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ev-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 18, 32, 0.66);
+  }
+  .ev-hero__inner {
+    position: relative;
+    padding-block: clamp(3.5rem, 9vh, 6rem);
+  }
+  .ev-hero__title {
+    font-size: var(--text-hero);
+    max-width: 18ch;
+  }
+  .ev-hero__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .ev-hero__lead {
+    margin-top: 1.4rem;
+    color: var(--ivory-dim);
+  }
+  .ev-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
+  .ev-hero__note {
+    margin-top: 1.4rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    max-width: 46ch;
+  }
+
+  /* ---------- Facts ---------- */
+  .ev-facts {
+    background: var(--navy-deep);
+    border-block: 1px solid var(--line-navy);
+    padding-block: 2.4rem;
+  }
+  .ev-facts__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 2rem;
+    text-align: center;
+  }
+  .ev-facts__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .ev-facts__value {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--brass);
+    line-height: 1;
+  }
+  .ev-facts__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    line-height: 1.2;
+  }
+
+  /* ---------- Intro ---------- */
+  .ev-intro__heading { max-width: 34ch; }
+  .ev-intro__grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 26rem) 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .ev-intro__figure { margin: 0; }
+  .ev-intro__photo {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .ev-intro__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    color: var(--ink-dim);
+    line-height: 1.75;
+  }
+  .ev-intro__sig {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  /* ---------- Guest ---------- */
+  .ev-guest__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 420px) 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: center;
+  }
+  .ev-guest__figure { margin: 0; }
+  .ev-guest__photo {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .ev-guest__caption {
+    margin-top: 0.9rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-guest__text {
+    margin-top: 1.1rem;
+    color: var(--ivory-dim);
+    line-height: 1.75;
+    max-width: 52ch;
+  }
+  .ev-guest__tease {
+    margin-top: 2rem;
+    padding: 1.5rem 1.6rem;
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-left: 2px solid var(--brass);
+    border-radius: 6px;
+  }
+  .ev-guest__tease-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-guest__tease-text {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    line-height: 1.7;
+  }
+
+  /* ---------- Why ---------- */
+  .ev-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .ev-why__card {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    align-content: start;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--brass);
+  }
+  .ev-why__index {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .ev-why__title {
+    font-size: var(--text-lg);
+    margin-top: 0.7rem;
+  }
+  .ev-why__text {
+    margin-top: 0.7rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  /* ---------- Limit ---------- */
+  .ev-limit {
+    background: var(--navy-deep);
+    border-block: 1px solid var(--line-navy);
+    padding-block: clamp(3.5rem, 8vh, 5.5rem);
+  }
+  .ev-limit__inner { text-align: center; }
+  .ev-limit__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section-lg);
+  }
+  .ev-limit__text {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+    line-height: 1.75;
+    margin-inline: auto;
+    max-width: 54ch;
+  }
+  .ev-limit__inner .btn { margin-top: 2rem; }
+
+  /* ---------- Programma ---------- */
+  .ev-programme__list {
+    list-style: none;
+    margin-top: 3rem;
+    border-top: 1px solid var(--line-navy);
+  }
+  .ev-programme__row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr auto;
+    gap: 1.5rem 2rem;
+    align-items: baseline;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .ev-programme__time {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .ev-programme__title { font-size: var(--text-lg); }
+  .ev-programme__text {
+    margin-top: 0.45rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    line-height: 1.7;
+    max-width: 54ch;
+  }
+  .ev-programme__tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    border: 1px solid var(--line-navy);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* ---------- Praktisch ---------- */
+  .ev-practical__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .ev-practical__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.4rem 1.3rem;
+    background: rgba(28, 36, 48, 0.035);
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .ev-practical__icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    color: var(--brass);
+  }
+  .ev-practical__icon :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    display: block;
+  }
+  .ev-practical__item dt {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-practical__item dd {
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  /* ---------- Countdown ---------- */
+  .ev-count {
+    padding-block: clamp(3.5rem, 8vh, 5.5rem);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .ev-count__inner { text-align: center; }
+  .ev-count__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+  }
+  .ev-count__clock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
+  .ev-count__unit {
+    padding: 1.2rem 0.5rem;
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .ev-count__unit span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--brass);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ev-count__unit em {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+
+  /* ---------- Closing ---------- */
+  .ev-closing { background: var(--navy-deep); }
+  .ev-closing__inner { text-align: center; }
+  .ev-closing__title {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+  }
+  .ev-closing__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .ev-closing__meta {
+    margin-top: 1.2rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .ev-closing__inner .btn { margin-top: 2.2rem; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1000px) {
+    .ev-practical__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .ev-intro__grid,
+    .ev-guest__grid { grid-template-columns: 1fr; }
+    .ev-intro__photo { aspect-ratio: 3 / 2; }
+    .ev-why__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+    .ev-why__card {
+      grid-row: auto;
+      grid-template-rows: none;
+      display: block;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ev-facts__grid { grid-template-columns: repeat(2, 1fr); }
+    .ev-programme__row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .ev-programme__tag { justify-self: start; }
+    .ev-practical__grid { grid-template-columns: 1fr; }
+  }
+</style>

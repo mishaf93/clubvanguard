@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ctaHref: string;
+  ctaLabel?: string;
+}
+
+const { title, description, ctaHref, ctaLabel = 'Meld je aan' } = Astro.props;
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <!-- Fonts: Playfair Display (display serif) + Archivo (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="lp-header">
+      <div class="container lp-header__inner">
+        <a href="/" class="lp-header__logo" aria-label="Club Vanguard home">
+          <img src="/images/logo.png" alt="Club Vanguard" width="1024" height="251" />
+        </a>
+        <a href={ctaHref} class="btn btn--solid lp-header__cta" target="_blank" rel="noopener">
+          {ctaLabel}
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  .lp-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--navy);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .lp-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1rem;
+  }
+  .lp-header__logo {
+    text-decoration: none;
+    display: block;
+  }
+  .lp-header__logo img {
+    height: 3rem;
+    width: auto;
+    display: block;
+  }
+  .lp-header__cta {
+    padding: 0.6rem 1.3rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .lp-header__logo img { height: 2.4rem; }
+    .lp-header__cta {
+      padding: 0.55rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>
