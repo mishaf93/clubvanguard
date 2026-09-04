@@ -36,28 +36,30 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
     <meta property="og:type" content="website" />
   </head>
   <body>
-    {alert && (
-      <div class="lp-alert" role="status">
-        <div class="container lp-alert__inner">
-          <span class="lp-alert__dot" aria-hidden="true"></span>
-          <p class="lp-alert__text">{alert}</p>
-          <a href={ctaHref} class="lp-alert__link" target="_blank" rel="noopener">
+    <div class="lp-top">
+      {alert && (
+        <div class="lp-alert" role="status">
+          <div class="container lp-alert__inner">
+            <span class="lp-alert__dot" aria-hidden="true"></span>
+            <p class="lp-alert__text">{alert}</p>
+            <a href={ctaHref} class="lp-alert__link" target="_blank" rel="noopener">
+              {ctaLabel}
+            </a>
+          </div>
+        </div>
+      )}
+
+      <header class="lp-header">
+        <div class="container lp-header__inner">
+          <a href="/" class="lp-header__logo" aria-label="Club Vanguard home">
+            <img src="/images/logo.png" alt="Club Vanguard" width="1024" height="251" />
+          </a>
+          <a href={ctaHref} class="btn btn--solid lp-header__cta" target="_blank" rel="noopener">
             {ctaLabel}
           </a>
         </div>
-      </div>
-    )}
-
-    <header class="lp-header">
-      <div class="container lp-header__inner">
-        <a href="/" class="lp-header__logo" aria-label="Club Vanguard home">
-          <img src="/images/logo.png" alt="Club Vanguard" width="1024" height="251" />
-        </a>
-        <a href={ctaHref} class="btn btn--solid lp-header__cta" target="_blank" rel="noopener">
-          {ctaLabel}
-        </a>
-      </div>
-    </header>
+      </header>
+    </div>
 
     <main>
       <slot />
@@ -65,10 +67,27 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
   </body>
 </html>
 
+<style is:global>
+  /* Ankerlinks niet onder de sticky balk laten vallen. */
+  html {
+    scroll-padding-top: 8rem;
+  }
+  @media (max-width: 480px) {
+    html { scroll-padding-top: 6.5rem; }
+  }
+</style>
+
 <style>
+  .lp-top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
   .lp-alert {
-    background: var(--brass);
-    color: var(--navy);
+    background: #8c3a2c;
+    color: var(--ivory);
+    border-bottom: 1px solid rgba(8, 18, 32, 0.25);
   }
   .lp-alert__inner {
     display: flex;
@@ -82,7 +101,7 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
     width: 0.45rem;
     height: 0.45rem;
     border-radius: 50%;
-    background: var(--navy);
+    background: var(--ivory);
     flex-shrink: 0;
     animation: lp-alert-pulse 2s ease-in-out infinite;
   }
@@ -93,7 +112,7 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
     letter-spacing: 0.01em;
   }
   .lp-alert__link {
-    color: var(--navy);
+    color: var(--ivory);
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: underline;
@@ -119,9 +138,6 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
   }
 
   .lp-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
     background: var(--navy);
     border-bottom: 1px solid var(--line-navy);
   }
@@ -147,6 +163,7 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
   }
 
   @media (max-width: 480px) {
+    .lp-header__inner { padding-block: 0.75rem; }
     .lp-header__logo img { height: 2.4rem; }
     .lp-header__cta {
       padding: 0.55rem 1rem;
