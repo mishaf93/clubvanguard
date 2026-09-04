@@ -6,9 +6,10 @@ interface Props {
   description: string;
   ctaHref: string;
   ctaLabel?: string;
+  alert?: string;
 }
 
-const { title, description, ctaHref, ctaLabel = 'Meld je aan' } = Astro.props;
+const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.props;
 ---
 <!doctype html>
 <html lang="nl">
@@ -35,6 +36,18 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan' } = Astro.props;
     <meta property="og:type" content="website" />
   </head>
   <body>
+    {alert && (
+      <div class="lp-alert" role="status">
+        <div class="container lp-alert__inner">
+          <span class="lp-alert__dot" aria-hidden="true"></span>
+          <p class="lp-alert__text">{alert}</p>
+          <a href={ctaHref} class="lp-alert__link" target="_blank" rel="noopener">
+            {ctaLabel}
+          </a>
+        </div>
+      </div>
+    )}
+
     <header class="lp-header">
       <div class="container lp-header__inner">
         <a href="/" class="lp-header__logo" aria-label="Club Vanguard home">
@@ -53,6 +66,58 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan' } = Astro.props;
 </html>
 
 <style>
+  .lp-alert {
+    background: var(--brass);
+    color: var(--navy);
+  }
+  .lp-alert__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-block: 0.5rem;
+    text-align: center;
+  }
+  .lp-alert__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--navy);
+    flex-shrink: 0;
+    animation: lp-alert-pulse 2s ease-in-out infinite;
+  }
+  .lp-alert__text {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .lp-alert__link {
+    color: var(--navy);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+  .lp-alert__link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  @keyframes lp-alert-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lp-alert__dot { animation: none; }
+  }
+
+  @media (max-width: 560px) {
+    .lp-alert__text { font-size: 0.78rem; }
+    .lp-alert__link { display: none; }
+  }
+
   .lp-header {
     position: sticky;
     top: 0;
