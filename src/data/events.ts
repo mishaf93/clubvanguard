@@ -1,5 +1,9 @@
 import { EVENT_SIGNUP_URL } from './form';
 
+/** Handmatig bijwerken zodra er plekken bijkomen of afgaan. */
+export const FEATURED_EVENT_SPOTS_LEFT = 3;
+export const FEATURED_EVENT_SPOTS_TOTAL = 30;
+
 export interface VanguardEvent {
   slug: string;
   title: string;

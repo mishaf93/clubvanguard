@@ -1,10 +1,13 @@
 ---
+import { MEMBER_APP_URL } from '../data/links';
+
 const year = new Date().getFullYear();
 
 const discoverLinks = [
   { href: '/over-club-vanguard/', label: 'Over ons' },
   { href: '/meetups/', label: 'Events' },
   { href: '/aanvragen/', label: 'Meld je aan' },
+  { href: MEMBER_APP_URL, label: 'Inloggen voor leden', external: true },
 ];
 
 const socialLinks = [
@@ -47,7 +50,12 @@ const socialLinks = [
       <h3 class="footer__heading">Ontdek</h3>
       <nav class="footer__nav" aria-label="Footer navigatie">
         {discoverLinks.map((link) => (
-          <a href={link.href}>{link.label}</a>
+          <a
+            href={link.href}
+            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {link.label}
+          </a>
         ))}
       </nav>
     </div>

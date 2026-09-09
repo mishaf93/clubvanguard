@@ -1,4 +1,6 @@
 ---
+import { MEMBER_APP_URL } from '../data/links';
+
 const { pathname } = Astro.url;
 const links = [
   { href: '/', label: 'Home' },
@@ -20,6 +22,14 @@ const links = [
           {link.label}
         </a>
       ))}
+      <a
+        href={MEMBER_APP_URL}
+        class="btn btn--ghost header__login"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Inloggen
+      </a>
       <a href="/aanvragen/" class="btn btn--solid header__cta">Aanvragen</a>
     </nav>
   </div>
@@ -57,9 +67,14 @@ const links = [
   }
   .header__link:hover,
   .header__link.is-active { color: var(--ivory); }
+  .header__login,
   .header__cta { padding: 0.6rem 1.3rem; }
+  .header__login { border: 1px solid var(--line-navy); }
 
   @media (max-width: 640px) {
     .header__link { display: none; }
+    .header__nav { gap: 0.65rem; }
+    .header__login,
+    .header__cta { padding: 0.55rem 0.9rem; font-size: var(--text-xs); }
   }
 </style>
