@@ -1,8 +1,11 @@
 import { EVENT_SIGNUP_URL } from './form';
 
 /** Handmatig bijwerken zodra er plekken bijkomen of afgaan. */
-export const FEATURED_EVENT_SPOTS_LEFT = 1;
+export const FEATURED_EVENT_SPOTS_LEFT = 0;
 export const FEATURED_EVENT_SPOTS_TOTAL = 30;
+
+/** Bij 0 vrije plekken schakelt de site over op wachtlijst-teksten. */
+export const FEATURED_EVENT_SOLD_OUT = FEATURED_EVENT_SPOTS_LEFT === 0;
 
 export interface VanguardEvent {
   slug: string;
@@ -31,7 +34,7 @@ export const upcomingEvents: VanguardEvent[] = [
     time: '13:00 – 17:30',
     location: 'Kasteel Maurick, Vught (Den Bosch)',
     description:
-      "Dit keer naar Kasteel Maurick in Vught, met special guest Nils Janssens. Negentig minuten volledig interactief aan het werk met de groep. Maximaal 30 plekken. Don't miss out.",
+      'Dit keer naar Kasteel Maurick in Vught, met special guest Nils Janssens. Negentig minuten volledig interactief aan het werk met de groep. Alle 30 plekken zijn vergeven: deze editie is uitverkocht. Via de wachtlijst hoor je het als er een plek vrijkomt.',
     photo: 'maurick-hero.jpg',
     signupUrl: EVENT_SIGNUP_URL,
     detailUrl: '/the-shift-event/',

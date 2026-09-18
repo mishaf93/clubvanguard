@@ -81,7 +81,7 @@ export const eventFaqs: FaqItem[] = [
     question: 'Hoeveel plekken zijn er?',
     answer: [
       'Maximaal 30. Dat is een bewuste keuze: alleen bij deze groepsgrootte kan Nils daadwerkelijk interactief met iedereen werken.',
-      'Bij 30 aanmeldingen sluit de inschrijving. Er is nu al veel animo, dus wacht niet te lang.',
+      'Alle 30 plekken zijn vergeven, dus de inschrijving is gesloten. Via de wachtlijst hoor je het als er iemand afvalt.',
     ],
   },
   {
@@ -94,8 +94,8 @@ export const eventFaqs: FaqItem[] = [
   {
     question: 'Kan ik iemand meenemen?',
     answer: [
-      'Ja, en dit is een hele mooie editie om iemand mee te nemen die Vanguard eens zou moeten meemaken.',
-      'Laat het wel op tijd weten, want die persoon telt ook mee binnen de 30 plekken.',
+      'Voor deze editie niet meer: de 30 plekken zijn vol. Zet die persoon op de wachtlijst, dan is hij of zij als eerste aan de beurt bij een afmelding of bij de volgende editie.',
+      'Het blijft een van de mooiste manieren om iemand Vanguard te laten meemaken, dus houd het in gedachten voor het volgende event.',
     ],
   },
   {
@@ -125,9 +125,10 @@ export const eventFaqs: FaqItem[] = [
     ],
   },
   {
-    question: 'Hoe meld ik me aan?',
+    question: 'Het event is uitverkocht, kan ik er nog bij?',
     answer: [
-      'Via het aanmeldformulier op deze pagina. De inschrijving opent daarnaast ook in de nieuwe Club Vanguard app, die binnenkort live gaat.',
+      'Alleen via de wachtlijst. Vul het formulier op deze pagina in: komt er een plek vrij, dan nemen we in die volgorde contact op.',
+      'Je staat met dezelfde inschrijving ook vooraan voor het volgende Club Event. Nieuwe edities komen daarnaast in de Club Vanguard app te staan.',
     ],
   },
 ];

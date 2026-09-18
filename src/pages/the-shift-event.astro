@@ -1,11 +1,18 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import Faq from '../components/Faq.astro';
-import { EVENT_SIGNUP_URL } from '../data/form.ts';
+import { EVENT_SIGNUP_URL, EVENT_WAITLIST_URL } from '../data/form.ts';
 import { eventFaqs } from '../data/faq.ts';
-import { FEATURED_EVENT_SPOTS_LEFT } from '../data/events.ts';
+import { FEATURED_EVENT_SOLD_OUT, FEATURED_EVENT_SPOTS_LEFT } from '../data/events.ts';
 
 const eventDate = '2026-09-26T12:00:00+02:00';
+
+// Bij uitverkocht wijst elke CTA naar de wachtlijst in plaats van de aanmelding.
+const ctaUrl = FEATURED_EVENT_SOLD_OUT ? EVENT_WAITLIST_URL : EVENT_SIGNUP_URL;
+const ctaLabel = FEATURED_EVENT_SOLD_OUT ? 'Zet me op de wachtlijst' : 'Meld je aan';
+const alertText = FEATURED_EVENT_SOLD_OUT
+  ? 'Uitverkocht · zet je op de wachtlijst'
+  : `Nog ${FEATURED_EVENT_SPOTS_LEFT} ${FEATURED_EVENT_SPOTS_LEFT === 1 ? 'plek' : 'plekken'} vrij`;
 
 const facts = [
   { value: '30', label: 'Plekken totaal' },
@@ -65,8 +72,9 @@ const practical = [
 <Landing
   title="26 september · Kasteel Maurick met Nils Janssens — Club Vanguard"
   description="Zaterdag 26 september op Kasteel Maurick in Vught. Negentig minuten volledig interactief werken met Nils Janssens. Maximaal 30 plekken."
-  ctaHref={EVENT_SIGNUP_URL}
-  alert={`Nog ${FEATURED_EVENT_SPOTS_LEFT} ${FEATURED_EVENT_SPOTS_LEFT === 1 ? 'plek' : 'plekken'} vrij`}
+  ctaHref={ctaUrl}
+  ctaLabel={FEATURED_EVENT_SOLD_OUT ? 'Wachtlijst' : 'Meld je aan'}
+  alert={alertText}
 >
   <!-- ============ HERO ============ -->
   <section class="ev-hero">
@@ -89,12 +97,13 @@ const practical = [
         volledig interactief aan het werk met Nils Janssens. Maximaal 30 mensen.
       </p>
       <div class="ev-hero__actions">
-        <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+        <a href={ctaUrl} class="btn btn--solid" target="_blank" rel="noopener">{ctaLabel}</a>
         <a href="#programma" class="btn btn--ghost">Bekijk het programma</a>
       </div>
       <p class="ev-hero__note">
-        Ook een aantal sterke ondernemers van buiten Vanguard zijn uitgenodigd.
-        Wacht niet te lang.
+        {FEATURED_EVENT_SOLD_OUT
+          ? 'Alle 30 plekken zijn vergeven. Via de wachtlijst hoor je het direct als er een plek vrijkomt, en je staat vooraan bij de volgende editie.'
+          : 'Ook een aantal sterke ondernemers van buiten Vanguard zijn uitgenodigd. Wacht niet te lang.'}
       </p>
     </div>
   </section>
@@ -225,15 +234,18 @@ const practical = [
   <!-- ============ SCARCITY ============ -->
   <section class="ev-limit">
     <div class="container container--narrow ev-limit__inner">
-      <p class="eyebrow">Let op</p>
-      <h2 class="ev-limit__title">Maximaal 30 mensen. Bewust.</h2>
+      <p class="eyebrow">{FEATURED_EVENT_SOLD_OUT ? 'Uitverkocht' : 'Let op'}</p>
+      <h2 class="ev-limit__title">
+        {FEATURED_EVENT_SOLD_OUT ? 'Alle 30 plekken zijn vergeven.' : 'Maximaal 30 mensen. Bewust.'}
+      </h2>
       <p class="ev-limit__text">
-        Nils kan alleen bij deze groepsgrootte daadwerkelijk interactief met
-        iedereen werken. Bij 30 gaat de inschrijving dicht. Neem je iemand mee
-        uit je netwerk? Laat het op tijd weten, want die persoon telt ook mee
-        binnen de 30 plekken.
+        {FEATURED_EVENT_SOLD_OUT
+          ? 'Nils kan alleen bij deze groepsgrootte daadwerkelijk interactief met iedereen werken, dus we houden het strikt op 30. De inschrijving is gesloten. Zet je op de wachtlijst: valt er iemand af, dan bellen we je als eerste, en je staat automatisch vooraan bij de volgende editie.'
+          : 'Nils kan alleen bij deze groepsgrootte daadwerkelijk interactief met iedereen werken. Bij 30 gaat de inschrijving dicht. Neem je iemand mee uit je netwerk? Laat het op tijd weten, want die persoon telt ook mee binnen de 30 plekken.'}
       </p>
-      <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Claim je plek</a>
+      <a href={ctaUrl} class="btn btn--solid" target="_blank" rel="noopener">
+        {FEATURED_EVENT_SOLD_OUT ? ctaLabel : 'Claim je plek'}
+      </a>
     </div>
   </section>
 
@@ -298,8 +310,10 @@ const practical = [
       <h2 class="ev-closing__title">
         Zaterdag 26 september.<br /><em>You don't want to miss this one.</em>
       </h2>
-      <p class="ev-closing__meta">Kasteel Maurick, Vught · Max 30 plekken</p>
-      <a href={EVENT_SIGNUP_URL} class="btn btn--solid" target="_blank" rel="noopener">Meld je aan</a>
+      <p class="ev-closing__meta">
+        Kasteel Maurick, Vught · {FEATURED_EVENT_SOLD_OUT ? 'Uitverkocht' : 'Max 30 plekken'}
+      </p>
+      <a href={ctaUrl} class="btn btn--solid" target="_blank" rel="noopener">{ctaLabel}</a>
     </div>
   </section>
 </Landing>
