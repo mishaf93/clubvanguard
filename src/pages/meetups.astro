@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { eventCategories } from '../data/events.ts';
-import { getFeaturedEvent } from '../lib/events.ts';
-import UpcomingEvent from '../components/UpcomingEvent.astro';
+import { eventCategories, pastEvents } from '../data/events.ts';
+import { upcomingAgenda } from '../data/agenda';
+import Agenda from '../components/Agenda.astro';
+import SignupForm from '../components/SignupForm.astro';
 import PhotoGallery from '../components/PhotoGallery.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 
-const event = await getFeaturedEvent();
+const agendaItems = upcomingAgenda(3);
 const heroImage = '/images/gallery-2.jpg';
 
 const meetupBenefits = [
@@ -22,13 +23,58 @@ const meetupBenefits = [
   title="Meetups · Club Vanguard"
   description="Offline momenten voor e-commerce & AI-ondernemers die daadwerkelijk aan het bouwen zijn. Bekijk aankomende events, diners, activiteiten en internationale trips."
 >
-  {event && (
-    <UpcomingEvent
-      event={event}
-      eyebrow="Club Vanguard Flag Ship Event"
-      showMeetupsLink={false}
-    />
-  )}
+  <Agenda
+    items={agendaItems}
+    eyebrow="Agenda"
+    title="De komende drie maanden"
+    lead="Dinners zijn klein en bewust beperkt. Club events zijn groter en staan open voor iedereen op de lijst."
+    showJoinLink={false}
+  />
+
+
+  <section class="section section--ivory past" aria-labelledby="past-title">
+    <div class="container">
+      <p class="eyebrow">Terugblik</p>
+      <h2 id="past-title" class="section-title">Vorige editie</h2>
+      <div class="past__list">
+        {pastEvents.map((ev) => (
+          <article class="past__card">
+            <img
+              src={`/images/${ev.photo}`}
+              alt={`${ev.title}, ${ev.location}`}
+              class="site-photo past__photo"
+              loading="lazy"
+              width="1600"
+              height="1067"
+            />
+            <div class="past__body">
+              <p class="past__badge">Afgelopen</p>
+              <h3 class="past__title">{ev.title}</h3>
+              <p class="past__meta">{ev.dateLabel} · {ev.location}</p>
+              <p class="past__text">{ev.summary}</p>
+              <a href={ev.detailUrl} class="past__link">Bekijk hoe het was →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section next" id="aanmelden" aria-labelledby="next-title">
+    <div class="container next__grid">
+      <div>
+        <p class="eyebrow">De volgende editie</p>
+        <h2 id="next-title" class="section-title">Wil je er de volgende keer bij zijn?</h2>
+        <p class="next__text">
+          Zet je op de lijst. Eén korte mail per week, en je hoort als eerste
+          wanneer de datum en de plekken van het volgende event bekend zijn.
+        </p>
+      </div>
+      <div class="next__card">
+        <SignupForm context="meetups" id="meetups-signup" stacked={true} />
+      </div>
+    </div>
+  </section>
 
   <section class="section meetups-hero">
     <div class="container meetups-hero__grid">
@@ -99,6 +145,83 @@ const meetupBenefits = [
 </Base>
 
 <style>
+  .past__list {
+    margin-top: 2rem;
+  }
+  .past__card {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .past__photo {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+    filter: saturate(0.85);
+  }
+  .past__body { padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2.25rem) 0; }
+  .past__badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border: 1px solid var(--line-ivory);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+  }
+  .past__title {
+    font-size: var(--text-xl);
+    margin-top: 0.9rem;
+  }
+  .past__meta {
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+  }
+  .past__text {
+    margin-top: 1rem;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    max-width: 46ch;
+  }
+  .past__link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--brass);
+    text-decoration: none;
+  }
+  .past__link:hover { text-decoration: underline; }
+
+  .next {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line-navy);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .next__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .next__text {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+    max-width: 44ch;
+  }
+  .next__card {
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
   .meetups-hero {
     padding-bottom: clamp(2rem, 5vh, 3rem);
   }
@@ -211,6 +334,9 @@ const meetupBenefits = [
   }
 
   @media (max-width: 900px) {
+    .past__card { grid-template-columns: 1fr; }
+    .past__body { padding: 1.25rem; }
+    .next__grid { grid-template-columns: 1fr; }
     .meetups-hero__grid { grid-template-columns: 1fr; }
     .meetups-hero__photo {
       max-width: none;

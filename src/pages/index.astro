@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import Stats from '../components/Stats.astro';
 import TheCode from '../components/TheCode.astro';
 import Pillars from '../components/Pillars.astro';
-import UpcomingEvent from '../components/UpcomingEvent.astro';
+import Agenda from '../components/Agenda.astro';
 import YearTimeline from '../components/YearTimeline.astro';
 import CommunityApp from '../components/CommunityApp.astro';
 import Quotes from '../components/Quotes.astro';
@@ -12,9 +12,9 @@ import ForWho from '../components/ForWho.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import FounderNote from '../components/FounderNote.astro';
 import ClosingCta from '../components/ClosingCta.astro';
-import { getFeaturedEvent } from '../lib/events.ts';
+import { upcomingAgenda } from '../data/agenda';
 
-const featuredEvent = await getFeaturedEvent();
+const agendaItems = upcomingAgenda(3);
 ---
 <Base
   title="Club Vanguard · De private community voor e-commerce & AI-ondernemers"
@@ -25,7 +25,7 @@ const featuredEvent = await getFeaturedEvent();
   <TheCode />
   <Pillars />
   <YearTimeline />
-  {featuredEvent && <UpcomingEvent event={featuredEvent} />}
+  <Agenda items={agendaItems} eyebrow="Agenda" title="Wat er de komende maanden op de kalender staat" />
   <CommunityApp />
   <Quotes />
   <ForWho />

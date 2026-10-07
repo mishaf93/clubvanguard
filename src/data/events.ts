@@ -7,6 +7,10 @@ export const FEATURED_EVENT_SPOTS_TOTAL = 30;
 /** Bij 0 vrije plekken schakelt de site over op wachtlijst-teksten. */
 export const FEATURED_EVENT_SOLD_OUT = FEATURED_EVENT_SPOTS_LEFT === 0;
 
+/** Einde van de laatste editie (The Shift, 26 sep 2026). Daarna: 'afgelopen'-modus. */
+export const FEATURED_EVENT_END = '2026-09-26T18:00:00+02:00';
+export const FEATURED_EVENT_PAST = Date.now() > new Date(FEATURED_EVENT_END).getTime();
+
 export interface VanguardEvent {
   slug: string;
   title: string;
@@ -43,6 +47,28 @@ export const upcomingEvents: VanguardEvent[] = [
 ];
 
 export const featuredEvent = upcomingEvents.find((e) => e.featured) ?? upcomingEvents[0];
+
+/** Afgelopen edities met eigen pagina; getoond als 'terugblik' op /meetups/. */
+export interface PastEvent {
+  title: string;
+  dateLabel: string;
+  location: string;
+  summary: string;
+  photo: string;
+  detailUrl: string;
+}
+
+export const pastEvents: PastEvent[] = [
+  {
+    title: 'The Shift · met Nils Janssens',
+    dateLabel: '26 september 2026',
+    location: 'Kasteel Maurick, Vught',
+    summary:
+      'Dertig founders en operators, negentig minuten volledig interactief met Nils Janssens. Uitverkocht. De volgende editie staat in de agenda hierboven.',
+    photo: 'maurick-hero.jpg',
+    detailUrl: '/the-shift-event/',
+  },
+];
 
 export const eventCategories = [
   {

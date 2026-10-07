@@ -7,9 +7,13 @@ interface Props {
   ctaHref: string;
   ctaLabel?: string;
   alert?: string;
+  /** 'alert' = rood (urgentie), 'neutral' = navy (informatief, bv. afgelopen). */
+  alertTone?: 'alert' | 'neutral';
 }
 
-const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.props;
+const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert, alertTone = 'alert' } = Astro.props;
+const ctaExternal = /^https?:/.test(ctaHref);
+const ctaTarget = ctaExternal ? { target: '_blank', rel: 'noopener' } : {};
 ---
 <!doctype html>
 <html lang="nl">
@@ -38,11 +42,11 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
   <body>
     <div class="lp-top">
       {alert && (
-        <div class="lp-alert" role="status">
+        <div class:list={['lp-alert', { 'lp-alert--neutral': alertTone === 'neutral' }]} role="status">
           <div class="container lp-alert__inner">
             <span class="lp-alert__dot" aria-hidden="true"></span>
             <p class="lp-alert__text">{alert}</p>
-            <a href={ctaHref} class="lp-alert__link" target="_blank" rel="noopener">
+            <a href={ctaHref} class="lp-alert__link" {...ctaTarget}>
               {ctaLabel}
             </a>
           </div>
@@ -54,7 +58,7 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
           <a href="/" class="lp-header__logo" aria-label="Club Vanguard home">
             <img src="/images/logo.png" alt="Club Vanguard" width="1024" height="251" />
           </a>
-          <a href={ctaHref} class="btn btn--solid lp-header__cta" target="_blank" rel="noopener">
+          <a href={ctaHref} class="btn btn--solid lp-header__cta" {...ctaTarget}>
             {ctaLabel}
           </a>
         </div>
@@ -89,6 +93,11 @@ const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert } = Astro.p
     color: var(--ivory);
     border-bottom: 1px solid rgba(8, 18, 32, 0.25);
   }
+  .lp-alert--neutral {
+    background: var(--navy-soft);
+    border-bottom-color: var(--line-navy);
+  }
+  .lp-alert--neutral .lp-alert__dot { background: var(--brass); animation: none; }
   .lp-alert__inner {
     display: flex;
     align-items: center;

@@ -1,0 +1,103 @@
+---
+/**
+ * Kale layout voor landingspagina's (bv. /join/): alleen logo, geen menu,
+ * minimale footer. Zo blijft de aandacht bij het formulier.
+ */
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="min-header">
+      <div class="container min-header__inner">
+        <a href="/" class="min-header__logo" aria-label="Club Vanguard home">
+          <img src="/images/logo.png" alt="Club Vanguard" width="1024" height="251" />
+        </a>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="min-footer">
+      <div class="container min-footer__inner">
+        <p>© {year} Club Vanguard</p>
+        <nav class="min-footer__nav" aria-label="Footer">
+          <a href="/">clubvanguard.com</a>
+          <a href="https://www.instagram.com/clubvanguard.nl/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/company/club-vanguard/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .min-header {
+    background: var(--navy);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .min-header__inner {
+    display: flex;
+    justify-content: flex-start;
+    padding-block: 1.1rem;
+  }
+  .min-header__logo { display: block; }
+  .min-header__logo img {
+    height: 3rem;
+    width: auto;
+    display: block;
+  }
+  .min-footer {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line-navy);
+    padding-block: 1.5rem;
+    font-size: var(--text-xs);
+    color: var(--ivory-dim);
+  }
+  .min-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .min-footer__nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+  .min-footer__nav a {
+    color: var(--ivory-dim);
+    text-decoration: none;
+  }
+  .min-footer__nav a:hover { color: var(--brass-soft); }
+
+  @media (max-width: 480px) {
+    .min-header__logo img { height: 2.4rem; }
+  }
+</style>

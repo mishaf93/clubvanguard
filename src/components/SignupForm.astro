@@ -1,0 +1,267 @@
+---
+/**
+ * Eigen aanmeldformulier voor de Club Vanguard-maillijst (Kit).
+ * Post rechtstreeks naar het Kit form-endpoint; geen embed-script, geen badge.
+ * Bron (utm_source / referrer) en campagne worden als custom fields meegestuurd.
+ */
+import { KIT_FORM_ACTION } from '../data/kit';
+
+interface Props {
+  /** Waar het formulier staat, bv. 'join', 'meetups', 'the-shift-recap'. */
+  context?: string;
+  buttonLabel?: string;
+  note?: string;
+  id?: string;
+  /** Velden onder elkaar (voor kaarten); standaard naast elkaar (brede rij). */
+  stacked?: boolean;
+}
+
+const {
+  context = 'join',
+  buttonLabel = 'Aanmelden',
+  note = 'Eén korte mail per week. Geen spam, afmelden kan altijd.',
+  id = 'signup',
+  stacked = false,
+} = Astro.props;
+
+const ready = KIT_FORM_ACTION.length > 0;
+const showDevWarning = !ready && import.meta.env.DEV;
+---
+<form
+  class:list={['signup', { 'signup--stacked': stacked }]}
+  action={ready ? KIT_FORM_ACTION : '#'}
+  method="post"
+  data-signup
+  data-ready={ready ? 'true' : 'false'}
+  novalidate
+>
+  <div class="signup__fields">
+    <label class="signup__label" for={`${id}-name`}>Voornaam</label>
+    <input
+      id={`${id}-name`}
+      class="signup__input"
+      name="fields[first_name]"
+      type="text"
+      autocomplete="given-name"
+      placeholder="Voornaam"
+      required
+    />
+    <label class="signup__label" for={`${id}-email`}>E-mailadres</label>
+    <input
+      id={`${id}-email`}
+      class="signup__input"
+      name="email_address"
+      type="email"
+      autocomplete="email"
+      inputmode="email"
+      placeholder="Je e-mailadres"
+      required
+    />
+    <button class="btn btn--solid signup__btn" type="submit">{buttonLabel}</button>
+  </div>
+
+  <input type="hidden" name="fields[source]" value="direct" data-source />
+  <input type="hidden" name="fields[campaign]" value="" data-campaign />
+  <input type="hidden" name="fields[context]" value={context} />
+  <!-- honeypot: mensen zien dit veld niet, bots vullen het in -->
+  <div class="signup__hp" aria-hidden="true">
+    <label for={`${id}-hp`}>Laat dit veld leeg</label>
+    <input id={`${id}-hp`} type="text" name="hp_website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="signup__note">{note}</p>
+  <p class="signup__status" role="status" aria-live="polite" data-status></p>
+  {showDevWarning && (
+    <p class="signup__warn">Formulier nog niet gekoppeld: zet PUBLIC_KIT_FORM_ID (zie src/data/kit.ts).</p>
+  )}
+</form>
+
+<script>
+  const STORAGE_KEY = 'cv_attribution';
+
+  function readAttribution() {
+    const params = new URLSearchParams(location.search);
+    const utmSource = params.get('utm_source');
+    let stored: { source?: string; campaign?: string } = {};
+    try {
+      stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}');
+    } catch {}
+
+    let source = utmSource || stored.source || '';
+    const campaign = params.get('utm_campaign') || stored.campaign || '';
+
+    if (!source) {
+      try {
+        const ref = document.referrer ? new URL(document.referrer).hostname : '';
+        if (!ref || ref === location.hostname) source = 'direct';
+        else if (/linkedin/.test(ref)) source = 'linkedin';
+        else if (/instagram/.test(ref)) source = 'instagram';
+        else if (/facebook|fb\./.test(ref)) source = 'facebook';
+        else if (/google/.test(ref)) source = 'google';
+        else source = ref.replace(/^www\./, '');
+      } catch {
+        source = 'direct';
+      }
+    }
+
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ source, campaign }));
+    } catch {}
+    return { source: source.toLowerCase().slice(0, 60), campaign: campaign.toLowerCase().slice(0, 80) };
+  }
+
+  const attribution = readAttribution();
+
+  document.querySelectorAll<HTMLFormElement>('form[data-signup]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const sourceInput = form.querySelector<HTMLInputElement>('[data-source]')!;
+    const campaignInput = form.querySelector<HTMLInputElement>('[data-campaign]')!;
+    sourceInput.value = attribution.source;
+    campaignInput.value = attribution.campaign;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.classList.remove('is-error', 'is-success');
+
+      const hp = form.querySelector<HTMLInputElement>('input[name="hp_website"]');
+      if (hp && hp.value) return; // bot
+
+      const email = form.querySelector<HTMLInputElement>('input[name="email_address"]')!;
+      const name = form.querySelector<HTMLInputElement>('input[name="fields[first_name]"]')!;
+      if (!name.value.trim()) {
+        status.textContent = 'Vul je voornaam in.';
+        status.classList.add('is-error');
+        name.focus();
+        return;
+      }
+      if (!email.checkValidity()) {
+        status.textContent = 'Controleer je e-mailadres.';
+        status.classList.add('is-error');
+        email.focus();
+        return;
+      }
+      if (form.dataset.ready !== 'true') {
+        status.textContent = 'Het formulier is nog niet gekoppeld aan de maillijst.';
+        status.classList.add('is-error');
+        return;
+      }
+
+      const data = new FormData(form);
+      data.delete('hp_website');
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Even geduld…';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        const json = await res.json().catch(() => ({}));
+        // Kit antwoordt ook bij fouten met HTTP 200; alleen status 'success' telt.
+        if (res.ok && json.status === 'success') {
+          form.classList.add('is-done');
+          status.textContent = `Gelukt, ${name.value.trim()}. Check je inbox: je krijgt een mail om je aanmelding te bevestigen.`;
+          status.classList.add('is-success');
+          form.reset();
+        } else {
+          const msg = json.errors?.messages?.[0] || json.message || 'Aanmelden mislukt';
+          throw new Error(msg);
+        }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : '';
+        status.textContent = /email/i.test(msg)
+          ? 'Dat e-mailadres lijkt niet te kloppen. Controleer het en probeer opnieuw.'
+          : 'Er ging iets mis. Probeer het nog eens of mail admin@clubvanguard.io.';
+        status.classList.add('is-error');
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  });
+</script>
+
+<style>
+  .signup {
+    display: block;
+  }
+  .signup__fields {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) auto;
+    gap: 0.6rem;
+  }
+  .signup__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .signup__input {
+    width: 100%;
+    min-width: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--ink);
+    background: var(--ivory);
+    border: 1px solid var(--brass);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+    line-height: 1.2;
+  }
+  .signup__input::placeholder { color: var(--ink-dim); }
+  .signup__input:focus-visible {
+    outline: 2px solid var(--brass-soft);
+    outline-offset: 2px;
+  }
+  .signup__btn {
+    white-space: nowrap;
+    padding-inline: 1.6rem;
+  }
+  .signup__btn:disabled { opacity: 0.7; cursor: wait; }
+  .signup--stacked .signup__fields { grid-template-columns: 1fr; }
+  .signup--stacked .signup__btn { width: 100%; margin-top: 0.2rem; }
+  .signup__hp {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  .signup__note {
+    margin-top: 0.9rem;
+    font-size: var(--text-xs);
+    color: var(--ivory-dim);
+  }
+  .signup__status {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    min-height: 1.4em;
+  }
+  .signup__status.is-success { color: var(--brass-soft); }
+  .signup__status.is-error { color: #e2a89b; }
+  .signup.is-done .signup__fields { display: none; }
+  .signup.is-done .signup__note { display: none; }
+  .signup.is-done .signup__status {
+    font-size: var(--text-base);
+    margin-top: 0;
+  }
+  .signup__warn {
+    margin-top: 0.6rem;
+    font-size: var(--text-xs);
+    color: #e2a89b;
+  }
+
+  :global(.section--ivory) .signup__note { color: var(--ink-dim); }
+  :global(.section--ivory) .signup__status.is-success { color: var(--brass); }
+
+  @media (max-width: 640px) {
+    .signup__fields { grid-template-columns: 1fr; }
+    .signup__btn { width: 100%; }
+  }
+</style>

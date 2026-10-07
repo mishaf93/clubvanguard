@@ -1,0 +1,201 @@
+---
+import { formatAgendaDate, type AgendaItem } from '../data/agenda';
+
+interface Props {
+  items: AgendaItem[];
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  light?: boolean;
+  /** Toon onderaan een link naar /join/ (niet op /join/ zelf). */
+  showJoinLink?: boolean;
+}
+
+const {
+  items,
+  eyebrow = 'Agenda',
+  title = 'De komende drie maanden',
+  lead,
+  light = false,
+  showJoinLink = true,
+} = Astro.props;
+---
+<section class:list={['section', 'agenda', { 'section--ivory': light }]} aria-labelledby="agenda-title">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 id="agenda-title" class="section-title">{title}</h2>
+    {lead && <p class="lead agenda__lead">{lead}</p>}
+
+    {items.length === 0 ? (
+      <p class="agenda__empty">De volgende data volgen binnenkort. Zet je op de lijst, dan hoor je het als eerste.</p>
+    ) : (
+      <ol class="agenda__list">
+        {items.map((item) => {
+          const d = formatAgendaDate(item.date);
+          const hasSpots = typeof item.spotsLeft === 'number';
+          return (
+            <li class="agenda__row">
+              <div class="agenda__date" aria-hidden="true">
+                <span class="agenda__day">{d.day}</span>
+                <span class="agenda__month">{d.month}</span>
+              </div>
+              <div class="agenda__body">
+                <p class="agenda__type">{item.type}</p>
+                <h3 class="agenda__title">{item.title}</h3>
+                <p class="agenda__meta">
+                  <span class="agenda__weekday">{d.weekday}</span>
+                  {item.time && <span> · {item.time}</span>}
+                  <span> · {item.location}</span>
+                </p>
+              </div>
+              <div class="agenda__aside">
+                {hasSpots && (
+                  <p class:list={['agenda__spots', { 'is-full': item.spotsLeft === 0 }]}>
+                    {item.spotsLeft === 0
+                      ? 'Vol'
+                      : `Nog ${item.spotsLeft} ${item.spotsLeft === 1 ? 'plek' : 'plekken'} vrij`}
+                  </p>
+                )}
+                {item.detailUrl ? (
+                  <a href={item.detailUrl} class="btn btn--ghost agenda__btn">Bekijk event</a>
+                ) : item.signupUrl && item.spotsLeft !== 0 ? (
+                  <a href={item.signupUrl} class="btn btn--solid agenda__btn" target="_blank" rel="noopener">
+                    Vraag een plek aan
+                  </a>
+                ) : (
+                  <p class="agenda__soon">Details volgen per mail</p>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    )}
+
+    {showJoinLink && (
+      <p class="agenda__join">
+        Als eerste horen wanneer er plekken vrijkomen?
+        <a href="/join/">Zet je op de lijst →</a>
+      </p>
+    )}
+  </div>
+</section>
+
+<style>
+  .agenda__lead {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+  }
+  .section--ivory .agenda__lead { color: var(--ink-dim); }
+  .agenda__list {
+    list-style: none;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line-navy);
+  }
+  .section--ivory .agenda__list { border-color: var(--line-ivory); }
+  .agenda__row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    align-items: center;
+    padding-block: 1.6rem;
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .section--ivory .agenda__row { border-color: var(--line-ivory); }
+  .agenda__date {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 4.6rem;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    background: var(--navy-soft);
+  }
+  .section--ivory .agenda__date {
+    background: transparent;
+    border-color: var(--line-ivory);
+  }
+  .agenda__day {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--brass);
+    line-height: 1;
+  }
+  .agenda__month {
+    margin-top: 0.3rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    color: var(--ivory-dim);
+  }
+  .section--ivory .agenda__month { color: var(--ink-dim); }
+  .agenda__type {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .agenda__title {
+    font-size: var(--text-lg);
+    margin-top: 0.3rem;
+  }
+  .agenda__meta {
+    margin-top: 0.35rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+  .section--ivory .agenda__meta { color: var(--ink-dim); }
+  .agenda__weekday { text-transform: capitalize; }
+  .agenda__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+    text-align: right;
+  }
+  .agenda__spots {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--brass-soft);
+  }
+  .section--ivory .agenda__spots { color: var(--brass); }
+  .agenda__spots.is-full { color: var(--ivory-dim); }
+  .agenda__btn {
+    padding: 0.7rem 1.4rem;
+    font-size: var(--text-xs);
+  }
+  .agenda__soon,
+  .agenda__empty {
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+  .agenda__empty { margin-top: 2rem; }
+  .section--ivory .agenda__soon,
+  .section--ivory .agenda__empty { color: var(--ink-dim); }
+  .agenda__join {
+    margin-top: 1.8rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+  .section--ivory .agenda__join { color: var(--ink-dim); }
+  .agenda__join a {
+    margin-left: 0.35rem;
+    color: var(--brass-soft);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .section--ivory .agenda__join a { color: var(--brass); }
+  .agenda__join a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .agenda__row {
+      grid-template-columns: auto 1fr;
+    }
+    .agenda__aside {
+      grid-column: 2;
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+</style>

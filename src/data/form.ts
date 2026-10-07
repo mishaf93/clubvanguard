@@ -10,3 +10,10 @@ export const EVENT_SIGNUP_URL = 'https://app.youform.com/forms/qludq0gh';
  * een apart wachtlijstformulier in Youform staat.
  */
 export const EVENT_WAITLIST_URL = EVENT_SIGNUP_URL;
+
+/**
+ * Plek aanvragen voor een Club Dinner (4 plekken per editie).
+ * Voorlopig het algemene intake-formulier; vervang door een apart
+ * Youform-formulier "Dinner" zodra dat bestaat.
+ */
+export const DINNER_SIGNUP_URL = YOUFORM_URL;
