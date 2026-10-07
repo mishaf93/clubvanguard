@@ -6,3 +6,7 @@ dist/
 # Lokale bronmedia (niet nodig voor de site; te groot voor GitHub)
 public/images/drive-events/
 clubvanguard-media.zip
+
+# Lokale env (Kit form-ID e.d.)
+.env
+.env.local
