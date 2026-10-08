@@ -8,9 +8,13 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** Share-beeld (1200×630) voor LinkedIn/WhatsApp/Slack; pad onder /public. */
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description , image = '/images/og-default.jpg' } = Astro.props;
+const ogImage = new URL(image, Astro.site ?? 'https://clubvanguard.com').href;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://clubvanguard.com').href;
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -33,6 +37,14 @@ const year = new Date().getFullYear();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Club Vanguard" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <header class="min-header">

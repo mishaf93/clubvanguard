@@ -4,6 +4,8 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  /** Share-beeld (1200×630) voor LinkedIn/WhatsApp/Slack; pad onder /public. */
+  image?: string;
   ctaHref: string;
   ctaLabel?: string;
   alert?: string;
@@ -11,7 +13,9 @@ interface Props {
   alertTone?: 'alert' | 'neutral';
 }
 
-const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert, alertTone = 'alert' } = Astro.props;
+const { title, description, ctaHref, ctaLabel = 'Meld je aan', alert, alertTone = 'alert' , image = '/images/og-default.jpg' } = Astro.props;
+const ogImage = new URL(image, Astro.site ?? 'https://clubvanguard.com').href;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://clubvanguard.com').href;
 const ctaExternal = /^https?:/.test(ctaHref);
 const ctaTarget = ctaExternal ? { target: '_blank', rel: 'noopener' } : {};
 ---
@@ -38,6 +42,14 @@ const ctaTarget = ctaExternal ? { target: '_blank', rel: 'noopener' } : {};
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Club Vanguard" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <div class="lp-top">
