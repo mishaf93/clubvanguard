@@ -1,0 +1,104 @@
+---
+/**
+ * Landingspagina ná de bevestigingsklik in de Kit-mail (double opt-in).
+ * Kit → formulier "Website /join" → Settings → Incentive → redirect naar /welkom/.
+ * Vervangt de welkomstmail: op het gratis Kit-plan zijn er geen sequences.
+ */
+import Minimal from '../layouts/Minimal.astro';
+import Agenda from '../components/Agenda.astro';
+import { upcomingAgenda } from '../data/agenda';
+
+const items = upcomingAgenda(3);
+---
+<Minimal
+  title="Welkom bij Club Vanguard"
+  description="Je aanmelding voor de eventlijst van Club Vanguard is bevestigd."
+>
+  <section class="section welkom">
+    <div class="container container--narrow welkom__inner">
+      <p class="eyebrow">Bevestigd</p>
+      <h1 class="welkom__title">Je staat op de lijst. <em>Welkom.</em></h1>
+      <p class="welkom__text">
+        Club Vanguard is een besloten community van e-commerce- en
+        AI-ondernemers in Nederland. Founders en operators die zelf aan het
+        bouwen zijn. We komen offline bij elkaar: club events met sterke
+        sprekers, kleine dinners, activiteiten en af en toe een trip.
+      </p>
+      <p class="welkom__text">
+        Wat je van ons krijgt: één korte mail per week. Een verhaal van een
+        lid, een blik achter de schermen, en de datums en vrije plekken voor
+        wat eraan komt. Geen lange nieuwsbrieven.
+      </p>
+      <p class="welkom__tip">
+        Tip: sleep onze eerste mail naar je primaire inbox, dan mis je niets.
+      </p>
+    </div>
+  </section>
+
+  <Agenda
+    items={items}
+    light={true}
+    eyebrow="Agenda"
+    title="De komende drie maanden"
+    showJoinLink={false}
+  />
+
+  <section class="section welkom-member">
+    <div class="container container--narrow welkom-member__inner">
+      <p class="eyebrow">Verder dan de events?</p>
+      <h2 class="welkom-member__title">Lid worden van Club Vanguard</h2>
+      <p class="welkom-member__text">
+        Het lidmaatschap is kleiner en gecureerd. We beoordelen elke aanvraag
+        persoonlijk en je hoort binnen één tot twee dagen van ons.
+      </p>
+      <a href="/aanvragen/?utm_source=kit&utm_medium=email&utm_campaign=welkom" class="btn btn--solid">Dien je aanvraag in</a>
+      <p class="welkom-member__contact">
+        Vragen? Mail <a href="mailto:admin@clubvanguard.io">admin@clubvanguard.io</a>
+      </p>
+    </div>
+  </section>
+</Minimal>
+
+<style>
+  .welkom__inner { text-align: center; }
+  .welkom__title {
+    font-size: var(--text-2xl);
+    margin-inline: auto;
+  }
+  .welkom__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .welkom__text {
+    margin: 1.4rem auto 0;
+    color: var(--ivory-dim);
+    max-width: 52ch;
+    line-height: 1.7;
+  }
+  .welkom__tip {
+    margin: 1.8rem auto 0;
+    font-size: var(--text-sm);
+    color: var(--brass-soft);
+  }
+
+  .welkom-member {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line-navy);
+  }
+  .welkom-member__inner { text-align: center; }
+  .welkom-member__title {
+    font-size: var(--text-section);
+    margin-inline: auto;
+  }
+  .welkom-member__text {
+    margin: 1.3rem auto 2rem;
+    color: var(--ivory-dim);
+    max-width: 46ch;
+  }
+  .welkom-member__contact {
+    margin-top: 1.8rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+  }
+  .welkom-member__contact a { color: var(--brass-soft); }
+</style>
