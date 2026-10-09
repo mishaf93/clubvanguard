@@ -3,7 +3,7 @@
  * /join/ — landingspagina voor de eventlijst (Kit).
  * Opbouw na feedback Mario (9 okt): geen bullets of kleine subregels,
  * elk punt een eigen groot blok: één statement + max twee regels uitleg,
- * navy / ivory / ivory / navy / navy (volgorde Misha) en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
+ * navy / ivory / navy / ivory / navy, volgorde: hero, prioriteit, tafel, momenten, afsluiting. Dinners = aanvraag, geen "plekken vrijkomen".
  */
 import Minimal from '../layouts/Minimal.astro';
 import SignupForm from '../components/SignupForm.astro';
@@ -72,7 +72,28 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 3. Soorten momenten (ivory) -->
+  <!-- 3. Foto links, statement rechts (navy), zelfde maat als blok 2 -->
+  <section class="section join-block" aria-labelledby="dinner-title">
+    <div class="container join-block__grid join-block__grid--even join-block__grid--flip">
+      <img
+        src="/images/dinner-maurick-2026.jpg"
+        alt="Clubdiner van Club Vanguard op Kasteel Maurick"
+        class="site-photo join-block__photo join-block__photo--landscape"
+        loading="lazy"
+        width="1600"
+        height="1066"
+      />
+      <div>
+        <h2 id="dinner-title" class="join-statement join-statement--wide">Een plek aan tafel vraag je aan.</h2>
+        <p class="join-text">
+          Dinners zijn klein. Sta je op de lijst, dan kun je per dinner een
+          aanvraag doen. Wij stellen de tafel samen en je hoort of je erbij bent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Soorten momenten (ivory) -->
   <section class="section section--ivory join-types" aria-labelledby="types-title">
     <div class="container">
       <h2 id="types-title" class="join-statement join-statement--full">Momenten om samen te komen.</h2>
@@ -91,27 +112,6 @@ const eventTypes = [
             <p class="join-types__text">{t.text}</p>
           </article>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Foto links, statement rechts (navy) -->
-  <section class="section join-block" aria-labelledby="dinner-title">
-    <div class="container join-block__grid join-block__grid--flip">
-      <img
-        src="/images/dinner-maurick-2026.jpg"
-        alt="Clubdiner van Club Vanguard op Kasteel Maurick"
-        class="site-photo join-block__photo join-block__photo--wide"
-        loading="lazy"
-        width="1600"
-        height="1066"
-      />
-      <div>
-        <h2 id="dinner-title" class="join-statement">Een plek aan tafel vraag je aan.</h2>
-        <p class="join-text">
-          Dinners zijn klein. Sta je op de lijst, dan kun je per dinner een
-          aanvraag doen. Wij stellen de tafel samen en je hoort of je erbij bent.
-        </p>
       </div>
     </div>
   </section>
@@ -182,7 +182,7 @@ const eventTypes = [
     margin-bottom: 0.9rem;
   }
 
-  /* 2 + 4: statement naast foto */
+  /* 2 + 3: statement naast foto */
   .join-block__grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -197,14 +197,10 @@ const eventTypes = [
     border-radius: 6px;
   }
   .section--ivory .join-block__photo { border-color: var(--line-ivory); }
-  .join-block__photo--wide { aspect-ratio: 5 / 4; }
   .join-block__photo--landscape { aspect-ratio: 4 / 3; }
   .join-block__grid--even { grid-template-columns: 1fr 1fr; }
-  .join-block__grid--flip { grid-template-columns: 0.85fr 1.15fr; }
 
-  /* 3: soorten momenten (ivory na ivory: dunne scheidslijn) */
-  .join-types { border-top: 1px solid var(--line-ivory); }
-  .join-close { border-top: 1px solid var(--line-navy); }
+  /* 4: soorten momenten */
   .join-types__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -241,8 +237,6 @@ const eventTypes = [
     .join-block__grid--flip .join-block__photo { order: 2; }
     .join-statement,
     .join-statement--full { max-width: none; }
-    .join-block__photo,
-    .join-block__photo--wide { aspect-ratio: 4 / 3; }
     .join-block__photo--landscape { aspect-ratio: 4 / 3; }
     .join-types__grid {
       grid-template-columns: 1fr;
