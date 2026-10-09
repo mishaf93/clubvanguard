@@ -3,7 +3,7 @@
  * /join/ — landingspagina voor de eventlijst (Kit).
  * Opbouw na feedback Mario (9 okt): geen bullets of kleine subregels,
  * elk punt een eigen groot blok: één statement + max twee regels uitleg,
- * afwisselend navy / ivory (start en einde navy) en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
+ * navy / ivory / ivory / navy / navy (volgorde Misha) en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
  */
 import Minimal from '../layouts/Minimal.astro';
 import SignupForm from '../components/SignupForm.astro';
@@ -55,7 +55,7 @@ const eventTypes = [
   <section class="section section--ivory join-block" aria-labelledby="first-title">
     <div class="container join-block__grid join-block__grid--even">
       <div>
-        <h2 id="first-title" class="join-statement join-statement--wide">Wees als een van de eersten bij de volgende meetups.</h2>
+        <h2 id="first-title" class="join-statement join-statement--wide">Krijg hogere prioriteit bij onze events.</h2>
         <p class="join-text">
           Datums en plekken gaan eerst naar de lijst, daarna pas naar de rest.
           Club events zitten snel vol.
@@ -72,10 +72,10 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 3. Soorten momenten (navy) -->
-  <section class="section join-types" aria-labelledby="types-title">
+  <!-- 3. Soorten momenten (ivory) -->
+  <section class="section section--ivory join-types" aria-labelledby="types-title">
     <div class="container">
-      <h2 id="types-title" class="join-statement join-statement--full">Meerdere soorten momenten om samen te komen.</h2>
+      <h2 id="types-title" class="join-statement join-statement--full">Momenten om samen te komen.</h2>
       <div class="join-types__grid">
         {eventTypes.map((t) => (
           <article class="join-types__card">
@@ -95,8 +95,8 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 4. Foto links, statement rechts (ivory) -->
-  <section class="section section--ivory join-block" aria-labelledby="dinner-title">
+  <!-- 4. Foto links, statement rechts (navy) -->
+  <section class="section join-block" aria-labelledby="dinner-title">
     <div class="container join-block__grid join-block__grid--flip">
       <img
         src="/images/dinner-maurick-2026.jpg"
@@ -142,7 +142,10 @@ const eventTypes = [
     max-width: 15ch;
     text-wrap: balance;
   }
-  .join-statement--hero { max-width: 14ch; }
+  .join-statement--hero {
+    font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+    max-width: 22ch;
+  }
   .join-statement--wide {
     font-size: clamp(1.8rem, 2.9vw, 2.3rem);
     max-width: none;
@@ -160,7 +163,7 @@ const eventTypes = [
   /* 1 + 5: statement met formulier; kaart op navy */
   .join-form__grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: clamp(2.5rem, 6vw, 5rem);
     align-items: center;
   }
@@ -190,15 +193,18 @@ const eventTypes = [
     aspect-ratio: 4 / 5;
     height: auto;
     min-height: 0;
-    border: 1px solid var(--line-ivory);
+    border: 1px solid var(--line-navy);
     border-radius: 6px;
   }
+  .section--ivory .join-block__photo { border-color: var(--line-ivory); }
   .join-block__photo--wide { aspect-ratio: 5 / 4; }
   .join-block__photo--landscape { aspect-ratio: 4 / 3; }
   .join-block__grid--even { grid-template-columns: 1fr 1fr; }
   .join-block__grid--flip { grid-template-columns: 0.85fr 1.15fr; }
 
-  /* 3: soorten momenten */
+  /* 3: soorten momenten (ivory na ivory: dunne scheidslijn) */
+  .join-types { border-top: 1px solid var(--line-ivory); }
+  .join-close { border-top: 1px solid var(--line-navy); }
   .join-types__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -209,7 +215,7 @@ const eventTypes = [
     aspect-ratio: 4 / 5;
     height: auto;
     min-height: 0;
-    border: 1px solid var(--line-navy);
+    border: 1px solid var(--line-ivory);
     border-radius: 6px;
   }
   .join-types__title {
@@ -218,7 +224,7 @@ const eventTypes = [
   }
   .join-types__text {
     margin-top: 0.7rem;
-    color: var(--ivory-dim);
+    color: var(--ink-dim);
     line-height: 1.55;
     max-width: 36ch;
   }
