@@ -69,7 +69,7 @@ const showDevWarning = !ready && import.meta.env.DEV;
     <input id={`${id}-hp`} type="text" name="hp_website" tabindex="-1" autocomplete="off" />
   </div>
 
-  <p class="signup__note">{note}</p>
+  {note && <p class="signup__note">{note}</p>}
   <p class="signup__status" role="status" aria-live="polite" data-status></p>
   {showDevWarning && (
     <p class="signup__warn">Formulier nog niet gekoppeld: zet PUBLIC_KIT_FORM_ID (zie src/data/kit.ts).</p>

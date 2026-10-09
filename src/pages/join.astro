@@ -3,7 +3,7 @@
  * /join/ — landingspagina voor de eventlijst (Kit).
  * Opbouw na feedback Mario (9 okt): geen bullets of kleine subregels,
  * elk punt een eigen groot blok: één statement + max twee regels uitleg,
- * afwisselend met een foto. Dinners = aanvraag, geen "plekken vrijkomen".
+ * afwisselend ivory / navy en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
  */
 import Minimal from '../layouts/Minimal.astro';
 import SignupForm from '../components/SignupForm.astro';
@@ -11,19 +11,19 @@ import SignupForm from '../components/SignupForm.astro';
 const eventTypes = [
   {
     title: 'Club events',
-    text: 'Om de maand op een bijzondere locatie. Een sterke spreker, een interactieve sessie en ruim tijd om elkaar te spreken.',
+    text: 'Om de maand op een bijzondere locatie. Een sterke spreker, een interactieve sessie en ruim de tijd om elkaar te spreken.',
     photo: 'gallery-event.jpg',
     alt: 'Presentatie tijdens een Club Vanguard event op Kasteel Maurick',
   },
   {
     title: 'Dinners',
-    text: 'Klein en vaker. Een tafel met een handvol leden, zonder programma. Gewoon een goed gesprek.',
+    text: 'Klein en intiemer. Een tafel van geselecteerde leden en externen. Voor gezelligheid, diepgang en goede gesprekken.',
     photo: 'club-event.jpg',
     alt: 'Clubdiner met Vanguard-leden aan een lange tafel',
   },
   {
     title: 'Activiteiten & trips',
-    text: 'Van een actieve dag in Nederland tot een groepstrip naar het buitenland. Sparren over je bedrijf, buiten de dagelijkse context.',
+    text: 'Sportactiviteiten zoals een potje padel, bootje varen, buitenlandse groepstrips en meer.',
     photo: 'gallery-trip.jpg',
     alt: 'Vanguard-leden op de Faro trip',
   },
@@ -34,11 +34,11 @@ const eventTypes = [
   description="Eén korte mail per week over de club events, dinners en trips van Club Vanguard. Als eerste horen wat eraan komt."
   image="/images/og-join.jpg"
 >
-  <!-- 1. Statement + formulier -->
-  <section class="section join-hero">
-    <div class="container join-hero__grid">
+  <!-- 1. Statement + formulier (ivory) -->
+  <section class="section section--ivory join-hero">
+    <div class="container join-form__grid">
       <div>
-        <h1 class="join-statement join-statement--hero">Mis het volgende <em>Vanguard-moment</em> niet.</h1>
+        <h1 class="join-statement join-statement--hero">Mis het volgende Vanguard&#8209;moment niet.</h1>
         <p class="join-text">
           Club events, dinners en trips voor e-commerce- en AI-ondernemers.
           Eén korte mail per week en je weet wat eraan komt.
@@ -46,36 +46,36 @@ const eventTypes = [
       </div>
       <div class="join-card">
         <p class="join-card__title">Zet je op de lijst</p>
-        <SignupForm context="join" id="join-hero" stacked={true} />
+        <SignupForm context="join" id="join-hero" stacked={true} note="" />
       </div>
     </div>
   </section>
 
-  <!-- 2. Statement links, foto rechts -->
+  <!-- 2. Statement links, foto rechts (navy) -->
   <section class="section join-block" aria-labelledby="first-title">
     <div class="container join-block__grid">
-      <div class="join-block__content">
-        <h2 id="first-title" class="join-statement">Wees als een van de eersten bij de volgende meetups.</h2>
+      <div>
+        <h2 id="first-title" class="join-statement join-statement--wide">Wees als een van de eersten bij de volgende meetups.</h2>
         <p class="join-text">
           Datums en plekken gaan eerst naar de lijst, daarna pas naar de rest.
           Club events zitten snel vol.
         </p>
       </div>
       <img
-        src="/images/gallery-8.jpg"
-        alt="Volle zaal tijdens een Club Vanguard event"
+        src="/images/event-vught-60.jpg"
+        alt="Leden in gesprek op het terras van Kasteel Maurick"
         class="site-photo join-block__photo"
         loading="lazy"
-        width="900"
-        height="1200"
+        width="1000"
+        height="1500"
       />
     </div>
   </section>
 
-  <!-- 3. Drie soorten events -->
+  <!-- 3. Soorten momenten (ivory) -->
   <section class="section section--ivory join-types" aria-labelledby="types-title">
     <div class="container">
-      <h2 id="types-title" class="join-statement">Drie soorten events.</h2>
+      <h2 id="types-title" class="join-statement join-statement--full">Meerdere soorten momenten om samen te komen.</h2>
       <div class="join-types__grid">
         {eventTypes.map((t) => (
           <article class="join-types__card">
@@ -95,7 +95,7 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 4. Foto links, statement rechts -->
+  <!-- 4. Foto links, statement rechts (navy) -->
   <section class="section join-block" aria-labelledby="dinner-title">
     <div class="container join-block__grid join-block__grid--flip">
       <img
@@ -106,7 +106,7 @@ const eventTypes = [
         width="1600"
         height="1066"
       />
-      <div class="join-block__content">
+      <div>
         <h2 id="dinner-title" class="join-statement">Een plek aan tafel vraag je aan.</h2>
         <p class="join-text">
           Dinners zijn klein. Sta je op de lijst, dan kun je per dinner een
@@ -116,9 +116,9 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 5. Afsluiting: statement + formulier -->
-  <section class="section join-close" aria-labelledby="close-title">
-    <div class="container join-hero__grid">
+  <!-- 5. Afsluiting: statement + formulier (ivory) -->
+  <section class="section section--ivory join-close" aria-labelledby="close-title">
+    <div class="container join-form__grid">
       <div>
         <h2 id="close-title" class="join-statement">Eén korte mail per week.</h2>
         <p class="join-text">
@@ -128,7 +128,7 @@ const eventTypes = [
       </div>
       <div class="join-card">
         <p class="join-card__title">Zet je op de lijst</p>
-        <SignupForm context="join" id="join-close" stacked={true} />
+        <SignupForm context="join" id="join-close" stacked={true} note="" />
       </div>
     </div>
   </section>
@@ -140,14 +140,14 @@ const eventTypes = [
     font-size: var(--text-2xl);
     line-height: 1.08;
     max-width: 15ch;
+    text-wrap: balance;
   }
-  .join-statement--hero {
-    max-width: 14ch;
+  .join-statement--hero { max-width: 14ch; }
+  .join-statement--wide {
+    font-size: clamp(1.9rem, 3.1vw, 2.5rem);
+    max-width: none;
   }
-  .join-statement em {
-    font-style: italic;
-    color: var(--brass-soft);
-  }
+  .join-statement--full { max-width: 24ch; }
   .join-text {
     margin-top: 1.4rem;
     font-size: var(--text-lg);
@@ -157,35 +157,32 @@ const eventTypes = [
   }
   .section--ivory .join-text { color: var(--ink-dim); }
 
-  /* 1 + 5: statement met formulier */
-  .join-hero__grid {
+  /* 1 + 5: statement met formulier; navy kaart op ivory */
+  .join-form__grid {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2.5rem, 6vw, 5rem);
     align-items: center;
   }
   .join-card {
-    background: var(--navy-soft);
-    border: 1px solid var(--line-navy);
+    background: var(--navy);
+    color: var(--ivory);
     border-radius: 6px;
-    padding: clamp(1.5rem, 3vw, 2.25rem);
+    padding: clamp(1.25rem, 2.4vw, 1.75rem);
+    max-width: 24rem;
+    width: 100%;
+    justify-self: end;
   }
   .join-card__title {
     font-family: var(--font-display);
     font-size: var(--text-lg);
-    margin-bottom: 1.1rem;
-  }
-  .join-close {
-    border-top: 1px solid var(--line-navy);
+    margin-bottom: 0.9rem;
   }
 
   /* 2 + 4: statement naast foto */
-  .join-block {
-    border-top: 1px solid var(--line-navy);
-  }
   .join-block__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2.5rem, 6vw, 5rem);
     align-items: center;
   }
@@ -196,11 +193,10 @@ const eventTypes = [
     border: 1px solid var(--line-navy);
     border-radius: 6px;
   }
-  .join-block__photo--wide {
-    aspect-ratio: 5 / 4;
-  }
+  .join-block__photo--wide { aspect-ratio: 5 / 4; }
+  .join-block__grid--flip { grid-template-columns: 0.85fr 1.15fr; }
 
-  /* 3: drie soorten events */
+  /* 3: soorten momenten */
   .join-types__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -226,18 +222,19 @@ const eventTypes = [
   }
 
   @media (max-width: 900px) {
-    .join-hero__grid,
+    .join-form__grid,
     .join-block__grid {
       grid-template-columns: 1fr;
     }
-    .join-block__grid--flip .join-block__photo {
-      order: 2;
+    .join-card {
+      max-width: none;
+      justify-self: stretch;
     }
-    .join-statement { max-width: none; }
+    .join-block__grid--flip .join-block__photo { order: 2; }
+    .join-statement,
+    .join-statement--full { max-width: none; }
     .join-block__photo,
-    .join-block__photo--wide {
-      aspect-ratio: 4 / 3;
-    }
+    .join-block__photo--wide { aspect-ratio: 4 / 3; }
     .join-types__grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
