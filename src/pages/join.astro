@@ -1,162 +1,247 @@
 ---
+/**
+ * /join/ — landingspagina voor de eventlijst (Kit).
+ * Opbouw na feedback Mario (9 okt): geen bullets of kleine subregels,
+ * elk punt een eigen groot blok: één statement + max twee regels uitleg,
+ * afwisselend met een foto. Dinners = aanvraag, geen "plekken vrijkomen".
+ */
 import Minimal from '../layouts/Minimal.astro';
 import SignupForm from '../components/SignupForm.astro';
 
-const photos = [
-  { file: 'gallery-event.jpg', label: 'Club events', alt: 'Presentatie tijdens een Club Vanguard event op Kasteel Maurick' },
-  { file: 'gallery-dinner.jpg', label: 'Dinners', alt: 'Clubdiner met Vanguard-leden' },
-  { file: 'gallery-activity.jpg', label: 'Activiteiten', alt: 'Avondborrel tijdens de Faro trip' },
+const eventTypes = [
+  {
+    title: 'Club events',
+    text: 'Om de maand op een bijzondere locatie. Een sterke spreker, een interactieve sessie en ruim tijd om elkaar te spreken.',
+    photo: 'gallery-event.jpg',
+    alt: 'Presentatie tijdens een Club Vanguard event op Kasteel Maurick',
+  },
+  {
+    title: 'Dinners',
+    text: 'Klein en vaker. Een tafel met een handvol leden, zonder programma. Gewoon een goed gesprek.',
+    photo: 'club-event.jpg',
+    alt: 'Clubdiner met Vanguard-leden aan een lange tafel',
+  },
+  {
+    title: 'Activiteiten & trips',
+    text: 'Van een actieve dag in Nederland tot een groepstrip naar het buitenland. Sparren over je bedrijf, buiten de dagelijkse context.',
+    photo: 'gallery-trip.jpg',
+    alt: 'Vanguard-leden op de Faro trip',
+  },
 ];
 ---
 <Minimal
   title="Blijf op de hoogte · Club Vanguard"
-  description="Eén korte mail per week over de events, dinners en activiteiten van Club Vanguard. Als eerste horen wanneer er plekken vrijkomen."
+  description="Eén korte mail per week over de club events, dinners en trips van Club Vanguard. Als eerste horen wat eraan komt."
   image="/images/og-join.jpg"
 >
+  <!-- 1. Statement + formulier -->
   <section class="section join-hero">
     <div class="container join-hero__grid">
-      <div class="join-hero__content">
-        <p class="eyebrow">Club Vanguard</p>
-        <h1 class="join-hero__title">Mis het volgende <em>Vanguard-moment</em> niet.</h1>
-        <p class="join-hero__text">
-          Eén korte mail per week. Verhalen vanuit leden, behind the scenes
-          en announcements over aankomende meetups.
+      <div>
+        <h1 class="join-statement join-statement--hero">Mis het volgende <em>Vanguard-moment</em> niet.</h1>
+        <p class="join-text">
+          Club events, dinners en trips voor e-commerce- en AI-ondernemers.
+          Eén korte mail per week en je weet wat eraan komt.
         </p>
-        <ul class="join-hero__list">
-          <li>Wees als een van de eersten bij onze meetups</li>
-          <li>Raak geïnspireerd door onze leden</li>
-          <li>Hoor als eerste wanneer er plekken vrijkomen voor een dinner</li>
-        </ul>
       </div>
-      <div class="join-hero__card">
-        <p class="join-hero__card-title">Zet je op de lijst</p>
+      <div class="join-card">
+        <p class="join-card__title">Zet je op de lijst</p>
         <SignupForm context="join" id="join-hero" stacked={true} />
       </div>
     </div>
   </section>
 
-  <section class="join-photos" aria-label="Zo ziet een Vanguard-moment eruit">
-    <div class="container join-photos__grid">
-      {photos.map((p) => (
-        <figure class="join-photos__item">
-          <img
-            src={`/images/${p.file}`}
-            alt={p.alt}
-            class="site-photo join-photos__img"
-            loading="lazy"
-            width="1050"
-            height="1400"
-          />
-          <figcaption class="join-photos__caption">{p.label}</figcaption>
-        </figure>
-      ))}
+  <!-- 2. Statement links, foto rechts -->
+  <section class="section join-block" aria-labelledby="first-title">
+    <div class="container join-block__grid">
+      <div class="join-block__content">
+        <h2 id="first-title" class="join-statement">Wees als een van de eersten bij de volgende meetups.</h2>
+        <p class="join-text">
+          Datums en plekken gaan eerst naar de lijst, daarna pas naar de rest.
+          Club events zitten snel vol.
+        </p>
+      </div>
+      <img
+        src="/images/gallery-8.jpg"
+        alt="Volle zaal tijdens een Club Vanguard event"
+        class="site-photo join-block__photo"
+        loading="lazy"
+        width="900"
+        height="1200"
+      />
     </div>
   </section>
 
+  <!-- 3. Drie soorten events -->
+  <section class="section section--ivory join-types" aria-labelledby="types-title">
+    <div class="container">
+      <h2 id="types-title" class="join-statement">Drie soorten events.</h2>
+      <div class="join-types__grid">
+        {eventTypes.map((t) => (
+          <article class="join-types__card">
+            <img
+              src={`/images/${t.photo}`}
+              alt={t.alt}
+              class="site-photo join-types__photo"
+              loading="lazy"
+              width="900"
+              height="1125"
+            />
+            <h3 class="join-types__title">{t.title}</h3>
+            <p class="join-types__text">{t.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Foto links, statement rechts -->
+  <section class="section join-block" aria-labelledby="dinner-title">
+    <div class="container join-block__grid join-block__grid--flip">
+      <img
+        src="/images/dinner-maurick-2026.jpg"
+        alt="Clubdiner van Club Vanguard op Kasteel Maurick"
+        class="site-photo join-block__photo join-block__photo--wide"
+        loading="lazy"
+        width="1600"
+        height="1066"
+      />
+      <div class="join-block__content">
+        <h2 id="dinner-title" class="join-statement">Een plek aan tafel vraag je aan.</h2>
+        <p class="join-text">
+          Dinners zijn klein. Sta je op de lijst, dan kun je per dinner een
+          aanvraag doen. Wij stellen de tafel samen en je hoort of je erbij bent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Afsluiting: statement + formulier -->
+  <section class="section join-close" aria-labelledby="close-title">
+    <div class="container join-hero__grid">
+      <div>
+        <h2 id="close-title" class="join-statement">Eén korte mail per week.</h2>
+        <p class="join-text">
+          Een verhaal van een lid, een blik achter de schermen en de datums
+          van wat eraan komt. Geen lange nieuwsbrieven.
+        </p>
+      </div>
+      <div class="join-card">
+        <p class="join-card__title">Zet je op de lijst</p>
+        <SignupForm context="join" id="join-close" stacked={true} />
+      </div>
+    </div>
+  </section>
 </Minimal>
 
 <style>
-  .join-hero {
-    padding-bottom: clamp(3rem, 7vh, 4.5rem);
+  /* Gedeeld: één groot statement + max twee regels tekst */
+  .join-statement {
+    font-size: var(--text-2xl);
+    line-height: 1.08;
+    max-width: 15ch;
   }
+  .join-statement--hero {
+    max-width: 14ch;
+  }
+  .join-statement em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .join-text {
+    margin-top: 1.4rem;
+    font-size: var(--text-lg);
+    line-height: 1.5;
+    color: var(--ivory-dim);
+    max-width: 40ch;
+  }
+  .section--ivory .join-text { color: var(--ink-dim); }
+
+  /* 1 + 5: statement met formulier */
   .join-hero__grid {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     gap: clamp(2.5rem, 6vw, 5rem);
     align-items: center;
   }
-  .join-hero__title {
-    font-size: var(--text-2xl);
-    max-width: 16ch;
-  }
-  .join-hero__title em {
-    font-style: italic;
-    color: var(--brass-soft);
-  }
-  .join-hero__text {
-    margin-top: 1.3rem;
-    color: var(--ivory-dim);
-    max-width: 44ch;
-  }
-  .join-hero__list {
-    list-style: none;
-    margin-top: 1.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    max-width: 44ch;
-  }
-  .join-hero__list li {
-    position: relative;
-    padding-left: 1.6rem;
-    font-size: var(--text-sm);
-    line-height: 1.55;
-  }
-  .join-hero__list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.6em;
-    width: 0.8rem;
-    height: 1px;
-    background: var(--brass);
-  }
-  .join-hero__card {
+  .join-card {
     background: var(--navy-soft);
     border: 1px solid var(--line-navy);
     border-radius: 6px;
     padding: clamp(1.5rem, 3vw, 2.25rem);
   }
-  .join-hero__card-title {
+  .join-card__title {
     font-family: var(--font-display);
     font-size: var(--text-lg);
     margin-bottom: 1.1rem;
   }
+  .join-close {
+    border-top: 1px solid var(--line-navy);
+  }
 
-  .join-photos {
-    padding-bottom: var(--space-section);
+  /* 2 + 4: statement naast foto */
+  .join-block {
+    border-top: 1px solid var(--line-navy);
   }
-  .join-photos__grid {
+  .join-block__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
   }
-  .join-photos__item {
-    position: relative;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
+  .join-block__photo {
+    aspect-ratio: 4 / 5;
+    height: auto;
+    min-height: 0;
     border: 1px solid var(--line-navy);
     border-radius: 6px;
   }
-  .join-photos__img { min-height: 0; }
-  .join-photos__caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2.5rem 1rem 0.9rem;
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ivory);
-    background: linear-gradient(to top, rgba(8, 18, 32, 0.85), rgba(8, 18, 32, 0));
+  .join-block__photo--wide {
+    aspect-ratio: 5 / 4;
   }
 
+  /* 3: drie soorten events */
+  .join-types__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: 3rem;
+  }
+  .join-types__photo {
+    aspect-ratio: 4 / 5;
+    height: auto;
+    min-height: 0;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .join-types__title {
+    margin-top: 1.4rem;
+    font-size: var(--text-xl);
+  }
+  .join-types__text {
+    margin-top: 0.7rem;
+    color: var(--ink-dim);
+    line-height: 1.55;
+    max-width: 36ch;
+  }
 
   @media (max-width: 900px) {
-    .join-hero__grid { grid-template-columns: 1fr; }
-    .join-hero__title { max-width: none; }
-  }
-  @media (max-width: 640px) {
-    .join-photos__grid {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
+    .join-hero__grid,
+    .join-block__grid {
+      grid-template-columns: 1fr;
     }
-    .join-photos__caption {
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      padding: 1.6rem 0.5rem 0.6rem;
+    .join-block__grid--flip .join-block__photo {
+      order: 2;
     }
+    .join-statement { max-width: none; }
+    .join-block__photo,
+    .join-block__photo--wide {
+      aspect-ratio: 4 / 3;
+    }
+    .join-types__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .join-types__photo { aspect-ratio: 4 / 3; }
   }
 </style>

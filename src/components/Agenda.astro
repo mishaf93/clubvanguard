@@ -53,7 +53,9 @@ const {
                   <p class:list={['agenda__spots', { 'is-full': item.spotsLeft === 0 }]}>
                     {item.spotsLeft === 0
                       ? 'Vol'
-                      : `Nog ${item.spotsLeft} ${item.spotsLeft === 1 ? 'plek' : 'plekken'} vrij`}
+                      : item.type === 'Dinner'
+                        ? `Op aanvraag · ${item.spotsLeft} ${item.spotsLeft === 1 ? 'plek' : 'plekken'}`
+                        : `Nog ${item.spotsLeft} ${item.spotsLeft === 1 ? 'plek' : 'plekken'} vrij`}
                   </p>
                 )}
                 {item.detailUrl ? (
@@ -74,7 +76,7 @@ const {
 
     {showJoinLink && (
       <p class="agenda__join">
-        Als eerste horen wanneer er plekken vrijkomen?
+        Als eerste horen wat eraan komt?
         <a href="/join/">Zet je op de lijst →</a>
       </p>
     )}
