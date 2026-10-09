@@ -3,7 +3,7 @@
  * /join/ — landingspagina voor de eventlijst (Kit).
  * Opbouw na feedback Mario (9 okt): geen bullets of kleine subregels,
  * elk punt een eigen groot blok: één statement + max twee regels uitleg,
- * afwisselend ivory / navy en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
+ * afwisselend navy / ivory (start en einde navy) en met foto. Dinners = aanvraag, geen "plekken vrijkomen".
  */
 import Minimal from '../layouts/Minimal.astro';
 import SignupForm from '../components/SignupForm.astro';
@@ -34,8 +34,8 @@ const eventTypes = [
   description="Eén korte mail per week over de club events, dinners en trips van Club Vanguard. Als eerste horen wat eraan komt."
   image="/images/og-join.jpg"
 >
-  <!-- 1. Statement + formulier (ivory) -->
-  <section class="section section--ivory join-hero">
+  <!-- 1. Statement + formulier (navy) -->
+  <section class="section join-hero">
     <div class="container join-form__grid">
       <div>
         <h1 class="join-statement join-statement--hero">Mis het volgende Vanguard&#8209;moment niet.</h1>
@@ -51,8 +51,8 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 2. Statement links, foto rechts (navy) -->
-  <section class="section join-block" aria-labelledby="first-title">
+  <!-- 2. Statement links, foto rechts (ivory) -->
+  <section class="section section--ivory join-block" aria-labelledby="first-title">
     <div class="container join-block__grid">
       <div>
         <h2 id="first-title" class="join-statement join-statement--wide">Wees als een van de eersten bij de volgende meetups.</h2>
@@ -72,8 +72,8 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 3. Soorten momenten (ivory) -->
-  <section class="section section--ivory join-types" aria-labelledby="types-title">
+  <!-- 3. Soorten momenten (navy) -->
+  <section class="section join-types" aria-labelledby="types-title">
     <div class="container">
       <h2 id="types-title" class="join-statement join-statement--full">Meerdere soorten momenten om samen te komen.</h2>
       <div class="join-types__grid">
@@ -95,8 +95,8 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 4. Foto links, statement rechts (navy) -->
-  <section class="section join-block" aria-labelledby="dinner-title">
+  <!-- 4. Foto links, statement rechts (ivory) -->
+  <section class="section section--ivory join-block" aria-labelledby="dinner-title">
     <div class="container join-block__grid join-block__grid--flip">
       <img
         src="/images/dinner-maurick-2026.jpg"
@@ -116,8 +116,8 @@ const eventTypes = [
     </div>
   </section>
 
-  <!-- 5. Afsluiting: statement + formulier (ivory) -->
-  <section class="section section--ivory join-close" aria-labelledby="close-title">
+  <!-- 5. Afsluiting: statement + formulier (navy) -->
+  <section class="section join-close" aria-labelledby="close-title">
     <div class="container join-form__grid">
       <div>
         <h2 id="close-title" class="join-statement">Eén korte mail per week.</h2>
@@ -157,7 +157,7 @@ const eventTypes = [
   }
   .section--ivory .join-text { color: var(--ink-dim); }
 
-  /* 1 + 5: statement met formulier; navy kaart op ivory */
+  /* 1 + 5: statement met formulier; kaart op navy */
   .join-form__grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -165,8 +165,8 @@ const eventTypes = [
     align-items: center;
   }
   .join-card {
-    background: var(--navy);
-    color: var(--ivory);
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
     border-radius: 6px;
     padding: clamp(1.25rem, 2.4vw, 1.75rem);
     max-width: 24rem;
@@ -190,7 +190,7 @@ const eventTypes = [
     aspect-ratio: 4 / 5;
     height: auto;
     min-height: 0;
-    border: 1px solid var(--line-navy);
+    border: 1px solid var(--line-ivory);
     border-radius: 6px;
   }
   .join-block__photo--wide { aspect-ratio: 5 / 4; }
@@ -207,7 +207,7 @@ const eventTypes = [
     aspect-ratio: 4 / 5;
     height: auto;
     min-height: 0;
-    border: 1px solid var(--line-ivory);
+    border: 1px solid var(--line-navy);
     border-radius: 6px;
   }
   .join-types__title {
@@ -216,7 +216,7 @@ const eventTypes = [
   }
   .join-types__text {
     margin-top: 0.7rem;
-    color: var(--ink-dim);
+    color: var(--ivory-dim);
     line-height: 1.55;
     max-width: 36ch;
   }
