@@ -1,13 +1,24 @@
 ---
-// Hero foto wisselen: zet PUBLIC_HERO_IMAGE=/images/hero-new.jpg in .env
-// hero.jpg = origineel (herowp) · hero-new.jpg = netwerk/event foto
-const heroImage = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.jpg';
+// Hero video: PUBLIC_HERO_VIDEO overschrijft pad · poster via PUBLIC_HERO_IMAGE
+const heroVideo = import.meta.env.PUBLIC_HERO_VIDEO ?? '/videos/hero-loop.mp4';
+const heroPoster = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.jpg';
 ---
 <section class="hero">
+  <video
+    class="hero__media"
+    src={heroVideo}
+    poster={heroPoster}
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  ></video>
   <img
-    src={heroImage}
+    src={heroPoster}
     alt=""
-    class="site-photo hero__photo"
+    class="hero__media hero__media--fallback"
     width="2400"
     height="1000"
     fetchpriority="high"
@@ -17,7 +28,7 @@ const heroImage = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.j
     <p class="eyebrow">Private NL community · E-commerce & AI-ondernemers</p>
     <h1 class="hero__title">Zuivere ondernemers op niveau.<br /><em>Eerlijke gesprekken.</em></h1>
     <p class="lead hero__lead">
-      Een besloten Nederlandse community voor e-commerce & AI-ondernemers die
+      Dé community voor e-commerce & AI-ondernemers die
       waarde hechten aan eerlijke gesprekken, hoge standaarden en echte relaties.
     </p>
     <div class="hero__actions">
@@ -35,12 +46,23 @@ const heroImage = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.j
     align-items: flex-end;
     overflow: hidden;
   }
-  .hero__photo {
+  .hero__media {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .hero__media--fallback {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero video.hero__media {
+      display: none;
+    }
+    .hero__media--fallback {
+      display: block;
+    }
   }
   .hero__overlay {
     position: absolute;
