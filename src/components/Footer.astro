@@ -1,5 +1,12 @@
 ---
 import { MEMBER_APP_URL } from '../data/links';
+import { COMPANY, addressLine, companyDetailsFilled } from '../data/company';
+
+const legalLinks = [
+  { href: '/contact/', label: 'Contact' },
+  { href: '/algemene-voorwaarden/', label: 'Algemene voorwaarden' },
+  { href: '/privacy/', label: 'Privacy' },
+];
 
 const year = new Date().getFullYear();
 
@@ -63,8 +70,9 @@ const socialLinks = [
     <div class="footer__col">
       <h3 class="footer__heading">Contact</h3>
       <nav class="footer__nav" aria-label="Contact">
+        <a href="/contact/">Contact & bedrijfsgegevens</a>
+        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
         <a href="/join/">Join de eventlijst</a>
-        <a href="mailto:admin@clubvanguard.io">Neem contact met ons op</a>
         <a href="https://www.instagram.com/clubvanguard.nl/" target="_blank" rel="noopener noreferrer">Volg op Instagram</a>
         <a href="https://www.linkedin.com/company/club-vanguard/" target="_blank" rel="noopener noreferrer">Volg op LinkedIn</a>
       </nav>
@@ -72,7 +80,15 @@ const socialLinks = [
   </div>
 
   <div class="container footer__bottom">
-    <p>© {year} Club Vanguard</p>
+    <p>
+      © {year} {COMPANY.name}
+      {companyDetailsFilled() && (
+        <span class="footer__legal-id"> · KvK {COMPANY.kvk} · {addressLine()}</span>
+      )}
+    </p>
+    <nav class="footer__legal" aria-label="Juridisch">
+      {legalLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
   </div>
 </footer>
 
@@ -143,7 +159,21 @@ const socialLinks = [
     border-top: 1px solid var(--line-navy);
     color: var(--ivory-dim);
     font-size: var(--text-xs);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6rem 1.5rem;
   }
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+  .footer__legal a {
+    color: var(--ivory-dim);
+    text-decoration: none;
+  }
+  .footer__legal a:hover { color: var(--brass-soft); }
 
   @media (max-width: 800px) {
     .footer__grid { grid-template-columns: 1fr; }

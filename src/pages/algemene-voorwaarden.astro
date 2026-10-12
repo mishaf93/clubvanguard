@@ -1,0 +1,166 @@
+---
+/**
+ * Algemene voorwaarden Club Vanguard. Versie 1.0.
+ * Bedrijfsgegevens komen uit src/data/company.ts.
+ */
+import LegalPage from '../components/LegalPage.astro';
+import { COMPANY, addressLine } from '../data/company';
+
+const VERSION = 'Versie 1.0 · 12 oktober 2026';
+---
+<LegalPage
+  title="Algemene voorwaarden · Club Vanguard"
+  description="De algemene voorwaarden van Club Vanguard: lidmaatschap, contributie, events, gedragscode, beeldmateriaal en aansprakelijkheid."
+  eyebrow="Algemene voorwaarden"
+  heading="Afspraken die het netwerk beschermen."
+  meta={VERSION}
+>
+  <p class="legal__intro">
+    Club Vanguard werkt op vertrouwen. Deze voorwaarden leggen vast wat je van
+    ons mag verwachten en wat wij van jou vragen als lid of gast. Ze gelden
+    voor het lidmaatschap, onze events en het gebruik van onze website en
+    ledenomgeving.
+  </p>
+
+  <h2>Artikel 1. Wie wij zijn en definities</h2>
+  <p>
+    <strong>Club Vanguard</strong> (handelsnaam), gevestigd aan {addressLine()}, ingeschreven bij de Kamer van Koophandel
+    onder nummer {COMPANY.kvk}, btw-id {COMPANY.btw}. Bereikbaar via <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+  </p>
+  <p>In deze voorwaarden betekent:</p>
+  <ul>
+    <li><strong>Lid</strong>: de natuurlijke persoon die na toelating een lidmaatschap heeft bij Club Vanguard. Het lidmaatschap kan worden gefactureerd aan de onderneming van het lid, maar is persoonlijk.</li>
+    <li><strong>Gast</strong>: iemand zonder lidmaatschap die op uitnodiging of na aanvraag deelneemt aan een event.</li>
+    <li><strong>Deelnemer</strong>: een lid of gast die aan een event deelneemt.</li>
+    <li><strong>Event</strong>: elke door Club Vanguard georganiseerde bijeenkomst, zoals club events, dinners, activiteiten, office visits en reizen.</li>
+    <li><strong>Ledenomgeving</strong>: de app, chatkanalen en andere besloten omgevingen die Club Vanguard voor leden beschikbaar stelt.</li>
+    <li><strong>Voorwaarden</strong>: deze algemene voorwaarden.</li>
+  </ul>
+
+  <h2>Artikel 2. Toepasselijkheid</h2>
+  <ol>
+    <li>Deze voorwaarden gelden voor elke aanvraag, elk lidmaatschap, elke deelname aan een event en elk gebruik van de website en de ledenomgeving van Club Vanguard.</li>
+    <li>Afwijkingen gelden alleen als ze schriftelijk (ook per e-mail) zijn bevestigd door Club Vanguard.</li>
+    <li>Voor specifieke events, zoals reizen, kunnen aanvullende voorwaarden gelden. Die ontvang je vóór je aanmelding. Bij strijdigheid gaan de aanvullende voorwaarden voor.</li>
+    <li>Eigen inkoop- of algemene voorwaarden van een lid of diens onderneming zijn niet van toepassing.</li>
+  </ol>
+
+  <h2>Artikel 3. Aanvraag en toelating</h2>
+  <ol>
+    <li>Lid worden begint met een aanvraag via onze website, gevolgd door een kennismakingsgesprek. Daarna beslist Club Vanguard over toelating.</li>
+    <li>Club Vanguard selecteert op passendheid bij de community: ervaring, bijdrage en gedeelde waarden. Wij mogen een aanvraag zonder opgave van redenen afwijzen.</li>
+    <li>Je staat ervoor in dat de gegevens die je in je aanvraag en daarna aan ons verstrekt juist en volledig zijn.</li>
+    <li>Het lidmaatschap is persoonlijk en niet overdraagbaar, ook niet aan een collega of medeoprichter. Een collega kan zelf een aanvraag indienen.</li>
+    <li>Het lidmaatschap gaat in op de datum die wij bij toelating bevestigen.</li>
+  </ol>
+
+  <h2>Artikel 4. Duur en opzegging</h2>
+  <ol>
+    <li>Het lidmaatschap wordt aangegaan voor minimaal drie maanden, gerekend vanaf de startdatum die wij bij toelating bevestigen.</li>
+    <li>Na die eerste drie maanden loopt het lidmaatschap door en kun je op elk moment opzeggen per e-mail, met een opzegtermijn van één maand. Wij bevestigen je opzegging altijd.</li>
+    <li>Heb je contributie vooruitbetaald voor een periode na de einddatum, dan betalen wij dat deel terug.</li>
+    <li>Club Vanguard mag het lidmaatschap opzeggen met een opzegtermijn van één maand, of per direct beëindigen in de gevallen van artikel 7.</li>
+  </ol>
+
+  <h2>Artikel 5. Contributie en betaling</h2>
+  <ol>
+    <li>De contributie is het bedrag dat wij bij toelating aan je bevestigen. Wij geven altijd aan of een bedrag inclusief of exclusief btw is.</li>
+    <li>De contributie wordt vooraf gefactureerd per de periode die bij toelating is afgesproken en is betaalbaar binnen 14 dagen na factuurdatum, via de betaallink in de factuur of per bankoverschrijving.</li>
+    <li>De contributie geeft toegang tot de ledenomgeving en tot de events die in het lidmaatschap zijn inbegrepen. Reizen en apart aangekondigde activiteiten worden afzonderlijk in rekening gebracht.</li>
+    <li>De contributie die bij jouw toelating is afgesproken, blijft gelden zolang je onafgebroken lid bent. Een nieuw tarief geldt alleen voor nieuwe leden, tenzij wij uitdrukkelijk iets anders met je afspreken.</li>
+    <li>Betaal je niet op tijd, dan sturen wij een herinnering. Blijft betaling daarna uit, dan mogen wij de toegang tot de ledenomgeving en events opschorten tot de betaling binnen is. De verplichting tot betaling blijft bestaan.</li>
+    <li>Wij mogen buitengerechtelijke incassokosten en wettelijke (handels)rente in rekening brengen als betaling na herinnering uitblijft.</li>
+  </ol>
+
+  <h2>Artikel 6. Events, aanmelding en annulering</h2>
+  <h3>Aanmelden</h3>
+  <ol>
+    <li>Plekken bij events zijn beperkt. Aanmelden gebeurt via de ledenomgeving, de eventlijst of het formulier dat wij per event delen. Een aanmelding is definitief zodra wij die bevestigen.</li>
+    <li>Dinners en kleinschalige events zijn op aanvraag. Wij beslissen per editie over de samenstelling van de tafel en kunnen een aanvraag afwijzen zonder opgave van redenen.</li>
+    <li>Gasten nemen deel op uitnodiging van Club Vanguard of op voordracht van een lid. Voor gasten kan een bijdrage gelden; die staat vóór aanmelding op de eventpagina. Wordt een aanvraag afgewezen, dan betalen wij een al betaalde bijdrage volledig terug.</li>
+  </ol>
+  <h3>Afmelden door de deelnemer</h3>
+  <ol start="4">
+    <li>Afmelden kan per e-mail of via het kanaal waarin je je hebt aangemeld. Tot zeven dagen vóór het event is afmelden kosteloos en krijgt een gast een betaalde bijdrage terug.</li>
+    <li>Bij afmelding binnen zeven dagen vóór het event of bij niet verschijnen vindt geen restitutie plaats. Je mag in overleg met ons een vervanger voordragen die bij de groep past.</li>
+    <li>Blijft een lid herhaaldelijk zonder afmelding weg, dan mogen wij de voor dat lid gemaakte kosten (zoals catering) doorberekenen.</li>
+  </ol>
+  <h3>Wijziging of annulering door Club Vanguard</h3>
+  <ol start="7">
+    <li>Programma, sprekers, datum en locatie kunnen wijzigen. Wij informeren deelnemers zo snel mogelijk. Een wijziging geeft geen recht op restitutie van contributie.</li>
+    <li>Annuleren wij een event, dan betalen wij een betaalde gastbijdrage of aparte deelnamebijdrage volledig terug. Voor inbegrepen events plannen wij waar mogelijk een nieuwe datum. Verdere kosten, zoals reis- of verblijfkosten, vergoeden wij niet.</li>
+    <li>Voor reizen gelden de voorwaarden en de annuleringsregeling die wij vóór je aanmelding voor die reis delen.</li>
+  </ol>
+
+  <h2>Artikel 7. De Code: gedrag en vertrouwelijkheid</h2>
+  <ol>
+    <li>Club Vanguard is gebouwd op vier waarden: integriteit, no ego, verbinding en onvoorwaardelijk delen. Van elke deelnemer verwachten wij dat hij of zij daarnaar handelt, online en offline.</li>
+    <li>Wat in de ledenomgeving en op events wordt gedeeld, is vertrouwelijk. Je deelt cijfers, verhalen en situaties van andere leden niet buiten de community zonder hun uitdrukkelijke toestemming.</li>
+    <li>De community is geen verkoopkanaal. Ongevraagde acquisitie, het massaal benaderen van leden en het exporteren of doorgeven van deelnemers- of ledenlijsten zijn niet toegestaan.</li>
+    <li>Je behandelt locaties, sprekers, medewerkers en andere deelnemers met respect. Intimidatie, discriminatie of ander grensoverschrijdend gedrag wordt niet getolereerd.</li>
+    <li>Bij schending van dit artikel kan Club Vanguard, afhankelijk van de ernst, waarschuwen, de toegang tot events of de ledenomgeving tijdelijk schorsen, of het lidmaatschap per direct beëindigen. Bij beëindiging op deze grond vindt geen restitutie plaats.</li>
+    <li>Club Vanguard mag een deelnemer de toegang tot een event weigeren of de deelnemer van een event verwijderen als dat nodig is voor de veiligheid of de sfeer van de groep.</li>
+  </ol>
+
+  <h2>Artikel 8. Beeld- en geluidsopnamen</h2>
+  <ol>
+    <li>Tijdens events maken wij, of een door ons ingeschakelde fotograaf of videograaf, foto's en video's. Die gebruiken wij voor onze website, sociale media, nieuwsbrieven en eventpagina's.</li>
+    <li>Door deel te nemen aan een event ga je akkoord met dit gebruik. Wil je liever niet herkenbaar in beeld, laat het dan vóór of tijdens het event aan ons weten; dan houden wij daar rekening mee.</li>
+    <li>Wil je dat een al gepubliceerd beeld waarop je herkenbaar bent wordt verwijderd, mail dan naar <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>. Wij verwijderen het beeld waar dat redelijkerwijs mogelijk is.</li>
+    <li>Voor betaalde advertenties waarin je herkenbaar in beeld bent, vragen wij altijd apart je toestemming.</li>
+    <li>Deelnemers maken zelf alleen opnamen van anderen met hun toestemming. Opnamen van besloten gesprekken en presentaties worden niet gedeeld buiten de community, tenzij Club Vanguard dat uitdrukkelijk toestaat.</li>
+  </ol>
+
+  <h2>Artikel 9. Aansprakelijkheid</h2>
+  <ol>
+    <li>Deelname aan events, activiteiten en reizen is op eigen risico. Je bent zelf verantwoordelijk voor je gezondheid, veiligheid en eigendommen.</li>
+    <li>Informatie, adviezen en introducties die leden onderling uitwisselen, zijn voor eigen rekening en risico. Club Vanguard is geen adviseur en geen partij bij afspraken of transacties tussen leden.</li>
+    <li>Club Vanguard is niet aansprakelijk voor schade veroorzaakt door derden, zoals locaties, cateraars, vervoerders, sprekers of andere deelnemers.</li>
+    <li>Club Vanguard is niet aansprakelijk voor indirecte schade, zoals gevolgschade, gederfde omzet of winst, reputatieschade of gemiste kansen.</li>
+    <li>Als Club Vanguard toch aansprakelijk is, dan is de aansprakelijkheid beperkt tot het bedrag dat je in het lopende lidmaatschapsjaar aan contributie hebt betaald, of, voor gasten, tot de betaalde bijdrage voor het betreffende event.</li>
+    <li>Deze beperkingen gelden niet bij opzet of bewuste roekeloosheid van Club Vanguard.</li>
+    <li>Je bent aansprakelijk voor schade die je op een locatie of aan eigendommen van anderen veroorzaakt en vrijwaart Club Vanguard voor aanspraken van derden die daaruit volgen.</li>
+  </ol>
+
+  <h2>Artikel 10. Intellectueel eigendom</h2>
+  <ol>
+    <li>De naam Club Vanguard, het logo, de website, de ledenomgeving en de door ons gemaakte content zijn eigendom van Club Vanguard. Gebruik daarvan buiten de community vereist onze voorafgaande toestemming.</li>
+    <li>Content die een lid zelf deelt, blijft van dat lid. Door te delen geef je Club Vanguard toestemming die content binnen de ledenomgeving beschikbaar te houden voor andere leden.</li>
+    <li>Materiaal van sprekers blijft eigendom van de spreker en wordt alleen gedeeld als de spreker dat toestaat.</li>
+  </ol>
+
+  <h2>Artikel 11. Overmacht</h2>
+  <p>
+    Kan Club Vanguard door omstandigheden buiten haar invloed, zoals ziekte,
+    uitval van een locatie of spreker, extreem weer, overheidsmaatregelen of
+    storingen bij leveranciers, haar verplichtingen niet of niet op tijd
+    nakomen, dan worden die verplichtingen opgeschort. Wij zoeken dan een
+    passend alternatief, zoals een nieuwe datum. Overmacht geeft geen recht op
+    schadevergoeding.
+  </p>
+
+  <h2>Artikel 12. Persoonsgegevens</h2>
+  <p>
+    Hoe wij met je gegevens omgaan, staat in onze <a href="/privacy/">privacyverklaring</a>. Die maakt deel uit van deze
+    voorwaarden.
+  </p>
+
+  <h2>Artikel 13. Wijziging van deze voorwaarden</h2>
+  <ol>
+    <li>Club Vanguard mag deze voorwaarden wijzigen. Wijzigingen maken wij minimaal één maand vóór ingang bekend per e-mail of via de ledenomgeving.</li>
+    <li>Bij een wezenlijke wijziging in jouw nadeel mag je het lidmaatschap opzeggen per de ingangsdatum van de wijziging. Een al betaalde contributie voor de periode daarna betalen wij dan terug.</li>
+    <li>De actuele versie staat altijd op <a href="/algemene-voorwaarden/">clubvanguard.com/algemene-voorwaarden</a>.</li>
+  </ol>
+
+  <h2>Artikel 14. Toepasselijk recht en geschillen</h2>
+  <ol>
+    <li>Op deze voorwaarden en op elk lidmaatschap of elke deelname is Nederlands recht van toepassing.</li>
+    <li>Heb je een klacht, mail die dan naar <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>. Wij reageren binnen 14 dagen en proberen het samen op te lossen.</li>
+    <li>Lukt dat niet, dan is de rechtbank {COMPANY.court} bevoegd, tenzij de wet dwingend een andere rechter voorschrijft.</li>
+  </ol>
+
+  <p class="legal__note">
+    Vragen over deze voorwaarden? Mail <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+    of kijk op onze <a href="/contact/">contactpagina</a>.
+  </p>
+</LegalPage>

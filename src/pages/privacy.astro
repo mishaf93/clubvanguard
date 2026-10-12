@@ -1,0 +1,199 @@
+---
+/**
+ * Privacyverklaring Club Vanguard. Versie 1.0.
+ * Houd de lijst met verwerkers (artikel 5) actueel als er een tool bijkomt.
+ */
+import LegalPage from '../components/LegalPage.astro';
+import { COMPANY, addressLine } from '../data/company';
+
+const VERSION = 'Versie 1.0 · 12 oktober 2026';
+---
+<LegalPage
+  title="Privacyverklaring · Club Vanguard"
+  description="Hoe Club Vanguard omgaat met je persoonsgegevens: welke gegevens we verzamelen, waarom, hoe lang we ze bewaren en welke rechten je hebt."
+  eyebrow="Privacy"
+  heading="Jouw gegevens, zorgvuldig behandeld."
+  meta={VERSION}
+>
+  <p class="legal__intro">
+    Club Vanguard is een besloten netwerk. Dat vraagt om zorgvuldigheid, ook
+    met gegevens. In deze verklaring lees je welke persoonsgegevens wij
+    verwerken, waarom, hoe lang we ze bewaren en welke rechten je hebt.
+  </p>
+
+  <h2>1. Wie is verantwoordelijk</h2>
+  <p>
+    Verwerkingsverantwoordelijke is {COMPANY.name} (handelsnaam), {addressLine()},
+    KvK {COMPANY.kvk}. Voor alles rondom
+    privacy bereik je ons via <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+  </p>
+
+  <h2>2. Welke gegevens wij verwerken en waarom</h2>
+
+  <h3>De eventlijst (nieuwsbrief)</h3>
+  <p>
+    Meld je je aan via <a href="/join/">join</a> of een eventpagina, dan
+    verwerken wij je voornaam, e-mailadres en de bron van je aanmelding (bijvoorbeeld
+    LinkedIn of Instagram, via een parameter in de link). Wij gebruiken dit om je
+    één korte mail per week te sturen met verhalen uit de club en de agenda.
+  </p>
+  <dl>
+    <dt>Grondslag</dt><dd>Toestemming. Je bevestigt je aanmelding via een link in de eerste mail (double opt-in).</dd>
+    <dt>Bewaartermijn</dt><dd>Tot je je uitschrijft. Uitschrijven kan via de link onderaan elke mail. Na uitschrijving bewaren wij alleen je e-mailadres op een onderdrukkingslijst, zodat we je niet opnieuw mailen.</dd>
+  </dl>
+
+  <h3>Aanvraag lidmaatschap</h3>
+  <p>
+    Via het aanvraagformulier verwerken wij je naam, e-mailadres, telefoonnummer,
+    bedrijf en rol, website of LinkedIn-profiel, een indicatie van de omvang van
+    je onderneming, je motivatie en, als dat van toepassing is, wie je heeft
+    voorgedragen. Daarmee beoordelen wij of er een match is en plannen wij het
+    kennismakingsgesprek.
+  </p>
+  <dl>
+    <dt>Grondslag</dt><dd>Uitvoering van de overeenkomst die je wilt sluiten (precontractuele fase) en ons gerechtvaardigd belang om een passende community samen te stellen.</dd>
+    <dt>Bewaartermijn</dt><dd>Word je toegelaten, dan gaan je gegevens over naar de ledenadministratie. Word je niet toegelaten of trek je je aanvraag in, dan bewaren wij je aanvraag maximaal twaalf maanden, zodat we bij een volgend instroommoment opnieuw contact kunnen opnemen. Wil je dat niet, dan verwijderen we de aanvraag op verzoek direct.</dd>
+  </dl>
+
+  <h3>Leden</h3>
+  <p>
+    Als lid verwerken wij je contactgegevens, factuurgegevens van jou of je
+    onderneming, betaalgegevens, je profiel in de ledenapp (naam, foto, bedrijf,
+    rol, expertise en wat je zelf toevoegt), je deelname aan events en de berichten
+    die je in de ledenomgeving plaatst. Dieetwensen of allergieën die je bij een
+    event doorgeeft, gebruiken wij alleen voor dat event.
+  </p>
+  <dl>
+    <dt>Grondslag</dt><dd>Uitvoering van de lidmaatschapsovereenkomst. Voor dieetwensen en allergieën: je uitdrukkelijke toestemming. Voor facturen: onze wettelijke (fiscale) bewaarplicht.</dd>
+    <dt>Bewaartermijn</dt><dd>Tot twee jaar na het einde van je lidmaatschap, zodat we een terugkeer eenvoudig kunnen maken. Facturen en betaalgegevens bewaren we zeven jaar. Dieetwensen verwijderen we na het event.</dd>
+  </dl>
+
+  <h3>Gasten bij events</h3>
+  <p>
+    Meld je je als gast aan voor een event, dan verwerken wij je naam, e-mailadres,
+    bedrijf, eventuele betaalgegevens, wie je heeft uitgenodigd en eventuele
+    dieetwensen.
+  </p>
+  <dl>
+    <dt>Grondslag</dt><dd>Uitvoering van de overeenkomst (je deelname). Dieetwensen: toestemming.</dd>
+    <dt>Bewaartermijn</dt><dd>Twaalf maanden na het event, zodat we je kunnen uitnodigen voor een volgende editie. Betaalgegevens zeven jaar.</dd>
+  </dl>
+
+  <h3>Foto en video op events</h3>
+  <p>
+    Op events worden foto's en video's gemaakt die wij gebruiken voor onze website,
+    sociale media en nieuwsbrief. Wil je niet herkenbaar in beeld, zeg het ter
+    plekke tegen ons of de fotograaf. Een gepubliceerd beeld waarop je herkenbaar
+    bent, verwijderen wij op verzoek waar dat redelijkerwijs kan.
+  </p>
+  <dl>
+    <dt>Grondslag</dt><dd>Gerechtvaardigd belang: laten zien wat Club Vanguard is. Voor gebruik in betaalde advertenties vragen wij altijd apart toestemming.</dd>
+    <dt>Bewaartermijn</dt><dd>Zolang het beeld relevant is voor onze communicatie, of tot je bezwaar maakt.</dd>
+  </dl>
+
+  <h3>Contact per e-mail</h3>
+  <p>
+    Mail je ons, dan bewaren wij je bericht en onze reactie zolang dat nodig is
+    om je vraag af te handelen, en daarna maximaal twee jaar als naslag.
+  </p>
+
+  <h2>3. Onze website</h2>
+  <ul>
+    <li><strong>Geen trackingcookies.</strong> Wij gebruiken op clubvanguard.com geen analytics-, advertentie- of trackingcookies en tonen daarom ook geen cookiebanner.</li>
+    <li><strong>Bron van je aanmelding.</strong> Kom je via een link met een campagneparameter, dan onthoudt je browser die tijdelijk in de sessieopslag (geen cookie, verdwijnt zodra je het tabblad sluit) zodat wij bij je aanmelding de bron kunnen vastleggen.</li>
+    <li><strong>Lettertypen.</strong> De site laadt lettertypen van Google Fonts. Daarbij ontvangt Google je IP-adres. Zie het <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacybeleid van Google</a>.</li>
+    <li><strong>Aanvraagformulier.</strong> Het formulier op <a href="/aanvragen/">aanvragen</a> wordt geladen van Youform. Youform kan daarbij eigen functionele cookies plaatsen.</li>
+    <li><strong>Hosting.</strong> De site wordt gehost door Cloudflare. Cloudflare verwerkt IP-adressen in serverlogs om de site veilig en bereikbaar te houden en bewaart die kort.</li>
+    <li><strong>Ledenapp.</strong> De ledenapp op app.clubvanguard.com heeft een eigen inlog en kan functionele cookies gebruiken die nodig zijn om ingelogd te blijven.</li>
+  </ul>
+
+  <h2>4. Met wie wij gegevens delen</h2>
+  <p>
+    Wij verkopen je gegevens nooit. Wij delen ze alleen met partijen die ons
+    helpen de club te draaien en die gegevens uitsluitend in onze opdracht
+    verwerken (verwerkers), of wanneer dat voor een event nodig is:
+  </p>
+  <ul>
+    <li><strong>Kit</strong> (Kit Inc., Verenigde Staten) voor de eventlijst en onze wekelijkse mail.</li>
+    <li><strong>Youform</strong> voor het aanvraag- en aanmeldformulier.</li>
+    <li><strong>Stripe</strong> (Stripe Payments Europe, Ierland) voor betalingen. Wij zien geen volledige kaart- of rekeninggegevens.</li>
+    <li><strong>Cloudflare</strong> (Cloudflare Inc., Verenigde Staten) voor hosting en beveiliging van de website.</li>
+    <li><strong>De leverancier van onze ledenapp</strong> voor de besloten ledenomgeving.</li>
+    <li><strong>Onze e-mail- en documentdiensten</strong> voor correspondentie en administratie.</li>
+    <li><strong>Onze boekhouder</strong> voor de financiële administratie.</li>
+    <li><strong>Eventlocaties en cateraars</strong> ontvangen alleen wat nodig is voor het event: meestal het aantal gasten, soms de namenlijst en dieetwensen.</li>
+    <li><strong>Fotografen en videografen</strong> die wij inschakelen voor events.</li>
+  </ul>
+  <p>
+    Met verwerkers sluiten wij een verwerkersovereenkomst. Bij partijen buiten de
+    Europese Economische Ruimte, zoals Kit en Cloudflare, baseren wij de doorgifte
+    op het EU-US Data Privacy Framework of op de standaardcontractbepalingen van
+    de Europese Commissie.
+  </p>
+  <p>
+    Verder delen wij gegevens alleen als de wet ons daartoe verplicht.
+  </p>
+
+  <h2>5. Binnen de community</h2>
+  <p>
+    Als lid ben je zichtbaar voor andere leden in de ledenapp met het profiel
+    dat je zelf aanmaakt. Bij events delen wij vooraf of ter plekke wie er
+    aanwezig is, zodat je weet met wie je aan tafel zit. Andere leden mogen die
+    gegevens uitsluitend binnen de community gebruiken; dat is vastgelegd in
+    onze <a href="/algemene-voorwaarden/">algemene voorwaarden</a>.
+  </p>
+
+  <h2>6. Beveiliging</h2>
+  <p>
+    Wij beveiligen je gegevens met onder meer versleutelde verbindingen (https),
+    tweestapsverificatie op onze accounts en toegang alleen voor wie die nodig
+    heeft. Vermoed je een datalek of misbruik, mail dan direct naar <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+  </p>
+
+  <h2>7. Geen geautomatiseerde besluitvorming</h2>
+  <p>
+    Of je wordt toegelaten, beslist altijd een mens na een gesprek. Wij maken
+    geen gebruik van profilering of geautomatiseerde besluitvorming met
+    rechtsgevolgen.
+  </p>
+
+  <h2>8. Jouw rechten</h2>
+  <p>Je hebt het recht om:</p>
+  <ul>
+    <li>in te zien welke gegevens wij van je hebben;</li>
+    <li>onjuiste gegevens te laten corrigeren;</li>
+    <li>je gegevens te laten verwijderen, als wij ze niet langer nodig hebben of wettelijk moeten bewaren;</li>
+    <li>de verwerking te laten beperken;</li>
+    <li>bezwaar te maken tegen verwerking op grond van gerechtvaardigd belang, zoals foto's en video;</li>
+    <li>je gegevens in een gangbaar bestandsformaat te ontvangen (overdraagbaarheid);</li>
+    <li>een gegeven toestemming op elk moment in te trekken, zonder gevolgen voor wat daarvoor is gebeurd.</li>
+  </ul>
+  <p>
+    Mail je verzoek naar <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>.
+    Wij reageren binnen één maand. Om zeker te weten dat het verzoek van jou komt,
+    kunnen wij je vragen je identiteit te bevestigen.
+  </p>
+  <p>
+    Ben je niet tevreden met hoe wij met je gegevens omgaan, dan kun je een klacht
+    indienen bij de <a href="https://www.autoriteitpersoonsgegevens.nl/" target="_blank" rel="noopener noreferrer">Autoriteit Persoonsgegevens</a>.
+    We horen het liever eerst zelf.
+  </p>
+
+  <h2>9. Minderjarigen</h2>
+  <p>
+    Club Vanguard richt zich op ondernemers en verwerkt bewust geen gegevens van
+    personen onder de 18 jaar.
+  </p>
+
+  <h2>10. Wijzigingen</h2>
+  <p>
+    Wij kunnen deze verklaring aanpassen, bijvoorbeeld als we een nieuwe tool
+    gaan gebruiken. De actuele versie staat altijd op <a href="/privacy/">clubvanguard.com/privacy</a>. Bij een ingrijpende
+    wijziging informeren wij leden per e-mail.
+  </p>
+
+  <p class="legal__note">
+    Vragen over privacy? Mail <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+    of kijk op onze <a href="/contact/">contactpagina</a>.
+  </p>
+</LegalPage>
