@@ -1,6 +1,6 @@
 ---
 import { MEMBER_APP_URL } from '../data/links';
-import { COMPANY, addressLine, companyDetailsFilled } from '../data/company';
+import { COMPANY } from '../data/company';
 
 const legalLinks = [
   { href: '/contact/', label: 'Contact' },
@@ -71,7 +71,6 @@ const socialLinks = [
       <h3 class="footer__heading">Contact</h3>
       <nav class="footer__nav" aria-label="Contact">
         <a href="/contact/">Contact & bedrijfsgegevens</a>
-        <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
         <a href="/join/">Join de eventlijst</a>
         <a href="https://www.instagram.com/clubvanguard.nl/" target="_blank" rel="noopener noreferrer">Volg op Instagram</a>
         <a href="https://www.linkedin.com/company/club-vanguard/" target="_blank" rel="noopener noreferrer">Volg op LinkedIn</a>
@@ -80,12 +79,7 @@ const socialLinks = [
   </div>
 
   <div class="container footer__bottom">
-    <p>
-      © {year} {COMPANY.name}
-      {companyDetailsFilled() && (
-        <span class="footer__legal-id"> · KvK {COMPANY.kvk} · {addressLine()}</span>
-      )}
-    </p>
+    <p>© {year} {COMPANY.name}</p>
     <nav class="footer__legal" aria-label="Juridisch">
       {legalLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>

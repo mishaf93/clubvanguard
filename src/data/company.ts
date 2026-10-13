@@ -18,7 +18,7 @@ export const COMPANY = {
     city: 'Rosmalen',
     country: 'Nederland',
   },
-  email: 'admin@clubvanguard.io',
+  email: 'admin@clubvanguard.com',
   site: 'https://clubvanguard.com',
   /** Arrondissement voor de forumkeuze in de voorwaarden. */
   court: 'Oost-Brabant',
