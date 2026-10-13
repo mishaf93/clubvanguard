@@ -18,7 +18,7 @@ export const COMPANY = {
     city: 'Den Bosch',
     country: 'Nederland',
   },
-  email: 'admin@clubvanguard.com',
+  email: 'info@clubvanguard.com',
   site: 'https://clubvanguard.com',
   /** Arrondissement voor de forumkeuze in de voorwaarden. */
   court: 'Oost-Brabant',
