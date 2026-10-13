@@ -175,7 +175,7 @@ const showDevWarning = !ready && import.meta.env.DEV;
         const msg = err instanceof Error ? err.message : '';
         status.textContent = /email/i.test(msg)
           ? 'Dat e-mailadres lijkt niet te kloppen. Controleer het en probeer opnieuw.'
-          : 'Er ging iets mis. Probeer het nog eens of mail admin@clubvanguard.io.';
+          : 'Er ging iets mis. Probeer het nog eens of mail admin@clubvanguard.com.';
         status.classList.add('is-error');
       } finally {
         button.disabled = false;

@@ -13,9 +13,9 @@ export const COMPANY = {
   kvk: '74408151',
   btw: 'NL002388775B81',
   address: {
-    street: 'Maasborch 34',
-    postal: '5247 ST',
-    city: 'Rosmalen',
+    street: 'Reitscheweg 37, K4',
+    postal: '5232 BX',
+    city: 'Den Bosch',
     country: 'Nederland',
   },
   email: 'admin@clubvanguard.com',
