@@ -6,7 +6,7 @@
 import LegalPage from '../components/LegalPage.astro';
 import { COMPANY, addressLine } from '../data/company';
 
-const VERSION = 'Versie 1.0 · 12 oktober 2026';
+const VERSION = 'Versie 1.1 · 13 oktober 2026';
 ---
 <LegalPage
   title="Privacyverklaring · Club Vanguard"
@@ -60,8 +60,13 @@ const VERSION = 'Versie 1.0 · 12 oktober 2026';
     Als lid verwerken wij je contactgegevens, factuurgegevens van jou of je
     onderneming, betaalgegevens, je profiel in de ledenapp (naam, foto, bedrijf,
     rol, expertise en wat je zelf toevoegt), je deelname aan events en de berichten
-    die je in de ledenomgeving plaatst. Dieetwensen of allergieën die je bij een
-    event doorgeeft, gebruiken wij alleen voor dat event.
+    die je in de ledenomgeving plaatst. De ledenapp toont de locatie die je in je
+    profiel opgeeft (bijvoorbeeld je woon- of vestigingsplaats) op een kaart, zodat
+    leden zien wie er bij hen in de buurt zit. Je bepaalt zelf welke locatie je
+    invult. Zet je pushmeldingen aan, dan verwerken wij een apparaat-token om die
+    meldingen te kunnen sturen; uitzetten kan altijd in de instellingen van je
+    telefoon of de app. Dieetwensen of allergieën die je bij een event doorgeeft,
+    gebruiken wij alleen voor dat event.
   </p>
   <dl>
     <dt>Grondslag</dt><dd>Uitvoering van de lidmaatschapsovereenkomst. Voor dieetwensen en allergieën: je uitdrukkelijke toestemming. Voor facturen: onze wettelijke (fiscale) bewaarplicht.</dd>
@@ -104,7 +109,7 @@ const VERSION = 'Versie 1.0 · 12 oktober 2026';
     <li><strong>Lettertypen.</strong> De site laadt lettertypen van Google Fonts. Daarbij ontvangt Google je IP-adres. Zie het <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacybeleid van Google</a>.</li>
     <li><strong>Aanvraagformulier.</strong> Het formulier op <a href="/aanvragen/">aanvragen</a> wordt geladen van Youform. Youform kan daarbij eigen functionele cookies plaatsen.</li>
     <li><strong>Hosting.</strong> De site wordt gehost door Cloudflare. Cloudflare verwerkt IP-adressen in serverlogs om de site veilig en bereikbaar te houden en bewaart die kort.</li>
-    <li><strong>Ledenapp.</strong> De ledenapp op app.clubvanguard.com heeft een eigen inlog en kan functionele cookies gebruiken die nodig zijn om ingelogd te blijven.</li>
+    <li><strong>Ledenapp.</strong> De ledenapp op app.clubvanguard.com heeft een eigen inlog en gebruikt alleen functionele cookies en opslag die nodig zijn om ingelogd te blijven. Bij het laden van de kaart in de app ontvangt Mapbox je IP-adres.</li>
   </ul>
 
   <h2>4. Met wie wij gegevens delen</h2>
@@ -117,8 +122,11 @@ const VERSION = 'Versie 1.0 · 12 oktober 2026';
     <li><strong>Kit</strong> (Kit Inc., Verenigde Staten) voor de eventlijst en onze wekelijkse mail.</li>
     <li><strong>Youform</strong> voor het aanvraag- en aanmeldformulier.</li>
     <li><strong>Stripe</strong> (Stripe Payments Europe, Ierland) voor betalingen. Wij zien geen volledige kaart- of rekeninggegevens.</li>
-    <li><strong>Cloudflare</strong> (Cloudflare Inc., Verenigde Staten) voor hosting en beveiliging van de website.</li>
-    <li><strong>De leverancier van onze ledenapp</strong> voor de besloten ledenomgeving.</li>
+    <li><strong>Cloudflare</strong> (Cloudflare Inc., Verenigde Staten) voor hosting en beveiliging van de website en de ledenapp.</li>
+    <li><strong>Supabase</strong> voor de database en de inlog van de ledenapp.</li>
+    <li><strong>Mapbox</strong> (Mapbox Inc., Verenigde Staten) voor de kaart in de ledenapp.</li>
+    <li><strong>Resend</strong> (Resend Inc., Verenigde Staten) voor e-mails vanuit de ledenapp, zoals inlog- en bevestigingsmails.</li>
+    <li><strong>OneSignal</strong> (OneSignal Inc., Verenigde Staten) voor pushmeldingen vanuit de ledenapp.</li>
     <li><strong>Onze e-mail- en documentdiensten</strong> voor correspondentie en administratie.</li>
     <li><strong>Onze boekhouder</strong> voor de financiële administratie.</li>
     <li><strong>Eventlocaties en cateraars</strong> ontvangen alleen wat nodig is voor het event: meestal het aantal gasten, soms de namenlijst en dieetwensen.</li>
@@ -126,9 +134,9 @@ const VERSION = 'Versie 1.0 · 12 oktober 2026';
   </ul>
   <p>
     Met verwerkers sluiten wij een verwerkersovereenkomst. Bij partijen buiten de
-    Europese Economische Ruimte, zoals Kit en Cloudflare, baseren wij de doorgifte
-    op het EU-US Data Privacy Framework of op de standaardcontractbepalingen van
-    de Europese Commissie.
+    Europese Economische Ruimte, zoals Kit, Cloudflare, Mapbox, Resend en OneSignal,
+    baseren wij de doorgifte op het EU-US Data Privacy Framework of op de
+    standaardcontractbepalingen van de Europese Commissie.
   </p>
   <p>
     Verder delen wij gegevens alleen als de wet ons daartoe verplicht.
@@ -137,7 +145,7 @@ const VERSION = 'Versie 1.0 · 12 oktober 2026';
   <h2>5. Binnen de community</h2>
   <p>
     Als lid ben je zichtbaar voor andere leden in de ledenapp met het profiel
-    dat je zelf aanmaakt. Bij events delen wij vooraf of ter plekke wie er
+    dat je zelf aanmaakt, inclusief de locatie die je daarin opgeeft op de kaart. Bij events delen wij vooraf of ter plekke wie er
     aanwezig is, zodat je weet met wie je aan tafel zit. Andere leden mogen die
     gegevens uitsluitend binnen de community gebruiken; dat is vastgelegd in
     onze <a href="/algemene-voorwaarden/">algemene voorwaarden</a>.
