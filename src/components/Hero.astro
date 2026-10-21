@@ -25,7 +25,7 @@ const heroPoster = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.
   />
   <div class="hero__overlay" aria-hidden="true"></div>
   <div class="container hero__content">
-    <h1 class="hero__title">Samen winnen.<br /><em>Zonder ego.</em></h1>
+    <h1 class="hero__title">Samen winnen.<br /><em class="hero__title-accent">Zonder ego.</em></h1>
     <p class="lead hero__lead">
       Dé community voor zuivere e-commerce & AI-ondernemers die
       waarde hechten aan eerlijke gesprekken, hoge standaarden en echte relaties.
@@ -75,6 +75,9 @@ const heroPoster = import.meta.env.PUBLIC_HERO_IMAGE ?? '/images/pillars-events.
   .hero__title {
     font-size: var(--text-hero);
     max-width: 16ch;
+  }
+  .hero__title em.hero__title-accent {
+    font-style: normal;
   }
   .hero__title em {
     font-style: italic;
