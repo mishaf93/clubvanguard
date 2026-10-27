@@ -1,0 +1,98 @@
+---
+/**
+ * Vindbaarheidspagina: "ondernemersclub den bosch" / "ondernemersclub brabant" / "ondernemersnetwerk brabant".
+ * Lokaal verankerd (adres, locaties), eerlijk over wat we niet zijn (geen belangenvereniging).
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import Agenda from '../components/Agenda.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { denBoschFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+import { upcomingAgenda } from '../data/agenda';
+
+const items = upcomingAgenda(3);
+---
+<Base
+  title="Ondernemersclub in Den Bosch voor e-commerce en AI · Club Vanguard"
+  description="Club Vanguard is een besloten ondernemersclub gevestigd in Den Bosch, met 50+ e-commerce- en AI-ondernemers uit heel Nederland. Offline events in Brabant en daarbuiten, toelating via een kennismakingsgesprek."
+  image="/images/event-maurick.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(denBoschFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Ondernemersclub Den Bosch</p>
+      <h1 class="seo-hero__title">De ondernemersclub in Den Bosch <em>voor e‑commerce en AI.</em></h1>
+      <p class="lead seo-hero__lead">
+        Club Vanguard is gevestigd in Den Bosch en komt samen op locaties in Brabant en de rest van
+        Nederland, van Kasteel Maurick in Vught tot Utrecht. 50+ geselecteerde leden, allemaal bouwend
+        aan een merk, een agency of een AI-product.
+      </p>
+      <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">Niet de vereniging van de binnenstad.</h2>
+        <p class="seo-text">
+          Den Bosch heeft goede ondernemersverenigingen voor lokale belangen, zoals Hartje 's-Hertogenbosch,
+          RIVU en de Heroes Business Club. Vanguard is iets anders: een besloten club voor één sector, met
+          leden uit het hele land en een strenge selectie op wat je gebouwd hebt en wat je deelt.
+        </p>
+      </div>
+      <img src="/images/event-maurick.jpg" alt="Club event van Club Vanguard op Kasteel Maurick in Vught" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--reverse">
+      <img src="/images/gallery-group.jpg" alt="Leden van Club Vanguard tijdens een clubdag" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+      <div class="split__content">
+        <h2 class="section-title">Wie je er tegenkomt.</h2>
+        <p class="seo-text seo-text--dim">
+          Eigenaren van merken die verkopen via bol, Amazon en hun eigen webshop. Oprichters van agencies
+          die voor zulke merken werken. Bouwers van AI- en automatiseringstools. Doorgaans met een omzet
+          tussen enkele tonnen en meerdere miljoenen, uit Brabant, de rest van Nederland en een paar uit het buitenland.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Agenda items={items} light eyebrow="Agenda" title="Komende momenten in Brabant en daarbuiten" showJoinLink />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <h2 class="section-title">Lid worden begint met een gesprek.</h2>
+      <p class="seo-text seo-text--dim">
+        Je dient een aanvraag in, daarna volgt een kort kennismakingsgesprek. Als gast kun je één keer een
+        plek aanvragen voor een club event. Benieuwd hoe we ons verhouden tot andere clubs? Zie
+        <a href="/ondernemersclubs-vergeleken/">ondernemersclubs vergeleken</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={denBoschFaqs} light eyebrow="Veelgestelde vragen" title="Over Vanguard in Den Bosch" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 2.2rem; max-width: 60ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split--reverse .split__content { order: 1; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-ivory); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split--reverse .split__content { order: 0; }
+  }
+</style>

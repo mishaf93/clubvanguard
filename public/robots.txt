@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /welkom/
+
+Sitemap: https://clubvanguard.com/sitemap.xml
