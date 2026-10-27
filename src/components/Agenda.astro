@@ -1,5 +1,6 @@
 ---
 import { formatAgendaDate, type AgendaItem } from '../data/agenda';
+import { eventsSchema } from '../data/schema';
 
 interface Props {
   items: AgendaItem[];
@@ -22,6 +23,9 @@ const {
 ---
 <section class:list={['section', 'agenda', { 'section--ivory': light }]} aria-labelledby="agenda-title">
   <div class="container">
+    {items.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify(eventsSchema(items))} />
+    )}
     <p class="eyebrow">{eyebrow}</p>
     <h2 id="agenda-title" class="section-title">{title}</h2>
     {lead && <p class="lead agenda__lead">{lead}</p>}

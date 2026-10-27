@@ -13,6 +13,8 @@ interface Props {
 const { title, description , image = '/images/og-default.jpg' } = Astro.props;
 const ogImage = new URL(image, Astro.site ?? 'https://clubvanguard.com').href;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://clubvanguard.com').href;
+import { organizationSchema } from '../data/schema';
+const orgJson = JSON.stringify(organizationSchema());
 ---
 <!doctype html>
 <html lang="nl">
@@ -45,6 +47,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://clubvanguar
     <meta property="og:locale" content="nl_NL" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <!-- Organization-schema op elke pagina: wie we zijn, waar, hoe te bereiken (voor Google + AI-zoekmachines). -->
+    <script type="application/ld+json" set:html={orgJson} />
+    <slot name="head" />
   </head>
   <body>
     <Header />

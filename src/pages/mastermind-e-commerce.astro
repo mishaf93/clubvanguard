@@ -1,0 +1,95 @@
+---
+/**
+ * Vindbaarheidspagina: "mastermind e-commerce" / "mastermind ondernemers" / "sparren met ondernemers".
+ * Feiten in gewone zinnen (Google + AI-zoekmachines citeren feiten, geen sfeer). Stijl: statement + korte uitleg.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { mastermindFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+---
+<Base
+  title="Mastermind voor e-commerce-ondernemers in Nederland · Club Vanguard"
+  description="Club Vanguard is een besloten mastermind-club van 50+ e-commerce- en AI-ondernemers in Nederland: twaalf offline momenten per jaar, één internationale trip, toelating via een kennismakingsgesprek."
+  image="/images/club-event.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(mastermindFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Mastermind e-commerce</p>
+      <h1 class="seo-hero__title">De mastermind voor e‑commerce‑ondernemers <em>die al draaien.</em></h1>
+      <p class="lead seo-hero__lead">
+        Club Vanguard is een besloten club van 50+ geselecteerde e-commerce- en AI-ondernemers in Nederland.
+        Twaalf offline momenten per jaar, één internationale trip, en een groep waar een vraag dezelfde dag
+        antwoord krijgt van iemand die het al heeft opgelost.
+      </p>
+      <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">Geen cursus. Geen goeroe. Een tafel.</h2>
+        <p class="seo-text">
+          Een mastermind bij Vanguard is geen programma dat je koopt, maar een groep waar je bij hoort.
+          Aan tafel zitten eigenaren van merken op bol, Amazon en Shopify, oprichters van agencies en bouwers
+          van AI-tools. Richtlijn voor merkeigenaren: rond of boven de miljoen omzet, afhankelijk van je kanaal.
+        </p>
+      </div>
+      <img src="/images/gallery-session.jpg" alt="Vanguard-leden in gesprek tijdens een werksessie" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--reverse">
+      <img src="/images/dinner.jpg" alt="Club Dinner van Club Vanguard" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+      <div class="split__content">
+        <h2 class="section-title">Twaalf momenten per jaar. Allemaal offline.</h2>
+        <p class="seo-text seo-text--dim">
+          Club events met een spreker en werksessies, kleine dinners op aanvraag, activiteiten en één
+          internationale trip per jaar. Tussendoor loopt het gesprek door in de ledengroep en de app.
+          Gemiddelde beoordeling door leden: 8,8.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Toelating in drie stappen.</h2>
+      <p class="seo-text">
+        Je dient een aanvraag in. Je hebt een kort kennismakingsgesprek met de founder. Binnen één tot
+        twee dagen hoor je of je welkom bent. De meeste leden komen via voordracht of na een bezoek als gast.
+      </p>
+      <p class="seo-text">
+        Twijfel je of dit het juiste niveau voor je is? Lees <a href="/ondernemersclubs-vergeleken/">hoe
+        Vanguard zich verhoudt tot andere ondernemersclubs en masterminds</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={mastermindFaqs} eyebrow="Veelgestelde vragen" title="Over masterminds en Vanguard" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 2.2rem; max-width: 60ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split--reverse .split__content { order: 1; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-ivory); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split--reverse .split__content { order: 0; }
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+/**
+ * Vergelijkingspagina: "ondernemersclub nederland", "exclusieve ondernemersclubs kosten", "beste mastermind".
+ * Alleen publieke cijfers met bron en peildatum. Vanguard-prijs bewust niet (hoort bij het gesprek).
+ * Bijwerken: rijen hieronder + peildatum.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { compareFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+
+const PEILDATUM = 'oktober 2026';
+
+type Row = { club: string; url: string; voorWie: string; leden: string; vorm: string; prijs: string; toelating: string; ons?: boolean };
+const rows: Row[] = [
+  { club: 'Club Vanguard', url: '/', ons: true,
+    voorWie: 'E-commerce-merken (bol, Amazon, Shopify) rond of boven €1M, plus geselecteerde agencies en AI-bouwers',
+    leden: '50+', vorm: 'Offline-first: 12 momenten per jaar, dinners op aanvraag, 1 internationale trip, ledenapp',
+    prijs: 'Bijdrage per kwartaal, bekend na kennismaking', toelating: 'Aanvraag + kennismakingsgesprek' },
+  { club: 'Aquila', url: 'https://aquila.nl',
+    voorWie: 'Ondernemers in drie omzettiers vanaf €200k', leden: '150+', vorm: 'Senaten van 6–8, offline en casual meetups',
+    prijs: 'Niet publiek', toelating: 'Intake' },
+  { club: 'CLUB49', url: 'https://club49.nl',
+    voorWie: 'Ondernemers met BV en ≥ €250k omzet', leden: '±260', vorm: 'Workshops, masterminds van 10, retreats, eigen landgoed',
+    prijs: '€13.500 ex btw per jaar', toelating: 'Intake en screening' },
+  { club: 'EO Netherlands', url: 'https://www.eonetwork.org',
+    voorWie: 'Oprichters met ≥ $1M omzet', leden: '±140 in NL', vorm: 'Maandelijkse forums van 8–10, wereldwijd netwerk',
+    prijs: '±€2.950 per jaar (ouder artikel)', toelating: 'Omzet- en teamseis' },
+  { club: 'DTC Manor', url: 'https://www.dtcmanor.com',
+    voorWie: 'D2C-founders met zevencijferige omzet', leden: 'Niet publiek', vorm: 'Invite-only, Slack, masterclasses, diners',
+    prijs: 'Niet publiek', toelating: 'Voordracht door lid' },
+  { club: 'Titan Network', url: 'https://titannetwork.com',
+    voorWie: 'Amazon- en marketplace-sellers, internationaal', leden: '700+', vorm: 'Programma met coaches, huddles per omzetniveau, China-reis',
+    prijs: '$8.000–15.000 per jaar', toelating: 'Aanvraag' },
+  { club: 'eCommerceFuel', url: 'https://www.ecommercefuel.com',
+    voorWie: 'Webshops met zeven- tot achtcijferige omzet, Engelstalig', leden: '1.000+', vorm: 'Online community, jaarlijks live event',
+    prijs: 'Vanaf $199 per maand', toelating: 'Omzetcheck' },
+  { club: 'WebwinkelCommunity', url: 'https://webwinkelcommunity.nl',
+    voorWie: 'Webshopeigenaren, alle niveaus', leden: '500+', vorm: 'Online, wekelijkse masterclasses',
+    prijs: '±€100 per jaar', toelating: 'Open' },
+  { club: 'VNO-NCW Brabant Zeeland', url: 'https://www.vno-ncwbrabantzeeland.nl',
+    voorWie: 'Werkgevers en ondernemers in de regio, alle sectoren', leden: '±2.800', vorm: 'Studieclubs, lobby, jaarlijks event',
+    prijs: 'Contributie naar bedrijfsgrootte', toelating: 'Lidmaatschap' },
+];
+---
+<Base
+  title="Ondernemersclubs in Nederland vergeleken (2026) · Club Vanguard"
+  description="Eerlijk overzicht van ondernemersclubs en masterminds in Nederland voor e-commerce-ondernemers: Club Vanguard, Aquila, CLUB49, EO, DTC Manor, Titan Network en meer. Met ledentallen, vorm, prijsindicatie en toelating."
+  image="/images/club-event.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(compareFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Vergelijking · peildatum {PEILDATUM}</p>
+      <h1 class="seo-hero__title">Ondernemersclubs in Nederland, <em>eerlijk vergeleken.</em></h1>
+      <p class="lead seo-hero__lead">
+        Er bestaat geen onafhankelijke ranking van ondernemersclubs en masterminds. Dit is ons overzicht
+        voor e-commerce-ondernemers, met publieke cijfers en bron per club. Wij staan er zelf ook in.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container">
+      <div class="table-wrap">
+        <table class="compare">
+          <thead>
+            <tr><th>Club</th><th>Voor wie</th><th>Leden</th><th>Vorm</th><th>Prijsindicatie</th><th>Toelating</th></tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr class:list={{ 'is-ons': r.ons }}>
+                <th scope="row"><a href={r.url} {...(r.ons ? {} : { target: '_blank', rel: 'noopener nofollow' })}>{r.club}</a></th>
+                <td>{r.voorWie}</td>
+                <td>{r.leden}</td>
+                <td>{r.vorm}</td>
+                <td>{r.prijs}</td>
+                <td>{r.toelating}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="compare__note">
+        Cijfers van de websites en publicaties van de clubs zelf, peildatum {PEILDATUM}. Klopt iets niet
+        meer? Mail <a href="mailto:info@clubvanguard.com">info@clubvanguard.com</a>, dan passen we het aan.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <h2 class="section-title">Kies op het niveau van de tafel, niet op de prijs.</h2>
+      <p class="seo-text seo-text--dim">
+        Een algemene ondernemersclub geeft breedte: andere sectoren, andere problemen, soms verfrissend.
+        Een sectorclub geeft diepte: mensen die jouw kanalen kennen en jouw cijfers kunnen lezen.
+      </p>
+      <p class="seo-text seo-text--dim">
+        Let op de vorm. Een programma met coaches is iets anders dan een club van gelijken. Het eerste koop
+        je, het tweede verdien je door wat je inbrengt.
+      </p>
+      <p class="seo-text seo-text--dim">
+        En kijk naar de cadans. Twaalf offline momenten per jaar is iets anders dan een Slack-kanaal met
+        een jaarlijks event. Vanguard kiest bewust voor offline. Lees meer op
+        <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={compareFaqs} light eyebrow="Veelgestelde vragen" title="Over kiezen tussen clubs" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 0; max-width: 60ch; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare { width: 100%; min-width: 880px; border-collapse: collapse; font-size: var(--text-sm); color: var(--ink-dim); }
+  .compare th, .compare td { padding: 0.9rem 0.8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line-ivory); line-height: 1.55; }
+  .compare thead th { font-family: var(--font-body); font-weight: 600; color: var(--ink); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+  .compare tbody th { font-family: var(--font-display); font-size: var(--text-base); color: var(--ink); white-space: nowrap; }
+  .compare tbody th a { color: inherit; text-decoration: none; }
+  .compare tbody th a:hover { text-decoration: underline; }
+  .compare tr.is-ons { background: #fff; }
+  .compare tr.is-ons th { color: var(--brass); }
+  .compare__note { margin-top: 1.4rem; font-size: var(--text-xs); color: var(--ink-dim); }
+  .compare__note a { color: inherit; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+</style>
