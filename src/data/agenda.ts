@@ -28,7 +28,7 @@ export const agenda: AgendaItem[] = [
     date: '2026-10-30',
     time: '18:30',
     location: 'Locatie volgt per mail',
-    spotsLeft: 4,
+    spotsLeft: 0,
     signupUrl: DINNER_SIGNUP_URL,
   },
   {
