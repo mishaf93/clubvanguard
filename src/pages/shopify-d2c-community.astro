@@ -1,0 +1,89 @@
+---
+/**
+ * Vindbaarheidspagina (wave 1): "shopify community nederland", "d2c community", "community webshopeigenaren", "netwerk merkeigenaren".
+ * Korte feitenzinnen in Misha's toon. Geen prijzen, geen andere clubs bij naam.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { d2cFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+---
+<Base
+  title="De community voor Shopify- en D2C-merken in Nederland · Club Vanguard"
+  description="Club Vanguard is de besloten club voor merkeigenaren die verkopen via hun eigen Shopify-webshop, bol, Amazon en retail. Ruim vijftig leden uit heel Nederland, twaalf keer per jaar samen."
+  image="/images/gallery-session.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(d2cFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Shopify en D2C</p>
+      <h1 class="seo-hero__title">De community voor <em>Shopify- en D2C-merken.</em></h1>
+      <p class="lead seo-hero__lead">
+        Club Vanguard is de besloten club voor merkeigenaren die hun eigen merk bouwen. De meeste verkopen via een
+        eigen Shopify-webshop en daarnaast via bol, Amazon of in de winkel. Twaalf keer per jaar komen we samen.
+      </p>
+      <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">Jouw kanalen, jouw marges, jouw vragen.</h2>
+        <p class="seo-text">
+          Aan tafel zitten mensen die dezelfde keuzes maken als jij. Eigen webshop of marketplace, meta-ads of
+          e-mail, eigen voorraad of fulfilment. Als merkeigenaar zit je als richtlijn rond of boven de miljoen
+          omzet.
+        </p>
+      </div>
+      <img src="/images/gallery-5.jpg" alt="Merkeigenaren in gesprek tijdens een Club Vanguard-event" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--reverse">
+      <img src="/images/gallery-session.jpg" alt="Groepsfoto van leden van Club Vanguard" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+      <div class="split__content">
+        <h2 class="section-title">Van webshop naar retail.</h2>
+        <p class="seo-text seo-text--dim">
+          Steeds meer leden gaan van online naar de winkel, via retailplatformen als Kaufland, MediaMarkt en
+          Decathlon of direct bij ketens. Wie die stap al heeft gezet, vertelt je hoe het ging.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Lid worden begint met een gesprek.</h2>
+      <p class="seo-text">
+        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt. Meer over
+        de club lees je op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={d2cFaqs} eyebrow="Veelgestelde vragen" title="Over Shopify, D2C en Vanguard" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 2.2rem; max-width: 60ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split--reverse .split__content { order: 1; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-ivory); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split--reverse .split__content { order: 0; }
+  }
+</style>

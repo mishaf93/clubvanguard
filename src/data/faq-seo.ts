@@ -128,3 +128,87 @@ export const compareFaqs: FaqItem[] = [
     ],
   },
 ];
+
+export const aiFaqs: FaqItem[] = [
+  {
+    question: 'Is er een community voor ondernemers die AI inzetten in hun e-commerce bedrijf?',
+    answer: [
+      'Ja. Club Vanguard is een besloten club van ruim vijftig e-commerce-, retail- en AI-ondernemers. Een deel bouwt AI-tools, de rest gebruikt ze elke dag in hun eigen bedrijf.',
+    ],
+  },
+  {
+    question: 'Moet ik al veel met AI doen om lid te worden?',
+    answer: [
+      'Nee. Je moet ondernemer zijn in e-commerce, retail, AI of software. Hoe ver je met AI bent maakt niet uit, je leert het snelst van wie net een stap verder is.',
+    ],
+  },
+  {
+    question: 'Waar gaat het over als het over AI gaat?',
+    answer: [
+      'Over wat werkt in een echt bedrijf: content, klantenservice, advertenties, inkoop, forecasting en automatisering van het werk dat niemand graag doet.',
+    ],
+  },
+];
+
+export const d2cFaqs: FaqItem[] = [
+  {
+    question: 'Welke community is er voor Shopify- en D2C-merken in Nederland?',
+    answer: [
+      'Club Vanguard is een besloten club voor merkeigenaren die verkopen via hun eigen Shopify-webshop, bol, Amazon en retail. Ruim vijftig leden uit heel Nederland, twaalf keer per jaar samen.',
+    ],
+  },
+  {
+    question: 'Is Club Vanguard ook voor webshops die alleen via hun eigen site verkopen?',
+    answer: [
+      'Ja. Een deel van de leden verkoopt vooral via de eigen webshop. Als merkeigenaar zit je als richtlijn rond of boven de miljoen omzet.',
+    ],
+  },
+  {
+    question: 'Helpt de club bij de stap naar retail?',
+    answer: [
+      'Er zitten leden aan tafel die die stap al hebben gezet, via retailplatformen als Kaufland, MediaMarkt en Decathlon of direct bij winkelketens. Die ervaring delen ze graag.',
+    ],
+  },
+];
+
+export const agencyFaqs: FaqItem[] = [
+  {
+    question: 'Waar kunnen e-commerce marketeers, agencies en freelancers netwerken met merkeigenaren?',
+    answer: [
+      'Bij Club Vanguard zitten oprichters van agencies, marketeers en freelancers aan tafel met merkeigenaren uit e-commerce en retail. Twaalf keer per jaar komen we samen.',
+    ],
+  },
+  {
+    question: 'Is er een e-commerce freelance community in Nederland?',
+    answer: [
+      'Club Vanguard is een besloten club waar ook freelancers in e-commerce lid van zijn. Je komt binnen via een aanvraag en een gesprek van een halfuur.',
+    ],
+  },
+  {
+    question: 'Kan ik bij Club Vanguard klanten werven?',
+    answer: [
+      'Pitchen doen we niet. Werk ontstaat vanzelf als mensen je kennen. Bij de selectie kijken we naar de merken waarvoor je werkt en naar wat je de groep komt brengen.',
+    ],
+  },
+];
+
+export const spanjeFaqs: FaqItem[] = [
+  {
+    question: 'Is er een community van Nederlandse ondernemers in Spanje?',
+    answer: [
+      'Club Vanguard heeft leden die vanuit Spanje ondernemen, onder meer in Valencia, Málaga en Alicante. Het is een besloten club voor e-commerce, retail en AI.',
+    ],
+  },
+  {
+    question: 'Kan ik lid worden als ik in Spanje woon?',
+    answer: [
+      'Ja. De groepsapp is de dagelijkse plek, en als je in Nederland bent schuif je aan bij een club event. Niets is verplicht.',
+    ],
+  },
+  {
+    question: 'Organiseert Club Vanguard ook iets in Spanje?',
+    answer: [
+      'Soms spreken leden af in Spanje, en één keer per jaar reizen we met de club naar het buitenland.',
+    ],
+  },
+];

@@ -1,0 +1,88 @@
+---
+/**
+ * Vindbaarheidspagina (wave 1): "e-commerce freelance community", "netwerk e-commerce marketeers", "agencies netwerk merkeigenaren".
+ * Korte feitenzinnen in Misha's toon. Geen prijzen, geen andere clubs bij naam.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { agencyFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+---
+<Base
+  title="Netwerk voor e-commerce agencies, marketeers en freelancers · Club Vanguard"
+  description="Club Vanguard brengt merkeigenaren samen met oprichters van agencies, marketeers en freelancers die voor e-commerce-merken werken. Een besloten club, twaalf keer per jaar samen, lid worden via een gesprek."
+  image="/images/gallery-3.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(agencyFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Agencies, marketeers en freelancers</p>
+      <h1 class="seo-hero__title">Voor wie bouwt <em>aan andermans merk.</em></h1>
+      <p class="lead seo-hero__lead">
+        Club Vanguard is er ook voor oprichters van agencies, marketeers en freelancers die voor e‑commerce-merken
+        werken. Je zit aan tafel met de merkeigenaren zelf, en met collega's die hetzelfde vak doen.
+      </p>
+      <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">Je komt als ondernemer aan tafel.</h2>
+        <p class="seo-text">
+          Pitchen doen we niet. Werk ontstaat vanzelf als mensen je kennen en zien wat je kunt. Bij de selectie
+          kijken we naar de merken waarvoor je werkt en naar wat je de groep komt brengen.
+        </p>
+      </div>
+      <img src="/images/gallery-3.jpg" alt="Twee leden van Club Vanguard tijdens een event" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--reverse">
+      <img src="/images/gallery-7.jpg" alt="Leden van Club Vanguard in gesprek" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+      <div class="split__content">
+        <h2 class="section-title">Je ziet de kant van de klant.</h2>
+        <p class="seo-text seo-text--dim">
+          Hoe kiest een merkeigenaar een agency, wanneer gaat werk in huis, en wat telt er echt?
+          Dat hoor je hier rechtstreeks, zonder dat er een opdracht op het spel staat.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Lid worden begint met een gesprek.</h2>
+      <p class="seo-text">
+        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt. Meer over
+        de club lees je op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={agencyFaqs} eyebrow="Veelgestelde vragen" title="Over agencies, freelancers en Vanguard" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 2.2rem; max-width: 60ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split--reverse .split__content { order: 1; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-ivory); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split--reverse .split__content { order: 0; }
+  }
+</style>

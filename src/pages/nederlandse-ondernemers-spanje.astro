@@ -1,0 +1,88 @@
+---
+/**
+ * Vindbaarheidspagina (wave 1): "nederlandse ondernemers spanje", "ondernemers community spanje", Valencia/Málaga/Alicante.
+ * Korte feitenzinnen in Misha's toon. Geen prijzen, geen andere clubs bij naam.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { spanjeFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+---
+<Base
+  title="Nederlandse ondernemers in Spanje · e-commerce en AI · Club Vanguard"
+  description="Club Vanguard heeft leden die vanuit Spanje ondernemen, onder meer in Valencia, Málaga en Alicante. Een besloten club voor e-commerce, retail en AI, met de groepsapp als dagelijkse plek en events in Nederland."
+  image="/images/gallery-trip.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(spanjeFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Nederlandse ondernemers in Spanje</p>
+      <h1 class="seo-hero__title">Nederlandse ondernemers <em>in Spanje.</em></h1>
+      <p class="lead seo-hero__lead">
+        Een deel van onze leden woont en onderneemt in Spanje, onder meer in Valencia, Málaga en Alicante. Ze
+        runnen hun e‑commerce-, retail- of AI-bedrijf op afstand en blijven via de club verbonden met Nederland.
+      </p>
+      <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">De groepsapp is de dagelijkse tafel.</h2>
+        <p class="seo-text">
+          Waar je ook woont, je vragen worden meestal dezelfde dag beantwoord. Ben je in Nederland, dan schuif je
+          aan bij een club event. Soms spreken leden ook af in Spanje.
+        </p>
+      </div>
+      <img src="/images/pillars-trips.jpg" alt="Leden van Club Vanguard op een zonnig terras tijdens een reis" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split--reverse">
+      <img src="/images/gallery-trip.jpg" alt="Groepsfoto van leden van Club Vanguard aan de kust tijdens de jaarlijkse reis" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+      <div class="split__content">
+        <h2 class="section-title">Eén keer per jaar reizen we samen.</h2>
+        <p class="seo-text seo-text--dim">
+          De jaarlijkse reis naar het buitenland is voor veel leden het hoogtepunt. Voor wie in Spanje woont is het
+          vaak een kortere reis dan voor de rest.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Lid worden begint met een gesprek.</h2>
+      <p class="seo-text">
+        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt. Meer over
+        de club lees je op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={spanjeFaqs} eyebrow="Veelgestelde vragen" title="Over Spanje en Vanguard" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 2.2rem; max-width: 60ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split--reverse .split__content { order: 1; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-ivory); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split--reverse .split__content { order: 0; }
+  }
+</style>
