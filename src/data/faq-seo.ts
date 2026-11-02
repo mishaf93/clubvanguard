@@ -10,35 +10,34 @@ export const mastermindFaqs: FaqItem[] = [
     question: 'Wat is een mastermind voor e-commerce-ondernemers?',
     answer: [
       'Een vaste groep ondernemers die ongeveer even ver zijn en elkaar scherp houden. Je legt je eigen vraagstuk op tafel en krijgt antwoord van mensen die het al een keer hebben meegemaakt.',
-      'Bij Club Vanguard is dat geen traject dat je koopt, je wordt lid van een club. Ruim vijftig e-commerce-, retail- en AI-ondernemers die twaalf keer per jaar samenkomen, en een groepsapp waar vragen meestal dezelfde dag beantwoord worden.',
+      'Bij Club Vanguard is dat geen traject dat je koopt. Je wordt onderdeel van een unieke club: een wereld van zuivere ondernemers op niveau, waar je echt op kunt bouwen.',
     ],
   },
   {
     question: 'Hoe verschilt Club Vanguard van een online community of cursus?',
     answer: [
-      'Een cursus heeft één docent. Een online community heeft duizenden leden die elkaar niet kennen. Bij ons zit je aan tafel met mensen die je na twee events gewoon bij naam kent.',
-      'Er loopt geen coach rond en we verdienen niet aan begeleiding. De bijdrage gaat naar de events, de app en de organisatie.',
+      'Cursussen worden vaak aangeboden door mensen die hard roepen en daar meer aan verdienen dan aan hun eigen bedrijf. Een online community heeft duizenden leden die elkaar niet kennen.',
+      'Bij ons zit je aan tafel met mensen die je na één event gewoon bij naam kent, en die je daarbuiten ook spreekt.',
     ],
   },
   {
     question: 'Voor welk omzetniveau is Club Vanguard bedoeld?',
     answer: [
-      'Als merkeigenaar zit je als richtlijn rond of boven de miljoen omzet per jaar, afhankelijk van je kanaal. Werk je als dienstverlener of bouw je AI-tools, dan kijken we naar de merken waarvoor je werkt en naar wat je komt brengen.',
-      'Ben je net begonnen of zoek je je eerste klant, dan is het nog te vroeg. Dat zeggen we liever meteen dan halverwege een gesprek.',
+      'Als merkeigenaar rond of boven de miljoen omzet per jaar. Als dienstverlener of AI-bouwer kijken we naar de merken waarvoor je werkt en naar wat je komt brengen.',
+      'Net begonnen? Dan is het nog te vroeg. Dat zeggen we liever meteen.',
     ],
   },
   {
     question: 'Wat kost lidmaatschap van Club Vanguard?',
     answer: [
-      'Leden betalen een bijdrage per kwartaal. Daar zitten alle club events, dinners en activiteiten in Nederland bij in. De reis naar het buitenland reken je apart af.',
-      'Het bedrag bespreken we in het kennismakingsgesprek, als we allebei merken dat het past. De bijdrage gaat elk jaar iets omhoog.',
+      'Leden betalen een bijdrage per kwartaal. Daar zitten alle club events en activiteiten bij in, dinners niet. Je krijgt toegang tot het Vanguard-netwerk, de community rolodex, de events en de activiteiten.',
+      'Het bedrag bespreken we in het kennismakingsgesprek. De bijdrage gaat na elke groep nieuwe leden omhoog, dus vroeg instappen loont.',
     ],
   },
   {
     question: 'Hoe word ik lid?',
     answer: [
-      'Je vult de aanvraag in op de site. Daarna heb je een gesprek van ongeveer een halfuur met Misha, de oprichter, en binnen een dag of twee hoor je of je welkom bent.',
-      'De meeste leden komen binnen via iemand die al lid is, of nadat ze een keer als gast bij een event zijn geweest.',
+      'Je vult de aanvraag in op de site. Daarna heb je een gesprek van een halfuur met Misha, de oprichter. Binnen een dag of twee hoor je of je welkom bent.',
     ],
   },
   {
@@ -50,7 +49,7 @@ export const mastermindFaqs: FaqItem[] = [
   {
     question: 'Moet ik bij elk event aanwezig zijn?',
     answer: [
-      'Nee. Je bent altijd vrij om te komen of niet, we houden geen aanwezigheid bij. In de praktijk wil bijna iedereen erbij zijn, omdat je er mensen ziet die je anders alleen in de app spreekt.',
+      'Nee. Je bent altijd vrij om te komen of niet. In de praktijk wil bijna iedereen erbij zijn.',
     ],
   },
   {
@@ -107,7 +106,7 @@ export const compareFaqs: FaqItem[] = [
     question: 'Wat kost een ondernemersclub in Nederland?',
     answer: [
       'Dat loopt enorm uiteen. Open online communities kosten rond de honderd euro per jaar. Besloten clubs voor ondernemers vanaf een miljoen omzet zitten ergens tussen een paar duizend en ruim tienduizend euro per jaar, afhankelijk van programma, locaties en begeleiding.',
-      'Bij Club Vanguard betaal je een bijdrage per kwartaal, met alle events in Nederland inbegrepen. Het bedrag bespreken we in het kennismakingsgesprek.',
+      'Bij Club Vanguard betaal je een bijdrage per kwartaal, met club events en activiteiten inbegrepen. Het bedrag bespreken we in het kennismakingsgesprek.',
     ],
   },
   {
