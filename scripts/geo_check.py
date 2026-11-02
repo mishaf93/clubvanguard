@@ -45,28 +45,49 @@ def mentions(text: str) -> list[str]:
     return [c.strip() for c in CLUBS if re.search(re.escape(c), text, re.I)]
 
 
+def rank(text: str) -> int | None:
+    """Positie van Club Vanguard tussen de genoemde namen (vetgedrukt of als lijstkop); None = niet genoemd."""
+    names = [n for n in re.findall(r"\*\*([^*\n]{3,60})\*\*", text) if not n.rstrip(":").lower().startswith(("antwoord", "ja", "nee", "in ", "kort"))]
+    for i, n in enumerate(names, 1):
+        if re.search(r"vanguard", n, re.I):
+            return i
+    return 99 if re.search(r"club\s*vanguard", text, re.I) else None
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--only", type=int, help="alleen vraag n (1-based)")
+    p.add_argument("--rerender", help="geen nieuwe meting; herschrijf docs/geo/<datum>.md uit de json")
     a = p.parse_args()
+    if a.rerender:
+        rows = json.loads((GEO / f"{a.rerender}.json").read_text())
+        for r in rows:
+            r["rank"] = rank(r["answer"])
+        write_report(rows, a.rerender); return
     qs = [l.strip() for l in QUESTIONS.read_text().splitlines() if l.strip() and not l.startswith("#")]
     if a.only:
         qs = [qs[a.only - 1]]
     today = dt.date.today().isoformat()
     print(f"{len(qs)} vragen → claude -p + autocomplete …", flush=True)
-    with cf.ThreadPoolExecutor(max_workers=3) as ex:
+    with cf.ThreadPoolExecutor(max_workers=5) as ex:
         answers = list(ex.map(ask_ai, qs))
     rows = []
     for q, ans in zip(qs, answers):
-        rows.append({"question": q, "answer": ans, "mentions": mentions(ans),
+        rows.append({"question": q, "answer": ans, "mentions": mentions(ans), "rank": rank(ans),
                      "vanguard": bool(re.search(r"club\s*vanguard", ans, re.I)), "autocomplete": autocomplete(q)})
     GEO.mkdir(parents=True, exist_ok=True)
     (GEO / f"{today}.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
+    write_report(rows, today)
+
+
+def write_report(rows: list[dict], today: str) -> None:
     hits = sum(r["vanguard"] for r in rows)
-    md = [f"# GEO-check Club Vanguard · {today}", "", f"**Vanguard genoemd in {hits} van {len(rows)} AI-antwoorden.**", ""]
-    md += ["| # | Vraag | Vanguard | Wél genoemd |", "|---|---|---|---|"]
+    first = sum(1 for r in rows if r.get("rank") == 1)
+    md = [f"# GEO-check Club Vanguard · {today}", "", f"**Vanguard genoemd in {hits} van {len(rows)} AI-antwoorden, als eerste in {first}.**", ""]
+    md += ["| # | Vraag | Plek | Wél genoemd |", "|---|---|---|---|"]
     for i, r in enumerate(rows, 1):
-        md.append(f"| {i} | {r['question']} | {'JA' if r['vanguard'] else 'nee'} | {', '.join(m for m in r['mentions'] if m != 'Vanguard') or '–'} |")
+        rk = r.get("rank"); plek = "–" if rk is None else ("1 ✅" if rk == 1 else ("staart" if rk == 99 else str(rk)))
+        md.append(f"| {i} | {r['question']} | {plek} | {', '.join(m for m in r['mentions'] if m != 'Vanguard') or '–'} |")
     md += ["", "## Autocomplete (wat mensen echt typen)", ""]
     for r in rows:
         md.append(f"- **{r['question']}** → {' · '.join(r['autocomplete']) or '(geen suggesties)'}")

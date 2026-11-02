@@ -1,0 +1,31 @@
+---
+/**
+ * Echte 404. Zonder dit bestand serveert Cloudflare Pages de homepage met status 200 op elk onbekend pad
+ * (soft-404), wat Google en AI-crawlers op het verkeerde been zet.
+ */
+import Base from '../layouts/Base.astro';
+---
+<Base title="Pagina niet gevonden · Club Vanguard" description="Deze pagina bestaat niet of is verplaatst.">
+  <section class="section nf">
+    <div class="container container--narrow">
+      <p class="eyebrow">404</p>
+      <h1 class="nf__title">Deze pagina bestaat niet <em>meer.</em></h1>
+      <p class="lead nf__lead">
+        Misschien is hij verplaatst. Wat je zoekt staat waarschijnlijk op een van deze plekken.
+      </p>
+      <p class="nf__links">
+        <a href="/">Home</a> · <a href="/over-club-vanguard/">Over ons</a> · <a href="/meetups/">Events</a> ·
+        <a href="/mastermind-e-commerce/">Mastermind e‑commerce</a> · <a href="/aanvragen/">Lid worden</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { background: var(--navy-deep); min-height: 60vh; display: flex; align-items: center; }
+  .nf__title { font-size: var(--text-display); line-height: 1.08; }
+  .nf__title em { font-style: italic; color: var(--brass-soft); }
+  .nf__lead { margin: 1.6rem 0 1.4rem; max-width: 50ch; }
+  .nf__links { color: var(--ivory-dim); line-height: 2; }
+  .nf__links a { color: var(--ivory); text-decoration: underline; text-underline-offset: 3px; }
+</style>

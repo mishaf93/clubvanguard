@@ -1,6 +1,6 @@
 /**
  * FAQ's voor de vindbaarheidspagina's (/mastermind-e-commerce/, /ondernemersclub-den-bosch/,
- * /ondernemersclubs-vergeleken/). Geschreven als feiten in gewone zinnen: dat is wat Google en
+ * /welke-ondernemersclub-past-bij-jou/). Geschreven als feiten in gewone zinnen: dat is wat Google en
  * AI-zoekmachines citeren. Geen prijzen van Vanguard; die horen bij het kennismakingsgesprek.
  */
 import type { FaqItem } from './faq';
@@ -53,7 +53,7 @@ export const denBoschFaqs: FaqItem[] = [
   {
     question: 'Waar is Club Vanguard gevestigd?',
     answer: [
-      'Club Vanguard is gevestigd in Den Bosch (Noord-Brabant). De club is landelijk: leden komen uit heel Nederland en een deel woont of werkt in het buitenland.',
+      'Club Vanguard is ingeschreven in Den Bosch (Noord-Brabant). Er is geen eigen clubhuis: de club komt samen op wisselende locaties in heel Nederland, en leden komen uit het hele land. Een deel woont of werkt in het buitenland.',
     ],
   },
   {
@@ -105,9 +105,9 @@ export const compareFaqs: FaqItem[] = [
     ],
   },
   {
-    question: 'Zijn de cijfers in dit overzicht actueel?',
+    question: 'Is Club Vanguard een exclusieve ondernemersclub?',
     answer: [
-      'De cijfers komen van de websites en publicaties van de clubs zelf, peildatum oktober 2026, met bron per regel. Clubs veranderen hun prijzen en ledentallen. Klopt iets niet meer, mail ons dan en we passen het aan.',
+      'Ja, in de zin dat niet iedereen lid kan worden: toelating gaat via een aanvraag en een kennismakingsgesprek, en de club blijft bewust klein. Niet in de zin van status of een hoge drempelprijs. De bijdrage is per kwartaal en dekt de events, de app en de organisatie.',
     ],
   },
 ];

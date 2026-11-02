@@ -1,0 +1,123 @@
+---
+/**
+ * Keuzepagina: "exclusieve ondernemersclubs", "ondernemersclub nederland", "mastermind of community".
+ * Bewust zonder andere clubs bij naam: we leggen de soorten uit en zeggen eerlijk waar Vanguard staat.
+ */
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import { compareFaqs } from '../data/faq-seo';
+import { faqSchema } from '../data/schema';
+
+const soorten = [
+  {
+    naam: 'De branchevereniging',
+    wat: 'Behartigt belangen, organiseert congressen, open voor iedereen in de sector. Goed voor kennis en zichtbaarheid, niet voor een vaste kring.',
+  },
+  {
+    naam: 'De lokale netwerkclub',
+    wat: 'Ondernemers uit één stad of regio, alle sectoren door elkaar. Breedte en gezelligheid, zelden iemand die jouw cijfers kan lezen.',
+  },
+  {
+    naam: 'De online community',
+    wat: 'Groot, laagdrempelig en altijd open. Veel vragen, wisselende kwaliteit van antwoorden, en je kent de mensen niet echt.',
+  },
+  {
+    naam: 'Het coachingprogramma',
+    wat: 'Eén coach of methode, een vast traject, een prijs per deelnemer. Je koopt begeleiding, geen kring van gelijken.',
+  },
+  {
+    naam: 'De besloten sectorclub',
+    wat: 'Kleine groep, strenge selectie, één vak, vooral offline. Dit is wat Club Vanguard is, voor e‑commerce en AI.',
+    ons: true,
+  },
+];
+---
+<Base
+  title="Welke ondernemersclub past bij jou? · Club Vanguard"
+  description="Branchevereniging, lokale netwerkclub, online community, coachingprogramma of besloten sectorclub: de vijf soorten ondernemersclubs in Nederland uitgelegd, en voor wie Club Vanguard de juiste is."
+  image="/images/pillars-leden.jpg"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema(compareFaqs))} />
+  </Fragment>
+
+  <section class="section seo-hero">
+    <div class="container container--narrow">
+      <p class="eyebrow">Kiezen</p>
+      <h1 class="seo-hero__title">Welke ondernemersclub <em>past bij jou?</em></h1>
+      <p class="lead seo-hero__lead">
+        Er zijn in Nederland honderden clubs, communities en masterminds voor ondernemers. De meeste zijn
+        goed in wat ze doen. De vraag is niet welke de beste is, maar welk soort club je nu nodig hebt.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Vijf soorten, één keuze.</h2>
+      <div class="soorten">
+        {soorten.map((s) => (
+          <article class:list={['soort', { 'soort--ons': s.ons }]}>
+            <h3 class="soort__naam">{s.naam}</h3>
+            <p class="soort__wat">{s.wat}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div class="split__content">
+        <h2 class="section-title">Kies op het niveau van de tafel, niet op de prijs.</h2>
+        <p class="seo-text seo-text--dim">
+          Bij een miljoen omzet wil je mensen die net voor je lopen en mensen die net achter je lopen,
+          in jouw kanalen. Een algemene club geeft breedte. Een sectorclub geeft diepte op bol, Amazon,
+          Shopify en AI.
+        </p>
+        <p class="seo-text seo-text--dim">
+          Let op de vorm: een programma koop je, een kring van gelijken verdien je door wat je inbrengt.
+          En kijk naar de cadans: twaalf offline momenten per jaar is iets anders dan een chatkanaal met
+          een jaarlijks event.
+        </p>
+      </div>
+      <img src="/images/pillars-leden.jpg" alt="Leden van Club Vanguard na een club event" class="site-photo split__photo" width="600" height="450" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section section--ivory">
+    <div class="container container--narrow">
+      <h2 class="section-title">Waar Vanguard staat.</h2>
+      <p class="seo-text">
+        Club Vanguard is een besloten sectorclub: 50+ geselecteerde e‑commerce- en AI-ondernemers, twaalf
+        offline momenten per jaar, dinners op aanvraag en één internationale trip. Toelating via een
+        kennismakingsgesprek, de bijdrage per kwartaal bespreken we daarin. Past het niet, dan zeggen we
+        dat eerlijk en wijzen we je graag door. Lees meer op
+        <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+      </p>
+    </div>
+  </section>
+
+  <Faq items={compareFaqs} eyebrow="Veelgestelde vragen" title="Over kiezen tussen clubs" />
+  <ClosingCta />
+</Base>
+
+<style>
+  .seo-hero { background: var(--navy-deep); }
+  .seo-hero__title { font-size: var(--text-display); line-height: 1.08; max-width: 18ch; }
+  .seo-hero__title em { font-style: italic; color: var(--brass-soft); }
+  .seo-hero__lead { margin: 1.6rem 0 0; max-width: 60ch; }
+  .soorten { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .soort { background: #fff; border: 1px solid var(--line-ivory); border-radius: 6px; padding: 1.4rem 1.5rem; }
+  .soort--ons { border-color: var(--brass); }
+  .soort__naam { font-family: var(--font-display); font-size: var(--text-lg); color: var(--ink); }
+  .soort--ons .soort__naam { color: var(--brass); }
+  .soort__wat { margin-top: 0.5rem; color: var(--ink-dim); line-height: 1.65; font-size: var(--text-sm); max-width: 62ch; }
+  .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .split__photo { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line-navy); object-fit: cover; aspect-ratio: 4 / 3; }
+  .seo-text { margin-top: 1.4rem; color: var(--ink-dim); line-height: 1.7; font-size: var(--text-base); max-width: 58ch; }
+  .seo-text--dim { color: var(--ivory-dim); }
+  .seo-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+</style>

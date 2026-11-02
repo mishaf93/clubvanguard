@@ -8,7 +8,7 @@ const PAGES: Array<[path: string, priority: string]> = [
   ['/meetups/', '0.8'],
   ['/mastermind-e-commerce/', '0.8'],
   ['/ondernemersclub-den-bosch/', '0.8'],
-  ['/ondernemersclubs-vergeleken/', '0.7'],
+  ['/welke-ondernemersclub-past-bij-jou/', '0.7'],
   ['/aanvragen/', '0.7'],
   ['/join/', '0.5'],
   ['/the-shift-event/', '0.4'],
