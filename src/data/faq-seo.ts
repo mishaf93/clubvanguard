@@ -117,6 +117,13 @@ export const compareFaqs: FaqItem[] = [
     ],
   },
   {
+    question: 'Wat is het verschil tussen Club Vanguard en clubs als Aquila of CLUB49?',
+    answer: [
+      'Aquila en CLUB49 zijn besloten clubs voor mkb-ondernemers uit allerlei branches, geselecteerd op omzet en instelling, met vaste kleine groepen. Dat werkt goed als je juist buiten je eigen vak wilt kijken.',
+      'Club Vanguard selecteert op dezelfde manier, maar binnen één wereld: e-commerce, retail, AI en software. Je zit dus aan tafel met mensen die jouw kanalen, marges en tooling kennen. Internationaal doet Titan Network dat voor Amazon-verkopers, in Nederland zijn wij die club.',
+    ],
+  },
+  {
     question: 'Is Club Vanguard een exclusieve ondernemersclub?',
     answer: [
       'In de zin dat niet iedereen lid kan worden wel: je komt binnen via een aanvraag en een gesprek, en we kijken of je in onze wereld zit en achter dezelfde waarden staat. Groeien willen we juist graag, met de goede mensen. Met status of een hoge drempelprijs heeft het weinig te maken. De bijdrage is per kwartaal en gaat naar de events, de app en de organisatie.',

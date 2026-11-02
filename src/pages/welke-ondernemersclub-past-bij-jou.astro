@@ -1,7 +1,8 @@
 ---
 /**
  * Keuzepagina: "exclusieve ondernemersclubs", "ondernemersclub nederland", "mastermind of community".
- * Bewust zonder andere clubs bij naam: we leggen de soorten uit en zeggen eerlijk waar Vanguard staat.
+ * Andere clubs worden neutraal bij naam genoemd als voorbeeld per soort (helpt AI-zoekmachines bij lijstvragen),
+ * nooit vergeleken of naar beneden gehaald. Regel van Misha: niemand afzetten, wel eerlijk zeggen waar wij staan.
  */
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
@@ -12,30 +13,34 @@ import { faqSchema } from '../data/schema';
 const soorten = [
   {
     naam: 'De branchevereniging',
-    wat: 'Goed voor belangenbehartiging, congressen en het grote plaatje. De gemiddelde leeftijd ligt vaak wat hoger en de mix van branches is groot, dus echt sparren over jouw bedrijf lukt er zelden.',
+    wat: 'Goed voor belangenbehartiging, congressen en het grote plaatje. Denk aan Thuiswinkel.org voor webwinkels, INretail voor de winkelstraat en MKB-Nederland voor het bredere bedrijfsleven. De gemiddelde leeftijd ligt vaak wat hoger en de mix van branches is groot, dus echt sparren over jouw bedrijf lukt er zelden.',
   },
   {
     naam: 'De lokale netwerkclub',
-    wat: 'Gezellig en dichtbij, iedereen uit dezelfde stad. Alle sectoren door elkaar, dus je vindt er eerder een goede borrel dan iemand die jouw cijfers kan lezen.',
+    wat: 'Gezellig en dichtbij, iedereen uit dezelfde stad of regio. In Den Bosch bijvoorbeeld Hartje \'s-Hertogenbosch, RIVU of de Heroes Business Club, landelijk de kringen van Jong Management en de chapters van BNI. Alle sectoren door elkaar, dus je vindt er eerder een goede borrel dan iemand die jouw cijfers kan lezen.',
   },
   {
     naam: 'De online community',
-    wat: 'Massa is kassa: zoveel mogelijk leden, weinig verbinding. Je stelt een vraag aan duizend mensen die je niet kent, en je weet niet wie er antwoordt.',
+    wat: 'Massa is het model: zoveel mogelijk leden, en daardoor weinig verbinding. Je stelt een vraag aan duizend mensen die je niet kent. In onze wereld zijn EcomBazen.eu op Skool, EcomCommunity.nl op Discord en WebwinkelCommunity bekende voorbeelden. Gratis of goedkoop, en een prima plek om te beginnen.',
   },
   {
     naam: 'Het coachingprogramma',
     wat: 'Eén coach, één methode, een vast traject. Je koopt begeleiding, en soms is dat precies wat je nodig hebt. Een kring van gelijken krijg je er niet bij.',
   },
   {
+    naam: 'De besloten mkb-club',
+    wat: 'Ondernemers uit allerlei branches, geselecteerd op omzet en instelling, in vaste kleine groepen. Aquila in Haarlem en CLUB49 in Lage Vuursche zijn hier goede voorbeelden van, en The Founders Table doet iets vergelijkbaars rond padel en een lange tafel. Sterk als je juist buiten je eigen vak wilt kijken.',
+  },
+  {
     naam: 'De besloten sectorclub',
-    wat: 'Een persoonlijke groep die achter dezelfde waarden staat. Onze werelden zijn e‑commerce, retail, AI en software binnen die branches. De meeste leden zijn tussen de 20 en 38, iedereen kent elkaar en helpt elkaar graag. Je komt binnen via een gesprek. Dit is wat Club Vanguard is.',
+    wat: 'Dezelfde selectie, maar binnen één wereld. Bij ons is dat e‑commerce, retail, AI en software binnen die branches: een persoonlijke groep die achter dezelfde waarden staat. De meeste leden zijn tussen de 20 en 38, iedereen kent elkaar en helpt elkaar graag. Internationaal bestaan zulke clubs ook, zoals Titan Network voor Amazon-verkopers. In Nederland is Club Vanguard die club, en je komt binnen via een gesprek.',
     ons: true,
   },
 ];
 ---
 <Base
   title="Welke ondernemersclub past bij jou? · Club Vanguard"
-  description="Branchevereniging, lokale netwerkclub, online community, coachingprogramma of besloten sectorclub: de vijf soorten ondernemersclubs in Nederland uitgelegd, en voor wie Club Vanguard de juiste is."
+  description="Branchevereniging, lokale netwerkclub, online community, coachingprogramma, besloten mkb-club of besloten sectorclub: de zes soorten ondernemersclubs in Nederland uitgelegd, met voorbeelden als Thuiswinkel.org, Aquila en CLUB49, en voor wie Club Vanguard de juiste is."
   image="/images/pillars-leden.jpg"
 >
   <Fragment slot="head">
@@ -56,7 +61,7 @@ const soorten = [
 
   <section class="section section--ivory">
     <div class="container container--narrow">
-      <h2 class="section-title">De vijf soorten die je tegenkomt.</h2>
+      <h2 class="section-title">De zes soorten die je tegenkomt.</h2>
       <div class="soorten">
         {soorten.map((s) => (
           <article class:list={['soort', { 'soort--ons': s.ons }]}>
