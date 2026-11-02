@@ -64,32 +64,31 @@ export const denBoschFaqs: FaqItem[] = [
   {
     question: 'Waar is Club Vanguard gevestigd?',
     answer: [
-      'Club Vanguard staat ingeschreven in Den Bosch. Een clubhuis hebben we niet: we komen samen op wisselende locaties door het hele land, en onze leden komen uit alle hoeken van Nederland. Een paar wonen in Spanje, in Valencia, Málaga en Alicante.',
+      'In Nederland. We komen samen door het hele land, meestal rond Utrecht. Onze leden komen uit heel Nederland, een paar wonen in Spanje.',
     ],
   },
   {
     question: 'Waar zijn de events van Club Vanguard?',
     answer: [
-      'Op wisselende plekken in Brabant en de rest van Nederland, van Kasteel Maurick in Vught tot landgoederen rondom Utrecht. De agenda op de site laat de komende drie maanden zien.',
+      'Door het hele land, meestal rond Utrecht en soms in Brabant. De agenda op de site laat de komende events zien.',
     ],
   },
   {
     question: 'Is Club Vanguard een ondernemersvereniging voor Den Bosch?',
     answer: [
-      'Nee. Een ondernemersvereniging komt op voor de belangen van bedrijven in een stad of op een bedrijventerrein. Wij zijn een besloten club voor één wereld, e-commerce en AI, met leden uit het hele land.',
-      'Zoek je iets lokaals in Den Bosch, dan zijn Hartje \'s-Hertogenbosch, RIVU en de Heroes Business Club daar de plekken voor.',
+      'Nee. Wij zijn een landelijke club voor e-commerce, retail, AI en software. Zoek je iets lokaals in Den Bosch, kijk dan bij Hartje \'s-Hertogenbosch, RIVU of de Heroes Business Club.',
     ],
   },
   {
     question: 'Wie kom ik tegen bij Club Vanguard?',
     answer: [
-      'Merkeigenaren die verkopen via bol, Amazon en hun eigen webshop, en via winkels en retailplatformen als Kaufland, MediaMarkt en Decathlon. Oprichters van agencies die voor die merken werken, en mensen die AI- en automatiseringstools bouwen. De meeste tussen de 20 en 38 jaar, met omzetten van een paar ton tot meerdere miljoenen.',
+      'Merkeigenaren op bol, Amazon, Shopify en in retail, oprichters van agencies en bouwers van AI-tools. De meeste tussen de 20 en 38 jaar.',
     ],
   },
   {
     question: 'Hoe word ik lid en kan ik eerst kennismaken?',
     answer: [
-      'Je vult de aanvraag in, daarna volgt een kennismakingsgesprek van ongeveer een halfuur. Wil je eerst een keer meekijken, vraag dan een plek aan als gast voor een club event.',
+      'Je vult de aanvraag in, daarna volgt een gesprek van een halfuur. Eerst meekijken kan als gast bij een club event.',
     ],
   },
 ];

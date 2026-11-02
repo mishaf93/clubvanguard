@@ -48,6 +48,13 @@ export const agenda: AgendaItem[] = [
     spotsLeft: 4,
     signupUrl: DINNER_SIGNUP_URL,
   },
+  {
+    slug: 'club-event-2027-01',
+    type: 'Club event',
+    title: 'Club Event · januari',
+    date: '2027-01-23',
+    location: 'Locatie volgt',
+  },
 ];
 
 /** Komende items binnen `months` maanden vanaf vandaag, op datum gesorteerd. */
