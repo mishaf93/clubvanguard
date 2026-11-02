@@ -12,23 +12,23 @@ import { faqSchema } from '../data/schema';
 const soorten = [
   {
     naam: 'De branchevereniging',
-    wat: 'Behartigt belangen, organiseert congressen, open voor iedereen in de sector. Goed voor kennis en zichtbaarheid, niet voor een vaste kring.',
+    wat: 'Goed voor belangenbehartiging, congressen en het grote plaatje. De gemiddelde leeftijd ligt vaak wat hoger en de mix van branches is groot, dus echt sparren over jouw bedrijf lukt er zelden.',
   },
   {
     naam: 'De lokale netwerkclub',
-    wat: 'Ondernemers uit één stad of regio, alle sectoren door elkaar. Breedte en gezelligheid, zelden iemand die jouw cijfers kan lezen.',
+    wat: 'Gezellig en dichtbij, iedereen uit dezelfde stad. Alle sectoren door elkaar, dus je vindt er eerder een goede borrel dan iemand die jouw cijfers kan lezen.',
   },
   {
     naam: 'De online community',
-    wat: 'Groot, laagdrempelig en altijd open. Veel vragen, wisselende kwaliteit van antwoorden, en je kent de mensen niet echt.',
+    wat: 'Massa is kassa: zoveel mogelijk leden, weinig verbinding. Je stelt een vraag aan duizend mensen die je niet kent, en je weet niet wie er antwoordt.',
   },
   {
     naam: 'Het coachingprogramma',
-    wat: 'Eén coach of methode, een vast traject, een prijs per deelnemer. Je koopt begeleiding, geen kring van gelijken.',
+    wat: 'Eén coach, één methode, een vast traject. Je koopt begeleiding, en soms is dat precies wat je nodig hebt. Een kring van gelijken krijg je er niet bij.',
   },
   {
     naam: 'De besloten sectorclub',
-    wat: 'Kleine groep, strenge selectie, één vak, vooral offline. Dit is wat Club Vanguard is, voor e‑commerce en AI.',
+    wat: 'Een kleine groep uit één wereld, bij ons e‑commerce, AI, retail en software. Jong, tussen de 20 en 40, iedereen kent elkaar en helpt elkaar. Je komt binnen via een gesprek. Dit is wat Club Vanguard is.',
     ons: true,
   },
 ];
@@ -47,15 +47,16 @@ const soorten = [
       <p class="eyebrow">Kiezen</p>
       <h1 class="seo-hero__title">Welke ondernemersclub <em>past bij jou?</em></h1>
       <p class="lead seo-hero__lead">
-        Er zijn in Nederland honderden clubs, communities en masterminds voor ondernemers. De meeste zijn
-        goed in wat ze doen. De vraag is niet welke de beste is, maar welk soort club je nu nodig hebt.
+        In Nederland zijn honderden clubs, communities en masterminds voor ondernemers, en de meeste doen
+        hun werk prima. Welke bij je past hangt af van waar je nu staat en wat je zoekt. Dit is hoe wij
+        ernaar kijken, inclusief waar we zelf staan.
       </p>
     </div>
   </section>
 
   <section class="section section--ivory">
     <div class="container container--narrow">
-      <h2 class="section-title">Vijf soorten, één keuze.</h2>
+      <h2 class="section-title">De vijf soorten die je tegenkomt.</h2>
       <div class="soorten">
         {soorten.map((s) => (
           <article class:list={['soort', { 'soort--ons': s.ons }]}>
@@ -70,16 +71,15 @@ const soorten = [
   <section class="section">
     <div class="container split">
       <div class="split__content">
-        <h2 class="section-title">Kies op het niveau van de tafel, niet op de prijs.</h2>
+        <h2 class="section-title">Kijk naar wie er aan tafel zit.</h2>
         <p class="seo-text seo-text--dim">
-          Bij een miljoen omzet wil je mensen die net voor je lopen en mensen die net achter je lopen,
-          in jouw kanalen. Een algemene club geeft breedte. Een sectorclub geeft diepte op bol, Amazon,
-          Shopify en AI.
+          Rond een miljoen omzet heb je het meest aan mensen die net voor je lopen en mensen die net achter
+          je lopen, in jouw kanalen. Een algemene club geeft je breedte. Een club uit je eigen vak geeft je
+          diepte op bol, Amazon, Shopify en AI.
         </p>
         <p class="seo-text seo-text--dim">
-          Let op de vorm: een programma koop je, een kring van gelijken verdien je door wat je inbrengt.
-          En kijk naar de cadans: twaalf offline momenten per jaar is iets anders dan een chatkanaal met
-          een jaarlijks event.
+          En kijk hoe vaak je elkaar echt ziet. Twaalf keer per jaar samen aan tafel is iets anders dan
+          een chatkanaal met één event per jaar.
         </p>
       </div>
       <img src="/images/pillars-leden.jpg" alt="Leden van Club Vanguard na een club event" class="site-photo split__photo" width="600" height="450" loading="lazy" />
@@ -88,13 +88,13 @@ const soorten = [
 
   <section class="section section--ivory">
     <div class="container container--narrow">
-      <h2 class="section-title">Waar Vanguard staat.</h2>
+      <h2 class="section-title">Waar wij staan.</h2>
       <p class="seo-text">
-        Club Vanguard is een besloten sectorclub: 50+ geselecteerde e‑commerce- en AI-ondernemers, twaalf
-        offline momenten per jaar, dinners op aanvraag en één internationale trip. Toelating via een
-        kennismakingsgesprek, de bijdrage per kwartaal bespreken we daarin. Past het niet, dan zeggen we
-        dat eerlijk en wijzen we je graag door. Lees meer op
-        <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+        Club Vanguard is een besloten club van ruim vijftig e‑commerce- en AI-ondernemers. Twaalf keer per
+        jaar zien we elkaar, dinners zijn op aanvraag, en één keer per jaar gaan we samen op reis. Je komt
+        binnen via een kennismakingsgesprek, en daarin bespreken we ook de bijdrage per kwartaal. Die gaat
+        elk jaar iets omhoog, dus vroeg instappen loont. Past het niet, dan zeggen we dat eerlijk en denken
+        we mee over waar je wél moet zijn. Lees meer op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
       </p>
     </div>
   </section>
