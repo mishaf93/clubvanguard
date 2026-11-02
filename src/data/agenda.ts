@@ -18,6 +18,8 @@ export interface AgendaItem {
   signupUrl?: string;
   /** Interne eventpagina, bv. /events/the-shift/ */
   detailUrl?: string;
+  /** Foto van de locatie, bestandsnaam in /public/images/. */
+  image?: string;
 }
 
 export const agenda: AgendaItem[] = [
@@ -36,7 +38,8 @@ export const agenda: AgendaItem[] = [
     type: 'Club event',
     title: 'Club Event · november',
     date: '2026-11-21',
-    location: 'Locatie volgt',
+    location: 'Landgoed Mariënwaerdt, Beesd',
+    image: 'marienwaerdt.jpg',
   },
   {
     slug: 'christmas-dinner-2026',

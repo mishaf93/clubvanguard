@@ -38,11 +38,21 @@ const {
           const d = formatAgendaDate(item.date);
           const hasSpots = typeof item.spotsLeft === 'number';
           return (
-            <li class="agenda__row">
+            <li class:list={['agenda__row', { 'has-image': item.image }]}>
               <div class="agenda__date" aria-hidden="true">
                 <span class="agenda__day">{d.day}</span>
                 <span class="agenda__month">{d.month}</span>
               </div>
+              {item.image && (
+                <img
+                  src={`/images/${item.image}`}
+                  alt={item.location}
+                  class="agenda__photo"
+                  loading="lazy"
+                  width="1920"
+                  height="560"
+                />
+              )}
               <div class="agenda__body">
                 <p class="agenda__type">{item.type}</p>
                 <h3 class="agenda__title">{item.title}</h3>
@@ -107,7 +117,21 @@ const {
     padding-block: 1.6rem;
     border-bottom: 1px solid var(--line-navy);
   }
+  .agenda__row.has-image {
+    grid-template-columns: auto auto 1fr auto;
+  }
   .section--ivory .agenda__row { border-color: var(--line-ivory); }
+  .agenda__photo {
+    display: block;
+    width: clamp(9rem, 16vw, 13rem);
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: 50% 45%;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .section--ivory .agenda__photo { border-color: var(--line-ivory); }
   .agenda__date {
     display: inline-flex;
     flex-direction: column;
@@ -195,8 +219,15 @@ const {
   .agenda__join a:hover { text-decoration: underline; }
 
   @media (max-width: 640px) {
-    .agenda__row {
+    .agenda__row,
+    .agenda__row.has-image {
       grid-template-columns: auto 1fr;
+    }
+    .agenda__photo {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      width: 100%;
+      aspect-ratio: 16 / 7;
     }
     .agenda__aside {
       grid-column: 2;
