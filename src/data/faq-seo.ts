@@ -10,13 +10,13 @@ export const mastermindFaqs: FaqItem[] = [
     question: 'Wat is een mastermind voor e-commerce-ondernemers?',
     answer: [
       'Een vaste groep ondernemers die ongeveer even ver zijn en elkaar scherp houden. Je legt je eigen vraagstuk op tafel en krijgt antwoord van mensen die het al een keer hebben meegemaakt.',
-      'Bij Club Vanguard is dat geen traject dat je koopt, je wordt lid van een club. Ruim vijftig e-commerce- en AI-ondernemers, twaalf keer per jaar bij elkaar, en een groepsapp waar vragen meestal dezelfde dag beantwoord worden.',
+      'Bij Club Vanguard is dat geen traject dat je koopt, je wordt lid van een club. Ruim vijftig e-commerce-, retail- en AI-ondernemers die twaalf keer per jaar samenkomen, en een groepsapp waar vragen meestal dezelfde dag beantwoord worden.',
     ],
   },
   {
     question: 'Hoe verschilt Club Vanguard van een online community of cursus?',
     answer: [
-      'Een cursus heeft één docent. Een online community heeft duizenden leden die elkaar niet kennen. Bij ons zit je met een kleine groep aan tafel die je na twee events gewoon bij naam kent.',
+      'Een cursus heeft één docent. Een online community heeft duizenden leden die elkaar niet kennen. Bij ons zit je aan tafel met mensen die je na twee events gewoon bij naam kent.',
       'Er loopt geen coach rond en we verdienen niet aan begeleiding. De bijdrage gaat naar de events, de app en de organisatie.',
     ],
   },
@@ -37,7 +37,7 @@ export const mastermindFaqs: FaqItem[] = [
   {
     question: 'Hoe word ik lid?',
     answer: [
-      'Je vult de aanvraag in op de site. Daarna heb je een kort gesprek met Misha, de oprichter, en binnen een dag of twee hoor je of je welkom bent.',
+      'Je vult de aanvraag in op de site. Daarna heb je een gesprek van ongeveer een halfuur met Misha, de oprichter, en binnen een dag of twee hoor je of je welkom bent.',
       'De meeste leden komen binnen via iemand die al lid is, of nadat ze een keer als gast bij een event zijn geweest.',
     ],
   },
@@ -47,13 +47,25 @@ export const mastermindFaqs: FaqItem[] = [
       'Ja, één keer. Vraag een plek aan als gast voor een club event. Dinners houden we klein, die zijn voor leden en genodigden.',
     ],
   },
+  {
+    question: 'Moet ik bij elk event aanwezig zijn?',
+    answer: [
+      'Nee. Je bent altijd vrij om te komen of niet, we houden geen aanwezigheid bij. In de praktijk wil bijna iedereen erbij zijn, omdat je er mensen ziet die je anders alleen in de app spreekt.',
+    ],
+  },
+  {
+    question: 'Hoe oud zijn de leden van Club Vanguard?',
+    answer: [
+      'De meeste leden zijn tussen de 20 en 38 jaar. We staan open voor ondernemers van 18 tot 45, zolang je in onze wereld zit: e-commerce, retail, AI of software.',
+    ],
+  },
 ];
 
 export const denBoschFaqs: FaqItem[] = [
   {
     question: 'Waar is Club Vanguard gevestigd?',
     answer: [
-      'Club Vanguard staat ingeschreven in Den Bosch. Een clubhuis hebben we niet: we komen samen op wisselende locaties door het hele land, en onze leden komen uit heel Nederland. Een paar wonen in Spanje.',
+      'Club Vanguard staat ingeschreven in Den Bosch. Een clubhuis hebben we niet: we komen samen op wisselende locaties door het hele land, en onze leden komen uit alle hoeken van Nederland. Een paar wonen in Spanje, in Valencia, Málaga en Alicante.',
     ],
   },
   {
@@ -72,13 +84,13 @@ export const denBoschFaqs: FaqItem[] = [
   {
     question: 'Wie kom ik tegen bij Club Vanguard?',
     answer: [
-      'Merkeigenaren die verkopen via bol, Amazon en hun eigen webshop, oprichters van agencies die voor die merken werken, en mensen die AI- en automatiseringstools bouwen. Bijna allemaal tussen de 20 en 40 jaar, met omzetten van een paar ton tot meerdere miljoenen.',
+      'Merkeigenaren die verkopen via bol, Amazon en hun eigen webshop, en via winkels en retailplatformen als Kaufland, MediaMarkt en Decathlon. Oprichters van agencies die voor die merken werken, en mensen die AI- en automatiseringstools bouwen. De meeste tussen de 20 en 38 jaar, met omzetten van een paar ton tot meerdere miljoenen.',
     ],
   },
   {
     question: 'Hoe word ik lid en kan ik eerst kennismaken?',
     answer: [
-      'Je vult de aanvraag in, daarna volgt een kort kennismakingsgesprek. Wil je eerst een keer meekijken, vraag dan een plek aan als gast voor een club event.',
+      'Je vult de aanvraag in, daarna volgt een kennismakingsgesprek van ongeveer een halfuur. Wil je eerst een keer meekijken, vraag dan een plek aan als gast voor een club event.',
     ],
   },
 ];
@@ -88,7 +100,7 @@ export const compareFaqs: FaqItem[] = [
     question: 'Wat is het verschil tussen een ondernemersclub, een mastermind en een community?',
     answer: [
       'Een ondernemersclub is een vaste groep met lidmaatschap en selectie, meestal in het echt. Een mastermind is een kleine groep die elkaar op vaste momenten scherp houdt. Een community is meestal online, groot en voor iedereen open.',
-      'Club Vanguard is een mix van de eerste twee: een besloten club die elkaar twaalf keer per jaar ziet, met kleine tafels en één vakgebied.',
+      'Club Vanguard is een mix van de eerste twee: een besloten club die twaalf keer per jaar samenkomt, met mensen uit dezelfde wereld die achter dezelfde waarden staan.',
     ],
   },
   {
@@ -101,13 +113,13 @@ export const compareFaqs: FaqItem[] = [
   {
     question: 'Welke club past bij een webshop met één miljoen omzet?',
     answer: [
-      'Kijk naar wie er aan tafel zit. Rond een miljoen wil je mensen die net voor je lopen en mensen die net achter je lopen, in jouw kanalen. Een algemene club geeft breedte, een club uit je eigen vak zoals Club Vanguard geeft diepte op bol, Amazon, Shopify en AI.',
+      'Kijk naar wie er aan tafel zit. Rond een miljoen wil je mensen die net voor je lopen en mensen die net achter je lopen, in jouw kanalen. Een algemene club geeft breedte, een club uit je eigen vak zoals Club Vanguard geeft diepte op bol, Amazon, Shopify, retail en AI.',
     ],
   },
   {
     question: 'Is Club Vanguard een exclusieve ondernemersclub?',
     answer: [
-      'In de zin dat niet iedereen lid kan worden wel: je komt binnen via een aanvraag en een gesprek, en we houden de groep bewust klein. Met status of een hoge drempelprijs heeft het weinig te maken. De bijdrage is per kwartaal en gaat naar de events, de app en de organisatie.',
+      'In de zin dat niet iedereen lid kan worden wel: je komt binnen via een aanvraag en een gesprek, en we kijken of je in onze wereld zit en achter dezelfde waarden staat. Groeien willen we juist graag, met de goede mensen. Met status of een hoge drempelprijs heeft het weinig te maken. De bijdrage is per kwartaal en gaat naar de events, de app en de organisatie.',
     ],
   },
 ];
