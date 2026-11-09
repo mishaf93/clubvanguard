@@ -24,7 +24,7 @@ const PAGES: Array<[path: string, priority: string]> = [
 export const GET: APIRoute = () => {
   const today = new Date().toISOString().slice(0, 10);
   const body =
-    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     PAGES.map(([p, prio]) => `  <url><loc>${COMPANY.site}${p}</loc><lastmod>${today}</lastmod><priority>${prio}</priority></url>`).join('\n') +
     `\n</urlset>\n`;
   return new Response(body, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
