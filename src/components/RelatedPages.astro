@@ -1,0 +1,24 @@
+---
+/** Korte rij links tussen de vindbaarheidspagina's, zodat ze niet in de footer hoeven. */
+const pages = [
+  { href: '/mastermind-e-commerce/', label: 'Mastermind e-commerce' },
+  { href: '/ai-en-e-commerce/', label: 'AI en e-commerce' },
+  { href: '/shopify-d2c-community/', label: 'Shopify en D2C' },
+  { href: '/e-commerce-agencies-freelancers/', label: 'Agencies en freelancers' },
+  { href: '/nederlandse-ondernemers-spanje/', label: 'Ondernemers in Spanje' },
+  { href: '/ondernemersclub-den-bosch/', label: 'Vanguard en Den Bosch' },
+  { href: '/welke-ondernemersclub-past-bij-jou/', label: 'Welke club past bij jou' },
+];
+const current = Astro.url.pathname;
+const links = pages.filter((p) => p.href !== current);
+---
+<p class="related">
+  <span class="related__label">Meer over de club</span>
+  {links.map((l) => <a href={l.href}>{l.label}</a>)}
+</p>
+
+<style>
+  .related { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.85rem; opacity: 0.8; }
+  .related__label { width: 100%; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass); }
+  .related a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+</style>

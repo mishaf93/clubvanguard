@@ -4,13 +4,14 @@
  * Korte feitenzinnen in Misha's toon. Geen prijzen, geen andere clubs bij naam.
  */
 import Base from '../layouts/Base.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import Faq from '../components/Faq.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 import { spanjeFaqs } from '../data/faq-seo';
 import { faqSchema } from '../data/schema';
 ---
 <Base
-  title="Nederlandse ondernemers in Spanje · e-commerce en AI · Club Vanguard"
+  title="Nederlandse ondernemers in Spanje: e-commerce en AI | Club Vanguard"
   description="Club Vanguard heeft leden die vanuit Spanje ondernemen, onder meer in Valencia, Málaga en Alicante. Een besloten club voor e-commerce, retail en AI, met de groepsapp als dagelijkse plek en events in Nederland."
   image="/images/gallery-trip.jpg"
 >
@@ -60,9 +61,9 @@ import { faqSchema } from '../data/schema';
     <div class="container container--narrow">
       <h2 class="section-title">Lid worden begint met een gesprek.</h2>
       <p class="seo-text">
-        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt. Meer over
-        de club lees je op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt.
       </p>
+      <RelatedPages />
     </div>
   </section>
 

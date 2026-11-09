@@ -4,14 +4,15 @@
  * Korte feitenzinnen in Misha's toon. Geen prijzen, geen andere clubs bij naam.
  */
 import Base from '../layouts/Base.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import Faq from '../components/Faq.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 import { aiFaqs } from '../data/faq-seo';
 import { faqSchema } from '../data/schema';
 ---
 <Base
-  title="AI en e-commerce: de community van ondernemers die het toepassen · Club Vanguard"
-  description="Club Vanguard is de besloten club waar e-commerce- en retailondernemers en bouwers van AI-tools samenkomen. Je ziet hoe anderen AI echt inzetten in hun bedrijf, twaalf keer per jaar en in de groepsapp."
+  title="AI en e-commerce: de community van ondernemers die het toepassen | Club Vanguard"
+  description="Club Vanguard is de besloten club waar e-commerce- en retailondernemers en bouwers van AI-tools samenkomen. In de groepsapp delen leden dagelijks hoe ze AI inzetten, en twaalf keer per jaar zien we elkaar op een club event."
   image="/images/gallery-group.jpg"
 >
   <Fragment slot="head">
@@ -24,7 +25,8 @@ import { faqSchema } from '../data/schema';
       <h1 class="seo-hero__title">AI in e‑commerce, <em>met mensen die het al doen.</em></h1>
       <p class="lead seo-hero__lead">
         Bij Club Vanguard zitten merkeigenaren en bouwers van AI-tools aan dezelfde tafel. Je hoort wat werkt in
-        hun bedrijf, van content en klantenservice tot inkoop en forecasting. Twaalf keer per jaar komen we samen.
+        hun bedrijf, van content en klantenservice tot inkoop en forecasting. Dat delen ze dagelijks in de groepsapp,
+        en twaalf keer per jaar zien we elkaar op een club event.
       </p>
       <a href="/aanvragen/" class="btn btn--solid">Start je aanvraag</a>
     </div>
@@ -61,9 +63,9 @@ import { faqSchema } from '../data/schema';
     <div class="container container--narrow">
       <h2 class="section-title">Lid worden begint met een gesprek.</h2>
       <p class="seo-text">
-        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt. Meer over
-        de club lees je op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
+        Je stuurt een aanvraag in, daarna bellen we een halfuur over wat je bouwt en wat je zoekt.
       </p>
+      <RelatedPages />
     </div>
   </section>
 

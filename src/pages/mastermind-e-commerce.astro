@@ -4,13 +4,14 @@
  * Feiten in gewone zinnen (Google + AI-zoekmachines citeren feiten, geen sfeer). Stijl: statement + korte uitleg.
  */
 import Base from '../layouts/Base.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import Faq from '../components/Faq.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 import { mastermindFaqs } from '../data/faq-seo';
 import { faqSchema } from '../data/schema';
 ---
 <Base
-  title="De e-commerce mastermind van Nederland · Club Vanguard"
+  title="De e-commerce mastermind van Nederland | Club Vanguard"
   description="Club Vanguard is een besloten club van ruim vijftig e-commerce-, retail- en AI-ondernemers uit heel Nederland. Twaalf keer per jaar komen we samen. Lid worden begint met een gesprek van een halfuur."
   image="/images/leden.jpg"
 >
@@ -69,6 +70,7 @@ import { faqSchema } from '../data/schema';
       <p class="seo-text">
         Twijfel je of een club als deze bij je past? Lees dan hoe wij kijken naar <a href="/welke-ondernemersclub-past-bij-jou/">welke ondernemersclub bij jou past</a>.
       </p>
+      <RelatedPages />
     </div>
   </section>
 

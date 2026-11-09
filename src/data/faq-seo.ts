@@ -154,7 +154,7 @@ export const d2cFaqs: FaqItem[] = [
   {
     question: 'Welke community is er voor Shopify- en D2C-merken in Nederland?',
     answer: [
-      'Club Vanguard is een besloten club voor merkeigenaren die verkopen via hun eigen Shopify-webshop, bol, Amazon en retail. Ruim vijftig leden uit heel Nederland, twaalf keer per jaar samen.',
+      'Club Vanguard is een besloten club voor merkeigenaren die verkopen via hun eigen Shopify-webshop, bol, Amazon en retail. Ruim vijftig leden uit heel Nederland helpen elkaar dagelijks in de groepsapp en zien elkaar twaalf keer per jaar op een club event.',
     ],
   },
   {
@@ -175,7 +175,7 @@ export const agencyFaqs: FaqItem[] = [
   {
     question: 'Waar kunnen e-commerce marketeers, agencies en freelancers netwerken met merkeigenaren?',
     answer: [
-      'Bij Club Vanguard zitten oprichters van agencies, marketeers en freelancers aan tafel met merkeigenaren uit e-commerce en retail. Twaalf keer per jaar komen we samen.',
+      'Bij Club Vanguard zitten oprichters van agencies, marketeers en freelancers aan tafel met merkeigenaren uit e-commerce en retail. Je spreekt elkaar dagelijks in de groepsapp en twaalf keer per jaar op een club event.',
     ],
   },
   {

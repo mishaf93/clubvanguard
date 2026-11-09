@@ -5,6 +5,7 @@
  * nooit vergeleken of naar beneden gehaald. Regel van Misha: niemand afzetten, wel eerlijk zeggen waar wij staan.
  */
 import Base from '../layouts/Base.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import Faq from '../components/Faq.astro';
 import ClosingCta from '../components/ClosingCta.astro';
 import { compareFaqs } from '../data/faq-seo';
@@ -39,7 +40,7 @@ const soorten = [
 ];
 ---
 <Base
-  title="Welke ondernemersclub past bij jou? · Club Vanguard"
+  title="Welke ondernemersclub past bij jou? | Club Vanguard"
   description="Branchevereniging, lokale netwerkclub, online community, coachingprogramma, besloten mkb-club of besloten sectorclub: de zes soorten ondernemersclubs in Nederland uitgelegd, met voorbeelden als Thuiswinkel.org, Aquila en CLUB49, en voor wie Club Vanguard de juiste is."
   image="/images/pillars-leden.jpg"
 >
@@ -100,6 +101,7 @@ const soorten = [
         bijdrage per kwartaal. Die gaat na elke groep nieuwe leden omhoog, dus vroeg instappen loont. Past het
         niet, dan zeggen we dat eerlijk. Lees meer op <a href="/mastermind-e-commerce/">de mastermind-pagina</a>.
       </p>
+      <RelatedPages />
     </div>
   </section>
 

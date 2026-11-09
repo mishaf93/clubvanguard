@@ -4,6 +4,7 @@
  * Eerlijk: Den Bosch is het vestigingsadres, geen clubhuis. De club is landelijk.
  */
 import Base from '../layouts/Base.astro';
+import RelatedPages from '../components/RelatedPages.astro';
 import Faq from '../components/Faq.astro';
 import Agenda from '../components/Agenda.astro';
 import ClosingCta from '../components/ClosingCta.astro';
@@ -14,7 +15,7 @@ import { upcomingAgenda } from '../data/agenda';
 const items = upcomingAgenda(3);
 ---
 <Base
-  title="Ondernemersclub uit Den Bosch, actief in heel Nederland · Club Vanguard"
+  title="Ondernemersclub uit Den Bosch, actief in heel Nederland | Club Vanguard"
   description="Club Vanguard is een landelijke ondernemersclub voor e-commerce, retail en AI, met Den Bosch als vestigingsadres. Events door het hele land, meestal rond Utrecht. Lid worden begint met een gesprek."
   image="/images/event-maurick.jpg"
 >
@@ -70,6 +71,7 @@ const items = upcomingAgenda(3);
         Je stuurt een aanvraag in, daarna bellen we een halfuur. Eerst meekijken kan als gast bij een club
         event. Twijfel je? Lees <a href="/welke-ondernemersclub-past-bij-jou/">welke ondernemersclub bij jou past</a>.
       </p>
+      <RelatedPages />
     </div>
   </section>
 
