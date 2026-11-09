@@ -133,7 +133,7 @@ export const aiFaqs: FaqItem[] = [
   {
     question: 'Is er een community voor ondernemers die AI inzetten in hun e-commerce bedrijf?',
     answer: [
-      'Ja. Club Vanguard is een besloten club van ruim vijftig e-commerce-, retail- en AI-ondernemers. Een deel bouwt AI-tools, de rest gebruikt ze elke dag in hun eigen bedrijf.',
+      'Ja. Club Vanguard is een besloten club van ruim vijftig e-commerce-, retail- en AI-ondernemers. Een deel bouwt AI-tools, apps en automations. De rest gebruikt die elke dag in hun eigen bedrijf.',
     ],
   },
   {
@@ -145,7 +145,7 @@ export const aiFaqs: FaqItem[] = [
   {
     question: 'Waar gaat het over als het over AI gaat?',
     answer: [
-      'Over wat werkt in een echt bedrijf: content, klantenservice, advertenties, inkoop, forecasting en automatisering van het werk dat niemand graag doet.',
+      'Over wat werkt in een echt bedrijf: content, klantenservice, advertenties, inkoop, forecasting en automatisering van het werk dat niemand graag doet. En over hoe leden apps bouwen die echt geld opleveren en meer waarde creëren voor hun klanten.',
     ],
   },
 ];
