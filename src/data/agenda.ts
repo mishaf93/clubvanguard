@@ -36,9 +36,11 @@ export const agenda: AgendaItem[] = [
   {
     slug: 'club-event-2026-11',
     type: 'Club event',
-    title: 'Club Event · november',
+    title: 'Club Event · Interactive Deep Dive',
     date: '2026-11-21',
+    time: '12:00',
     location: 'Landgoed Mariënwaerdt, Beesd',
+    detailUrl: '/events/deep-dive-21-november/',
     image: 'marienwaerdt.jpg',
   },
   {

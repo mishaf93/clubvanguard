@@ -132,3 +132,67 @@ export const eventFaqs: FaqItem[] = [
     ],
   },
 ];
+
+/** Club Event 21 november 2026 · Interactive Deep Dive op Landgoed Mariënwaerdt. */
+export const deepDiveFaqs: FaqItem[] = [
+  {
+    question: 'Voor wie is deze editie bedoeld?',
+    answer: [
+      'Voor Vanguard-leden en voor ondernemers van buiten de club die een keer willen meemaken hoe een Club Event is. Ondernemers in e-commerce, retail, AI en software die zelf aan het bouwen zijn.',
+      'De Deep Dive is interactief: je werkt aan je eigen jaar en je eigen bedrijf.',
+    ],
+  },
+  {
+    question: 'Wat voor soort ondernemers komen er?',
+    answer: [
+      'E-commerce merkeigenaren, dienstverleners en AI-bouwers. Allemaal ondernemers op niveau.',
+    ],
+  },
+  {
+    question: 'Wat gebeurt er tijdens de Interactive Deep Dive?',
+    answer: [
+      'Van 13:00 tot 15:00 blikken we terug op het afgelopen jaar. In opdrachten ontdek je je grootste bottlenecks en krijg je helderheid over waar je het komende jaar aan moet werken en wat daarvoor noodzakelijk is.',
+      'Je werkt deels alleen en deels met de ondernemers naast je.',
+    ],
+  },
+  {
+    question: 'Wat kost het om erbij te zijn?',
+    answer: [
+      'Vanguard-leden nemen deel binnen hun lidmaatschap. Voor niet-leden kost een ticket €50 excl. btw.',
+      'Het diner om 18:00 is optioneel en valt daarbuiten.',
+    ],
+  },
+  {
+    question: 'Hoe ziet het programma eruit?',
+    answer: [
+      '12:00 tot 13:00 inloop, 13:00 tot 15:00 de Interactive Deep Dive, 15:00 tot 17:30 open networking.',
+      'Om 18:00 is er voor wie wil een diner.',
+    ],
+  },
+  {
+    question: 'Ik wil blijven dineren, hoe geef ik dat door?',
+    answer: ['Geef het aan bij je aanmelding. Het diner is optioneel en begint om 18:00.'],
+  },
+  {
+    question: 'Hoeveel plekken zijn er?',
+    answer: [
+      'Maximaal 30. Bij die groepsgrootte komt iedereen in de opdrachten aan bod. Bij 30 aanmeldingen gaat de inschrijving dicht.',
+    ],
+  },
+  {
+    question: 'Kan ik iemand meenemen?',
+    answer: [
+      'Ja, zolang er plek is. Meld die persoon ook aan via het formulier, want hij of zij telt mee binnen de 30 plekken. Voor niet-leden geldt het ticket van €50 excl. btw.',
+    ],
+  },
+  {
+    question: 'Waar is het en hoe kom ik er?',
+    answer: [
+      'Op Landgoed Mariënwaerdt in Beesd, vlak bij de A2 tussen Utrecht en Den Bosch. Na je aanmelding krijg je de precieze route en parkeerinformatie per mail.',
+    ],
+  },
+  {
+    question: 'Wat moet ik meenemen?',
+    answer: ['In principe niets, alles wordt voor je klaargelegd. Het helpt wel als je alvast hebt nagedacht over het afgelopen jaar.'],
+  },
+];

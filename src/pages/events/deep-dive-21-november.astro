@@ -1,0 +1,821 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import Faq from '../../components/Faq.astro';
+import SignupForm from '../../components/SignupForm.astro';
+import { NOV_EVENT_SIGNUP_URL } from '../../data/form.ts';
+import { deepDiveFaqs } from '../../data/faq.ts';
+
+const eventDate = '2026-11-21T12:00:00+01:00';
+const eventEnd = '2026-11-21T18:00:00+01:00';
+const PAST = Date.now() > new Date(eventEnd).getTime();
+
+// Afgelopen: elke CTA wijst naar de maillijst voor de volgende editie.
+const ctaUrl = PAST ? '#aanmelden' : NOV_EVENT_SIGNUP_URL;
+const ctaLabel = PAST ? 'Meld je aan voor de volgende' : 'Meld je aan';
+const ctaTarget = PAST ? {} : { target: '_blank', rel: 'noopener' };
+const alertText = PAST
+  ? 'Dit event is geweest · hoor als eerste over de volgende editie'
+  : 'Zaterdag 21 november · maximaal 30 plekken';
+
+const facts = [
+  { value: '30', label: 'Plekken totaal' },
+  { value: '2 uur', label: 'Interactive Deep Dive' },
+  { value: '€50', label: 'Niet-leden, excl. btw' },
+  { value: '18:00', label: 'Diner, optioneel' },
+];
+
+const whyBlocks = [
+  {
+    index: '01',
+    title: 'Je kijkt eerlijk terug op je jaar.',
+    text: 'Wat heeft in 2026 gewerkt, wat heeft je vooral tijd en energie gekost en wat zou je achteraf anders hebben gedaan? Je schrijft het op en bespreekt het met de ondernemers naast je.',
+  },
+  {
+    index: '02',
+    title: 'Je vindt je grootste bottleneck.',
+    text: 'Iedereen heeft één ding dat de groei het meest afremt. In de opdrachten zoek je uit wat dat bij jou is, met scherpe vragen van mensen die hetzelfde spel spelen.',
+  },
+  {
+    index: '03',
+    title: 'Je weet waar 2027 over gaat.',
+    text: 'Je gaat naar huis met helderheid over waar je het komende jaar aan moet werken en wat daarvoor noodzakelijk is.',
+  },
+];
+
+const programme = [
+  { time: '12:00', title: 'Inloop', text: 'Ontvangst op het landgoed, koffie en de eerste gesprekken.', tag: 'Tot 13:00' },
+  { time: '13:00', title: 'Interactive Deep Dive', text: 'Twee uur aan het werk met je eigen jaar: terugblikken, je grootste bottlenecks vinden en bepalen waar je in 2027 aan gaat werken.', tag: 'Tot 15:00' },
+  { time: '15:00', title: 'Open Networking', text: 'Tijd om door te praten over wat er in de Deep Dive naar boven kwam en om de rest van de groep te spreken.', tag: 'Tot 17:30' },
+  { time: '18:00', title: 'Diner', text: 'Voor wie wil: samen aan tafel. Geef het door bij je aanmelding.', tag: 'Optioneel' },
+];
+
+const icons = {
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3.2 2"/></svg>',
+  users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20v-1.2A4.4 4.4 0 0 1 7.2 14.4h3.6a4.4 4.4 0 0 1 4.4 4.4V20"/><path d="M16.4 5a3.4 3.4 0 0 1 0 6.6"/><path d="M21.2 20v-1.2a4.4 4.4 0 0 0-3-4.1"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5V9a3 3 0 0 0 0 6v2.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5V15a3 3 0 0 0 0-6z"/><path d="M12 8.5v7" stroke-dasharray="2 2.4"/></svg>',
+  plate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v7a2.4 2.4 0 0 0 4.8 0V3"/><path d="M9.4 12v9"/><path d="M16.6 3v18"/><path d="M16.6 3c1.9 0 2.9 1.4 2.9 3.6s-1 3.4-2.9 3.4"/></svg>',
+};
+
+const practical = [
+  { label: 'Datum', value: 'Zaterdag 21 november 2026', icon: icons.calendar },
+  { label: 'Locatie', value: 'Landgoed Mariënwaerdt, Beesd', icon: icons.pin },
+  { label: 'Tijd', value: '12:00 inloop, programma van 13:00 tot 17:30', icon: icons.clock },
+  { label: 'Capaciteit', value: 'Maximaal 30 mensen', icon: icons.users },
+  { label: 'Leden', value: 'Deelname valt binnen je lidmaatschap', icon: icons.ticket },
+  { label: 'Niet-leden', value: 'Ticket €50 excl. btw', icon: icons.ticket },
+  { label: 'Diner', value: '18:00, optioneel. Graag vooraf doorgeven', icon: icons.plate },
+  { label: 'Meenemen', value: 'Niets, alles ligt voor je klaar', icon: icons.users },
+];
+
+const venuePhotos = [
+  { src: 'mw-buiten.jpg', alt: 'De oranjerie van Landgoed Mariënwaerdt met klimop en grindpad' },
+  { src: 'mw-bar.jpg', alt: 'Bar onder het rieten dak op Landgoed Mariënwaerdt' },
+  { src: 'mw-borrel.jpg', alt: 'Statafels klaar voor de borrel op Landgoed Mariënwaerdt' },
+  { src: 'mw-terras.jpg', alt: 'Terras tussen het groen op Landgoed Mariënwaerdt' },
+];
+---
+<Landing
+  title="21 november · Interactive Deep Dive op Landgoed Mariënwaerdt | Club Vanguard"
+  description="Zaterdag 21 november op Landgoed Mariënwaerdt in Beesd. Twee uur interactief terugblikken op je jaar, je grootste bottlenecks vinden en bepalen waar je in 2027 aan werkt. Maximaal 30 plekken."
+  ctaHref={ctaUrl}
+  ctaLabel={PAST ? 'Volgende editie' : 'Meld je aan'}
+  alert={alertText}
+  alertTone={PAST ? 'neutral' : 'alert'}
+>
+  <!-- ============ HERO ============ -->
+  <section class="ev-hero">
+    <img
+      src="/images/mw-hero.jpg"
+      alt=""
+      class="site-photo ev-hero__photo"
+      width="2000"
+      height="1333"
+      fetchpriority="high"
+    />
+    <div class="ev-hero__scrim" aria-hidden="true"></div>
+    <div class="container ev-hero__inner">
+      <p class="eyebrow">Club Event · 21 november 2026{PAST && ' · Afgelopen'}</p>
+      <h1 class="ev-hero__title">
+        Sluit je jaar scherp af.<br /><em>Begin 2027 met helderheid.</em>
+      </h1>
+      <p class="lead ev-hero__lead">
+        Zaterdag 21 november op Landgoed Mariënwaerdt in Beesd. Een interactieve
+        Deep Dive van twee uur, daarna open networking en voor wie wil een diner.
+        Maximaal 30 mensen.
+      </p>
+      <div class="ev-hero__actions">
+        <a href={ctaUrl} class="btn btn--solid" {...ctaTarget}>{ctaLabel}</a>
+        <a href="#programma" class="btn btn--ghost">{PAST ? 'Bekijk hoe het was' : 'Bekijk het programma'}</a>
+      </div>
+</div>
+  </section>
+
+  <!-- ============ FACTS ============ -->
+  <section class="ev-facts" aria-label="Deze editie in cijfers">
+    <div class="container ev-facts__grid">
+      {facts.map((f) => (
+        <div class="ev-facts__item">
+          <span class="ev-facts__value">{f.value}</span>
+          <span class="ev-facts__label">{f.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="section section--ivory ev-intro">
+    <div class="container">
+      <p class="eyebrow">Waarom deze editie</p>
+      <h2 class="section-title section-title--lg ev-intro__heading">
+        Eén middag om je jaar af te sluiten en het volgende scherp te krijgen.
+      </h2>
+
+      <div class="ev-intro__grid">
+        <figure class="ev-intro__figure">
+          <img
+            src="/images/deepdive-werk.jpg"
+            alt="Vanguard-leden schrijven tijdens een interactieve sessie op een eerder Club Event"
+            class="site-photo ev-intro__photo"
+            width="1600"
+            height="1066"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="ev-intro__body">
+          <p>
+            November is voor de meesten van ons de drukste maand van het jaar.
+            Juist dan helpt het om een middag uit de waan van de dag te stappen
+            en met een groep ondernemers naar je eigen jaar te kijken.
+          </p>
+          <p>
+            Tijdens de Deep Dive blikken we samen terug op het afgelopen jaar.
+            Wat heeft gewerkt, wat heeft je tijd en energie gekost en waar loop
+            je steeds opnieuw tegenaan?
+          </p>
+          <p>
+            Je werkt in opdrachten, alleen en met de mensen naast je. Aan het
+            eind van de middag weet je wat je grootste bottlenecks zijn, waar je
+            het komende jaar aan moet werken en wat daarvoor noodzakelijk is.
+          </p>
+          <p>
+            Daarna is er alle tijd om door te praten op het landgoed, en wie wil
+            schuift om 18:00 aan voor het diner.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEEP DIVE ============ -->
+  <section class="section ev-guest" id="deep-dive">
+    <div class="container ev-guest__grid">
+      <figure class="ev-guest__figure">
+        <img
+          src="/images/deepdive-bord.jpg"
+          alt="Vanguard-leden bij het scherm tijdens een interactieve sessie op het Club Event in Utrecht"
+          class="site-photo ev-guest__photo"
+          width="1400"
+          height="1400"
+          loading="lazy"
+        />
+        <figcaption class="ev-guest__caption">Aan het werk op een eerder Club Event</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">Interactive Deep Dive · 13:00 tot 15:00</p>
+        <h2 class="section-title section-title--lg">
+          Twee uur werken aan je eigen bedrijf, met de groep om je heen.
+        </h2>
+        <p class="ev-guest__text">
+          De Deep Dive is interactief. Je krijgt opdrachten, je schrijft, en je
+          legt je antwoorden voor aan ondernemers die zelf aan het bouwen zijn
+          als e-commerce merkeigenaar, dienstverlener of AI-bouwer.
+        </p>
+        <p class="ev-guest__text">
+          Zij kennen jouw situatie van binnenuit en zeggen eerlijk wat ze zien.
+          Daardoor kom je in twee uur verder dan in een week nadenken achter je
+          eigen bureau.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WAT HET DOET ============ -->
+  <section class="section section--ivory ev-why">
+    <div class="container">
+      <p class="eyebrow">Wat je eraan overhoudt</p>
+      <h2 class="section-title section-title--lg">
+        Je gaat naar huis met een helder beeld van je komende jaar.
+      </h2>
+      <div class="ev-why__grid">
+        {whyBlocks.map((b) => (
+          <article class="ev-why__card">
+            <span class="ev-why__index">{b.index}</span>
+            <h3 class="ev-why__title">{b.title}</h3>
+            <p class="ev-why__text">{b.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VOLGENDE EDITIE (na afloop) ============ -->
+  {PAST && (
+    <section class="ev-next" id="aanmelden">
+      <div class="container ev-next__grid">
+        <div>
+          <p class="eyebrow">De volgende editie</p>
+          <h2 class="ev-limit__title">Wil je er de volgende keer bij zijn?</h2>
+          <p class="ev-limit__text">
+            Zet je op de lijst. Eén korte mail per week, en je hoort als eerste
+            wanneer de datum en de plekken van het volgende Club Event bekend zijn.
+          </p>
+        </div>
+        <div class="ev-next__card">
+          <SignupForm context="deep-dive-nov-2026-recap" id="deepdive-signup" stacked={true} />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ============ SCARCITY ============ -->
+  {!PAST && (
+  <section class="ev-limit">
+    <div class="container container--narrow ev-limit__inner">
+      <p class="eyebrow">Let op</p>
+      <h2 class="ev-limit__title">Maximaal 30 mensen.</h2>
+      <p class="ev-limit__text">
+        Bij deze groepsgrootte komt iedereen in de opdrachten aan bod en spreek
+        je in de uren daarna de hele groep. Bij 30 gaat de inschrijving dicht.
+        Neem je iemand mee uit je netwerk? Meld die persoon dan ook aan, want
+        hij of zij telt mee binnen de 30 plekken.
+      </p>
+      <a href={ctaUrl} class="btn btn--solid" target="_blank" rel="noopener">Claim je plek</a>
+    </div>
+  </section>
+  )}
+
+  <!-- ============ PROGRAMMA ============ -->
+  <section class="section ev-programme" id="programma">
+    <div class="container">
+      <p class="eyebrow">De middag zelf</p>
+      <h2 class="section-title section-title--lg">{PAST ? 'Zo zag de middag eruit' : 'Programma · 21 november'}</h2>
+      <ol class="ev-programme__list">
+        {programme.map((p) => (
+          <li class="ev-programme__row">
+            <span class="ev-programme__time">{p.time}</span>
+            <div class="ev-programme__body">
+              <h3 class="ev-programme__title">{p.title}</h3>
+              <p class="ev-programme__text">{p.text}</p>
+            </div>
+            <span class="ev-programme__tag">{p.tag}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ LOCATIE + PRAKTISCH ============ -->
+  <section class="section section--ivory ev-practical" id="locatie">
+    <div class="container">
+      <p class="eyebrow">Locatie en praktisch</p>
+      <h2 class="section-title section-title--lg">Landgoed Mariënwaerdt, Beesd.</h2>
+      <p class="ev-venue__lead">
+        Een landgoed van ruim 900 hectare aan de Linge, vlak bij de A2 tussen
+        Utrecht en Den Bosch. Oude schuren met houten balken en rieten daken,
+        midden in het groen.
+      </p>
+      <div class="ev-venue__grid">
+        {venuePhotos.map((p) => (
+          <img
+            src={`/images/${p.src}`}
+            alt={p.alt}
+            class="site-photo ev-venue__photo"
+            width="1200"
+            height="800"
+            loading="lazy"
+          />
+        ))}
+      </div>
+      <dl class="ev-practical__grid">
+        {practical.map((p) => (
+          <div class="ev-practical__item">
+            <span class="ev-practical__icon" set:html={p.icon} />
+            <div>
+              <dt>{p.label}</dt>
+              <dd>{p.value}</dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  {!PAST && (
+  <section class="ev-count" aria-label="Aftellen naar 21 november">
+    <div class="container container--narrow ev-count__inner">
+      <p class="eyebrow">De klok tikt</p>
+      <h2 class="ev-count__title">Nog te gaan tot we beginnen op het landgoed.</h2>
+      <div class="ev-count__clock" data-countdown={eventDate}>
+        <div class="ev-count__unit"><span data-days>--</span><em>Dagen</em></div>
+        <div class="ev-count__unit"><span data-hours>--</span><em>Uur</em></div>
+        <div class="ev-count__unit"><span data-minutes>--</span><em>Min</em></div>
+        <div class="ev-count__unit"><span data-seconds>--</span><em>Sec</em></div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <Faq items={deepDiveFaqs} light={true} eyebrow="Veelgestelde vragen" title="Nog een paar dingen om te weten." />
+
+  <!-- ============ CLOSING ============ -->
+  <section class="section ev-closing">
+    <div class="container container--narrow ev-closing__inner">
+      <h2 class="ev-closing__title">
+        {PAST ? (
+          <>Dit was 21 november.<br /><em>De volgende editie komt eraan.</em></>
+        ) : (
+          <>Zaterdag 21 november.<br /><em>Tot op het landgoed.</em></>
+        )}
+      </h2>
+      <p class="ev-closing__meta">
+        Landgoed Mariënwaerdt, Beesd · {PAST ? 'Afgelopen' : 'Max 30 plekken'}
+      </p>
+      <a href={ctaUrl} class="btn btn--solid" {...ctaTarget}>{ctaLabel}</a>
+    </div>
+  </section>
+</Landing>
+
+<script>
+  const clock = document.querySelector('[data-countdown]');
+  if (clock instanceof HTMLElement) {
+    const target = new Date(clock.dataset.countdown ?? '').getTime();
+    const fields = {
+      days: clock.querySelector('[data-days]'),
+      hours: clock.querySelector('[data-hours]'),
+      minutes: clock.querySelector('[data-minutes]'),
+      seconds: clock.querySelector('[data-seconds]'),
+    };
+
+    const pad = (n: number) => String(Math.max(0, n)).padStart(2, '0');
+
+    const tick = () => {
+      const total = Math.max(0, Math.floor((target - Date.now()) / 1000));
+      if (fields.days) fields.days.textContent = pad(Math.floor(total / 86400));
+      if (fields.hours) fields.hours.textContent = pad(Math.floor((total % 86400) / 3600));
+      if (fields.minutes) fields.minutes.textContent = pad(Math.floor((total % 3600) / 60));
+      if (fields.seconds) fields.seconds.textContent = pad(total % 60);
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>
+
+<style>
+  /* ---------- Hero ---------- */
+  .ev-hero {
+    position: relative;
+    min-height: min(92vh, 820px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .ev-hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ev-hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 18, 32, 0.66);
+  }
+  .ev-hero__inner {
+    position: relative;
+    padding-block: clamp(3.5rem, 9vh, 6rem);
+  }
+  .ev-hero__title {
+    font-size: var(--text-hero);
+    max-width: 18ch;
+  }
+  .ev-hero__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .ev-hero__lead {
+    margin-top: 1.4rem;
+    color: var(--ivory-dim);
+  }
+  .ev-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
+  .ev-hero__note {
+    margin-top: 1.4rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    max-width: 46ch;
+  }
+
+  /* ---------- Facts ---------- */
+  .ev-facts {
+    background: var(--navy-deep);
+    border-block: 1px solid var(--line-navy);
+    padding-block: 2.4rem;
+  }
+  .ev-facts__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 2rem;
+    text-align: center;
+  }
+  .ev-facts__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .ev-facts__value {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--brass);
+    line-height: 1;
+  }
+  .ev-facts__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    line-height: 1.2;
+  }
+
+  /* ---------- Intro ---------- */
+  .ev-intro__heading { max-width: 34ch; }
+  .ev-intro__grid {
+    display: grid;
+    grid-template-columns: minmax(240px, 26rem) 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .ev-intro__figure { margin: 0; }
+  .ev-intro__photo {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .ev-intro__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    color: var(--ink-dim);
+    line-height: 1.75;
+  }
+  .ev-intro__sig {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  /* ---------- Guest ---------- */
+  .ev-guest__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 420px) 1fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: center;
+  }
+  .ev-guest__figure { margin: 0; }
+  .ev-guest__photo {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .ev-guest__caption {
+    margin-top: 0.9rem;
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-guest__text {
+    margin-top: 1.1rem;
+    color: var(--ivory-dim);
+    line-height: 1.75;
+    max-width: 52ch;
+  }
+  .ev-guest__tease {
+    margin-top: 2rem;
+    padding: 1.5rem 1.6rem;
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-left: 2px solid var(--brass);
+    border-radius: 6px;
+  }
+  .ev-guest__tease-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-guest__tease-text {
+    margin-top: 0.6rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    line-height: 1.7;
+  }
+
+  /* ---------- Why ---------- */
+  .ev-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .ev-why__card {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    align-content: start;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--brass);
+  }
+  .ev-why__index {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .ev-why__title {
+    font-size: var(--text-lg);
+    margin-top: 0.7rem;
+  }
+  .ev-why__text {
+    margin-top: 0.7rem;
+    font-size: var(--text-sm);
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+
+  /* ---------- Limit ---------- */
+  .ev-limit {
+    background: var(--navy-deep);
+    border-block: 1px solid var(--line-navy);
+    padding-block: clamp(3.5rem, 8vh, 5.5rem);
+  }
+  .ev-limit__inner { text-align: center; }
+  .ev-limit__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section-lg);
+  }
+  .ev-limit__text {
+    margin-top: 1.2rem;
+    color: var(--ivory-dim);
+    line-height: 1.75;
+    margin-inline: auto;
+    max-width: 54ch;
+  }
+  .ev-limit__inner .btn { margin-top: 2rem; }
+
+  .ev-next {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--line-navy);
+    border-bottom: 1px solid var(--line-navy);
+    padding-block: var(--space-section);
+  }
+  .ev-next__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .ev-next .ev-limit__title { margin-top: 0; }
+  .ev-next__card {
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  @media (max-width: 900px) {
+    .ev-next__grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Programma ---------- */
+  .ev-programme__list {
+    list-style: none;
+    margin-top: 3rem;
+    border-top: 1px solid var(--line-navy);
+  }
+  .ev-programme__row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr auto;
+    gap: 1.5rem 2rem;
+    align-items: baseline;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .ev-programme__time {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--brass);
+  }
+  .ev-programme__title { font-size: var(--text-lg); }
+  .ev-programme__text {
+    margin-top: 0.45rem;
+    font-size: var(--text-sm);
+    color: var(--ivory-dim);
+    line-height: 1.7;
+    max-width: 54ch;
+  }
+  .ev-programme__tag {
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    border: 1px solid var(--line-navy);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* ---------- Praktisch ---------- */
+  .ev-practical__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .ev-practical__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.4rem 1.3rem;
+    background: rgba(28, 36, 48, 0.035);
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .ev-practical__icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--brass);
+    border-radius: 50%;
+    color: var(--brass);
+  }
+  .ev-practical__icon :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+    display: block;
+  }
+  .ev-practical__item dt {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .ev-practical__item dd {
+    margin-top: 0.4rem;
+    font-size: var(--text-sm);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* ---------- Locatie ---------- */
+  .ev-venue__lead {
+    margin-top: 1.2rem;
+    max-width: 58ch;
+    color: var(--ink-dim);
+    line-height: 1.75;
+  }
+  .ev-venue__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+  .ev-venue__photo {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid var(--line-ivory);
+    border-radius: 6px;
+  }
+  .ev-venue__photo:first-child {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+  .ev-venue__photo:nth-child(4) { grid-column: span 2; aspect-ratio: 3 / 1; }
+  @media (max-width: 720px) {
+    .ev-venue__grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+    .ev-venue__photo:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 3 / 2; }
+    .ev-venue__photo:nth-child(4) { aspect-ratio: 3 / 1; }
+  }
+  /* ---------- Countdown ---------- */
+  .ev-count {
+    padding-block: clamp(3.5rem, 8vh, 5.5rem);
+    border-bottom: 1px solid var(--line-navy);
+  }
+  .ev-count__inner { text-align: center; }
+  .ev-count__title {
+    font-family: var(--font-display);
+    font-size: var(--text-section);
+  }
+  .ev-count__clock {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2.2rem;
+  }
+  .ev-count__unit {
+    padding: 1.2rem 0.5rem;
+    background: var(--navy-soft);
+    border: 1px solid var(--line-navy);
+    border-radius: 6px;
+  }
+  .ev-count__unit span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--brass);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .ev-count__unit em {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+
+  /* ---------- Closing ---------- */
+  .ev-closing { background: var(--navy-deep); }
+  .ev-closing__inner { text-align: center; }
+  .ev-closing__title {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+  }
+  .ev-closing__title em {
+    font-style: italic;
+    color: var(--brass-soft);
+  }
+  .ev-closing__meta {
+    margin-top: 1.2rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .ev-closing__inner .btn { margin-top: 2.2rem; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1000px) {
+    .ev-practical__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .ev-intro__grid,
+    .ev-guest__grid { grid-template-columns: 1fr; }
+    .ev-intro__photo { aspect-ratio: 3 / 2; }
+    .ev-why__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+    .ev-why__card {
+      grid-row: auto;
+      grid-template-rows: none;
+      display: block;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ev-facts__grid { grid-template-columns: repeat(2, 1fr); }
+    .ev-programme__row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .ev-programme__tag { justify-self: start; }
+    .ev-practical__grid { grid-template-columns: 1fr; }
+  }
+</style>

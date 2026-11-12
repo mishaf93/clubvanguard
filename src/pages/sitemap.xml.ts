@@ -15,6 +15,7 @@ const PAGES: Array<[path: string, priority: string]> = [
   ['/nederlandse-ondernemers-spanje/', '0.6'],
   ['/aanvragen/', '0.7'],
   ['/join/', '0.5'],
+  ['/events/deep-dive-21-november/', '0.6'],
   ['/the-shift-event/', '0.4'],
   ['/contact/', '0.3'],
   ['/algemene-voorwaarden/', '0.1'],

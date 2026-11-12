@@ -11,6 +11,9 @@ export const EVENT_SIGNUP_URL = 'https://app.youform.com/forms/qludq0gh';
  */
 export const EVENT_WAITLIST_URL = EVENT_SIGNUP_URL;
 
+/** Aanmelding voor het Club Event van 21 november (Mariënwaerdt, Deep Dive). */
+export const NOV_EVENT_SIGNUP_URL = 'https://app.youform.com/forms/daez3pbd';
+
 /**
  * Plek aanvragen voor een Club Dinner (4 plekken per editie).
  * Voorlopig het algemene intake-formulier; vervang door een apart
