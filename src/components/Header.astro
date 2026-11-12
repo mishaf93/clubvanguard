@@ -1,5 +1,6 @@
 ---
 import { MEMBER_APP_URL } from '../data/links';
+import EventBanner from './EventBanner.astro';
 
 const { pathname } = Astro.url;
 const links = [
@@ -9,6 +10,7 @@ const links = [
 ];
 ---
 <header class="header">
+  <EventBanner />
   <div class="container header__inner">
     <a href="/" class="header__logo" aria-label="Club Vanguard home">
       <img src="/images/logo.png" alt="Club Vanguard" class="header__logo-img" width="1024" height="251" />

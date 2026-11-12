@@ -1,0 +1,90 @@
+---
+/**
+ * Sitewide balk boven het menu: het eerstvolgende event met een eigen pagina.
+ * Komt uit agenda.ts (eerste komende item met detailUrl), dus geen losse tekst
+ * om bij te houden. Na de eventdag verbergt de balk zichzelf, ook zonder nieuwe build.
+ */
+import { agenda } from '../data/agenda';
+
+const today = new Date();
+const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+const next = agenda
+  .filter((item) => item.detailUrl && new Date(item.date) >= start)
+  .sort((a, b) => a.date.localeCompare(b.date))[0];
+
+const d = next ? new Date(next.date) : null;
+const weekday = d ? d.toLocaleDateString('nl-NL', { weekday: 'long', timeZone: 'UTC' }) : '';
+const dayMonth = d ? d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', timeZone: 'UTC' }) : '';
+// 'Club Event · Interactive Deep Dive' → 'Interactive Deep Dive'
+const name = next ? next.title.split(' · ').pop() : '';
+const hideAfter = next ? `${next.date}T23:59:59+01:00` : '';
+---
+{next && (
+  <a href={next.detailUrl} class="event-banner" data-hide-after={hideAfter}>
+    <span class="container event-banner__inner">
+      <span class="event-banner__dot" aria-hidden="true"></span>
+      <span class="event-banner__text">
+        <span class="event-banner__weekday">{weekday} </span>{dayMonth} · {name}
+        <span class="event-banner__place"> · {next.location}</span>
+      </span>
+      <span class="event-banner__cta">Meld je aan →</span>
+    </span>
+  </a>
+)}
+
+<script is:inline>
+  document.querySelectorAll('.event-banner[data-hide-after]').forEach(function (el) {
+    if (Date.now() > new Date(el.dataset.hideAfter).getTime()) el.remove();
+  });
+</script>
+
+<style>
+  .event-banner {
+    display: block;
+    background: #8c3a2c;
+    color: var(--ivory);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(8, 18, 32, 0.25);
+  }
+  .event-banner__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding-block: 0.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .event-banner__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--ivory);
+    flex-shrink: 0;
+    animation: event-banner-pulse 2s ease-in-out infinite;
+  }
+  .event-banner__weekday { text-transform: capitalize; }
+  .event-banner__cta {
+    white-space: nowrap;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .event-banner:hover .event-banner__cta { text-decoration-thickness: 2px; }
+
+  @keyframes event-banner-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .event-banner__dot { animation: none; }
+  }
+  @media (max-width: 760px) {
+    .event-banner__place { display: none; }
+  }
+  @media (max-width: 480px) {
+    .event-banner__inner { font-size: 0.78rem; gap: 0.5rem; }
+    .event-banner__weekday { display: none; }
+  }
+</style>
