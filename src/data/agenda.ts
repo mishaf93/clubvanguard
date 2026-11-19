@@ -42,6 +42,7 @@ export const agenda: AgendaItem[] = [
     location: 'Landgoed Mariënwaerdt, Beesd',
     detailUrl: '/events/deep-dive-21-november/',
     image: 'marienwaerdt.jpg',
+    spotsLeft: 0,
   },
   {
     slug: 'christmas-dinner-2026',

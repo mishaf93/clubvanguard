@@ -27,7 +27,7 @@ const hideAfter = next ? `${next.date}T23:59:59+01:00` : '';
         <span class="event-banner__weekday">{weekday} </span>{dayMonth} · {name}
         <span class="event-banner__place"> · {next.location}</span>
       </span>
-      <span class="event-banner__cta">Meld je aan →</span>
+      <span class="event-banner__cta">{next.spotsLeft === 0 ? 'Volgeboekt →' : 'Meld je aan →'}</span>
     </span>
   </a>
 )}

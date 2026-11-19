@@ -8,14 +8,19 @@ import { deepDiveFaqs } from '../../data/faq.ts';
 const eventDate = '2026-11-21T12:00:00+01:00';
 const eventEnd = '2026-11-21T18:00:00+01:00';
 const PAST = Date.now() > new Date(eventEnd).getTime();
+// Volgeboekt: aanmelding gesloten, CTA's wijzen naar de lijst voor de volgende editie.
+const FULL = true;
+const CLOSED = PAST || FULL;
 
 // Afgelopen: elke CTA wijst naar de maillijst voor de volgende editie.
-const ctaUrl = PAST ? '#aanmelden' : NOV_EVENT_SIGNUP_URL;
-const ctaLabel = PAST ? 'Meld je aan voor de volgende' : 'Meld je aan';
-const ctaTarget = PAST ? {} : { target: '_blank', rel: 'noopener' };
+const ctaUrl = CLOSED ? '#aanmelden' : NOV_EVENT_SIGNUP_URL;
+const ctaLabel = CLOSED ? 'Zet je op de lijst voor de volgende' : 'Meld je aan';
+const ctaTarget = CLOSED ? {} : { target: '_blank', rel: 'noopener' };
 const alertText = PAST
   ? 'Dit event is geweest · hoor als eerste over de volgende editie'
-  : 'Zaterdag 21 november · maximaal 30 plekken';
+  : FULL
+    ? 'Volgeboekt · de aanmelding is gesloten'
+    : 'Zaterdag 21 november · maximaal 30 plekken';
 
 const facts = [
   { value: '30', label: 'Plekken totaal' },
@@ -80,9 +85,9 @@ const venuePhotos = [
   title="21 november · Interactive Deep Dive op Landgoed Mariënwaerdt | Club Vanguard"
   description="Zaterdag 21 november op Landgoed Mariënwaerdt in Beesd. Twee uur interactief terugblikken op je jaar, je grootste bottlenecks vinden en bepalen waar je in 2027 aan werkt. Maximaal 30 plekken."
   ctaHref={ctaUrl}
-  ctaLabel={PAST ? 'Volgende editie' : 'Meld je aan'}
+  ctaLabel={CLOSED ? 'Volgende editie' : 'Meld je aan'}
   alert={alertText}
-  alertTone={PAST ? 'neutral' : 'alert'}
+  alertTone={CLOSED ? 'neutral' : 'alert'}
 >
   <!-- ============ HERO ============ -->
   <section class="ev-hero">
@@ -96,14 +101,14 @@ const venuePhotos = [
     />
     <div class="ev-hero__scrim" aria-hidden="true"></div>
     <div class="container ev-hero__inner">
-      <p class="eyebrow">Club Event · 21 november 2026{PAST && ' · Afgelopen'}</p>
+      <p class="eyebrow">Club Event · 21 november 2026{PAST ? ' · Afgelopen' : FULL ? ' · Volgeboekt' : ''}</p>
       <h1 class="ev-hero__title">
         Sluit je jaar scherp af.<br /><em>Begin 2027 met helderheid.</em>
       </h1>
       <p class="lead ev-hero__lead">
         Zaterdag 21 november op Landgoed Mariënwaerdt in Beesd. Een interactieve
         Deep Dive van twee uur, daarna open networking en voor wie wil een diner.
-        Maximaal 30 mensen.
+        {FULL && !PAST ? 'Alle 30 plekken zijn bezet, de aanmelding is gesloten.' : 'Maximaal 30 mensen.'}
       </p>
       <div class="ev-hero__actions">
         <a href={ctaUrl} class="btn btn--solid" {...ctaTarget}>{ctaLabel}</a>
@@ -222,12 +227,12 @@ const venuePhotos = [
   </section>
 
   <!-- ============ VOLGENDE EDITIE (na afloop) ============ -->
-  {PAST && (
+  {CLOSED && (
     <section class="ev-next" id="aanmelden">
       <div class="container ev-next__grid">
         <div>
-          <p class="eyebrow">De volgende editie</p>
-          <h2 class="ev-limit__title">Wil je er de volgende keer bij zijn?</h2>
+          <p class="eyebrow">{PAST ? 'De volgende editie' : 'Volgeboekt'}</p>
+          <h2 class="ev-limit__title">{PAST ? 'Wil je er de volgende keer bij zijn?' : 'We zitten vol. Wees er de volgende keer bij.'}</h2>
           <p class="ev-limit__text">
             Zet je op de lijst. Eén korte mail per week, en je hoort als eerste
             wanneer de datum en de plekken van het volgende Club Event bekend zijn.
@@ -241,7 +246,7 @@ const venuePhotos = [
   )}
 
   <!-- ============ SCARCITY ============ -->
-  {!PAST && (
+  {!CLOSED && (
   <section class="ev-limit">
     <div class="container container--narrow ev-limit__inner">
       <p class="eyebrow">Let op</p>
@@ -342,7 +347,7 @@ const venuePhotos = [
         )}
       </h2>
       <p class="ev-closing__meta">
-        Landgoed Mariënwaerdt, Beesd · {PAST ? 'Afgelopen' : 'Max 30 plekken'}
+        Landgoed Mariënwaerdt, Beesd · {PAST ? 'Afgelopen' : FULL ? 'Volgeboekt' : 'Max 30 plekken'}
       </p>
       <a href={ctaUrl} class="btn btn--solid" {...ctaTarget}>{ctaLabel}</a>
     </div>
